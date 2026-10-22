@@ -9,6 +9,7 @@ import { AdminQueryService } from './admin/admin-query.service';
 import { AdminController } from './admin/admin.controller';
 import { AuthController } from './auth/auth.controller';
 import { AuthService } from './auth/auth.service';
+import { ReviewAccounts, ReviewSmsVerifier } from './auth/review';
 import { ConsoleSmsVerifier, SMS_VERIFIER, TwilioVerifyService } from './auth/sms';
 import { TokensService } from './auth/tokens.service';
 import { BootstrapService } from './bootstrap.service';
@@ -116,7 +117,18 @@ export class AppModule {
       providers: [
         PrismaService,
         { provide: PII_CIPHER, useFactory: () => new PiiCipher(env.PII_ENCRYPTION_KEY) },
-        { provide: SMS_VERIFIER, useClass: env.SMS_PROVIDER === 'twilio' ? TwilioVerifyService : ConsoleSmsVerifier },
+        TwilioVerifyService,
+        ConsoleSmsVerifier,
+        ReviewAccounts,
+        {
+          provide: SMS_VERIFIER,
+          // для номеров проверки магазинами (REVIEW_PHONES) — постоянный код без SMS, остальным — настоящий провайдер
+          useFactory: (twilio: TwilioVerifyService, consoleSms: ConsoleSmsVerifier) => {
+            const inner = env.SMS_PROVIDER === 'twilio' ? twilio : consoleSms;
+            return env.REVIEW_PHONES.length > 0 && env.REVIEW_OTP_CODE ? new ReviewSmsVerifier(inner, env.REVIEW_PHONES, env.REVIEW_OTP_CODE) : inner;
+          },
+          inject: [TwilioVerifyService, ConsoleSmsVerifier],
+        },
         { provide: PUSH_SENDER, useClass: env.PUSH_PROVIDER === 'fcm' ? FcmPushSender : env.PUSH_PROVIDER === 'expo' ? ExpoPushSender : LogPushSender },
         { provide: STRIPE_GATEWAY, useClass: StripeGatewayImpl },
         { provide: APP_GUARD, useClass: ThrottlerGuard },

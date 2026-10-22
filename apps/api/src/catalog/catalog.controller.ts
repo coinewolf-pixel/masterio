@@ -2,7 +2,7 @@ import { Controller, Get, Query } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { z } from 'zod';
 import { latLngSchema, uuidSchema } from '@masterio/shared';
-import { Public, Roles } from '../common/auth';
+import { CurrentUser, Public, Roles, type AuthUser } from '../common/auth';
 import { ZodPipe } from '../common/zod';
 import { CatalogService } from './catalog.service';
 
@@ -34,7 +34,7 @@ export class CatalogController {
   @ApiBearerAuth()
   @Roles('CLIENT')
   @Get('availability')
-  availability(@Query(new ZodPipe(availabilityQuery)) q: z.infer<typeof availabilityQuery>) {
-    return this.catalog.availability(q.cityId, q.categoryId, { lat: q.lat, lng: q.lng });
+  availability(@CurrentUser() user: AuthUser, @Query(new ZodPipe(availabilityQuery)) q: z.infer<typeof availabilityQuery>) {
+    return this.catalog.availability(q.cityId, q.categoryId, { lat: q.lat, lng: q.lng }, user.id);
   }
 }

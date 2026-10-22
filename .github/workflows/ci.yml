@@ -48,6 +48,8 @@ jobs:
         run: pnpm --filter @masterio/shared build
       - name: Translations are complete in all 5 languages
         run: pnpm i18n:check
+      - name: Store listings fit Google Play and App Store limits and are up to date
+        run: python3 store/listings.py && git diff --exit-code -- store
       - name: Prisma schema is valid
         run: pnpm --filter @masterio/api exec prisma validate
       - name: Typecheck

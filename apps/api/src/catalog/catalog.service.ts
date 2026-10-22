@@ -39,7 +39,7 @@ export class CatalogService {
     return groups.filter((g) => g.categories.length > 0);
   }
 
-  async availability(cityId: string, categoryId: string, location: LatLng) {
+  async availability(cityId: string, categoryId: string, location: LatLng, clientId?: string) {
     const cc = await this.prisma.cityCategory.findUnique({
       where: { cityId_categoryId: { cityId, categoryId } },
       include: { city: true },
@@ -48,7 +48,7 @@ export class CatalogService {
     const ctx = { countryCode: cc.city.countryCode, cityId, categoryId };
     const radiusM = this.settings.get('SEARCH_RADIUS_M', ctx);
     const maxRadiusM = this.settings.get('MAX_SEARCH_RADIUS_M', ctx);
-    const base = { cityId, categoryId, countryCode: cc.city.countryCode, currency: cc.city.currency, location };
+    const base = { cityId, categoryId, countryCode: cc.city.countryCode, currency: cc.city.currency, location, ...(clientId ? { clientId } : {}) };
     const nearby = await this.matching.findCandidates({ ...base, radiusM });
     const wider = nearby.length > 0 ? nearby : await this.matching.findCandidates({ ...base, radiusM: maxRadiusM });
     return {

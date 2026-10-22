@@ -6,6 +6,7 @@
 | `API.md` | контракт API, события Socket.IO и фоновые задачи (фазы 2–7) |
 | `SCREENS.md` | все экраны Masterio, Masterio Pro и CRM |
 | `LAUNCH.md` | пошаговый запуск в Армении: Railway, S3, Twilio, Stripe, Google Maps, Expo, сборки, магазины, юридические документы |
+| `../store/README.md` | публикация в Google Play и App Store: тексты на 3 языках, тестовые аккаунты, декларации |
 | `SERVICES.md` | какие внешние сервисы и ключи нужно получить |
 | `CHECKLIST.md` | чек-лист ручной проверки сервера, приложений и CRM по фазам |
 | `LIMITATIONS.md` | известные ограничения и риски |

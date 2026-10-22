@@ -10,3 +10,5 @@ apps/api/src/generated/
 android/build/
 ios/Pods/
 .expo/
+__pycache__/
+*.pyc

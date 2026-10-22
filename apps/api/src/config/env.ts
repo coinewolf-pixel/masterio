@@ -50,6 +50,16 @@ const envSchema = z
     GOOGLE_MAPS_API_KEY: z.string().optional(),
     SENTRY_DSN: z.string().optional(),
     LOG_LEVEL: z.enum(['error', 'warn', 'log', 'debug', 'verbose']).default('log'),
+    /**
+     * Аккаунты для проверки в App Store и Google Play: номера E.164 через запятую. Для них SMS не отправляется,
+     * вход — по REVIEW_OTP_CODE; их заказы видят только такие же тестовые мастера (реальным не уходят).
+     */
+    REVIEW_PHONES: z
+      .string()
+      .default('')
+      .transform((v) => v.split(',').map((x) => x.trim()).filter(Boolean))
+      .pipe(z.array(z.string().regex(/^\+[1-9]\d{7,14}$/, 'REVIEW_PHONES: E.164 numbers separated by commas'))),
+    REVIEW_OTP_CODE: z.string().regex(/^\d{6}$/, 'REVIEW_OTP_CODE: 6 digits').optional(),
   })
   .superRefine((env, ctx) => {
     if (env.SMS_PROVIDER === 'twilio' && (!env.TWILIO_ACCOUNT_SID || !env.TWILIO_AUTH_TOKEN || !env.TWILIO_VERIFY_SERVICE_SID)) {
@@ -57,6 +67,12 @@ const envSchema = z
     }
     if (env.PUSH_PROVIDER === 'fcm' && !env.FIREBASE_SERVICE_ACCOUNT_B64) {
       ctx.addIssue({ code: 'custom', message: 'FIREBASE_SERVICE_ACCOUNT_B64 is required when PUSH_PROVIDER=fcm' });
+    }
+    if (env.REVIEW_PHONES.length > 0) {
+      const weak = ['000000', '111111', '123456', '654321', '123123', '999999'];
+      if (!env.REVIEW_OTP_CODE || weak.includes(env.REVIEW_OTP_CODE) || /^(\d)\1{5}$/.test(env.REVIEW_OTP_CODE)) {
+        ctx.addIssue({ code: 'custom', message: 'REVIEW_OTP_CODE (6 random digits, not trivial) is required when REVIEW_PHONES is set' });
+      }
     }
     if (env.NODE_ENV === 'production') {
       if (env.SMS_PROVIDER !== 'twilio') ctx.addIssue({ code: 'custom', message: 'SMS_PROVIDER must be twilio in production' });

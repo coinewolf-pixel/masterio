@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { commissionFor, percentOf, percentToBp, type LatLng } from '@masterio/shared';
 import { geoPoint } from '../common/geo';
 import { InsuranceService } from '../compliance/insurance.service';
+import { ReviewAccounts } from '../auth/review';
 import { PrismaService } from '../prisma/prisma.service';
 import { SettingsService } from '../settings/settings.service';
 
@@ -42,6 +43,7 @@ export class MatchingService {
     private readonly prisma: PrismaService,
     private readonly settings: SettingsService,
     private readonly insurance: InsuranceService,
+    private readonly review: ReviewAccounts,
   ) {}
 
   /** Порог баланса (пополнение + промо) для получения заказов в этой категории и городе. */
@@ -62,6 +64,10 @@ export class MatchingService {
     const point = geoPoint(p.location);
     const excluded = p.excludeWorkerIds ?? [];
     const clientId = p.clientId ?? null;
+    // аккаунты проверки магазинами изолированы: тестовый клиент видит только тестовых мастеров и наоборот
+    const reviewPhones = [...this.review.phones];
+    const client = clientId && reviewPhones.length > 0 ? await this.prisma.user.findUnique({ where: { id: clientId }, select: { phone: true } }) : null;
+    const reviewClient = this.review.isReview(client?.phone);
     // страховка: правила страны по услуге и типу исполнителя (независимый мастер / компания), иначе флаг услуги
     const ins = await this.insurance.requirementsForDispatch(p.countryCode, p.categoryId);
     const insIndependent = ins.INDEPENDENT.required;
@@ -118,7 +124,8 @@ export class MatchingService {
             AND ip."coveredRisks" @> (CASE WHEN w."type" = 'COMPANY' THEN ${risksCompany}::text[] ELSE ${risksIndependent}::text[] END)))
         AND NOT EXISTS (
           SELECT 1 FROM "ClientBlacklist" cb WHERE cb."clientId" = ${clientId}::uuid AND cb."workerId" = w."userId")
-        AND NOT (w."userId" = ANY(${excluded}::uuid[]))`;
+        AND NOT (w."userId" = ANY(${excluded}::uuid[]))
+        AND ${reviewClient}::boolean = COALESCE(u."phone" = ANY(${reviewPhones}::text[]), false)`;
 
     const weights = this.settings.get('QUEUE_WEIGHTS', ctx);
     const scored = rows.map((r) => {
