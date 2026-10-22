@@ -1,0 +1,11 @@
+{
+  "ios": {
+    "CFBundleDisplayName": "Masterio",
+    "NSLocationWhenInUseUsageDescription": "Masterio-ն օգտագործում է ձեր գտնվելու վայրը՝ օգնության հասցեն լրացնելու և մոտակա վարպետներ գտնելու համար։",
+    "NSCameraUsageDescription": "Masterio-ն օգտագործում է տեսախցիկը, որպեսզի խնդիրը լուսանկարեք վարպետի համար։",
+    "NSPhotoLibraryUsageDescription": "Masterio-ին անհրաժեշտ է լուսանկարների հասանելիություն՝ խնդրի նկարները պատվերին կցելու համար։"
+  },
+  "android": {
+    "app_name": "Masterio"
+  }
+}

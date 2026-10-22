@@ -1,0 +1,7 @@
+node_modules/
+.expo/
+dist-check/
+# нативные проекты генерируются командой expo prebuild (Continuous Native Generation)
+android/
+ios/
+.env

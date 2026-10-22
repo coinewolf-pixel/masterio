@@ -1,0 +1,72 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    services:
+      postgres:
+        image: postgis/postgis:16-3.4
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: masterio_test
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U postgres" --health-interval 5s --health-timeout 5s --health-retries 20
+      redis:
+        image: redis:7-alpine
+        ports: ["6379:6379"]
+        options: >-
+          --health-cmd "redis-cli ping" --health-interval 5s --health-timeout 5s --health-retries 20
+    env:
+      TEST_DATABASE_URL: postgresql://postgres:postgres@localhost:5432/masterio_test
+      TEST_REDIS_URL: redis://localhost:6379/1
+      TEST_S3_ENDPOINT: http://127.0.0.1:4566
+      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/masterio_test
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Local S3 emulator for upload tests
+        run: |
+          pip install "moto[server]"
+          nohup moto_server -p 4566 > moto.log 2>&1 &
+      - run: pnpm install --frozen-lockfile
+      - name: Build shared package
+        run: pnpm --filter @masterio/shared build
+      - name: Translations are complete in all 5 languages
+        run: pnpm i18n:check
+      - name: Prisma schema is valid
+        run: pnpm --filter @masterio/api exec prisma validate
+      - name: Typecheck
+        run: pnpm typecheck
+      - name: Lint
+        run: pnpm lint
+      - name: Tests (unit + e2e with real Postgres/PostGIS and Redis)
+        run: pnpm test
+      - name: Build API
+        run: pnpm --filter @masterio/api build
+      - name: Build CRM
+        run: pnpm --filter @masterio/admin build
+      - name: Bundle Masterio Pro (Android + iOS JavaScript)
+        env:
+          EXPO_OFFLINE: '1'
+          EXPO_NO_TELEMETRY: '1'
+        run: pnpm --filter @masterio/worker bundle:check
+      - name: Bundle Masterio (Android + iOS JavaScript)
+        env:
+          EXPO_OFFLINE: '1'
+          EXPO_NO_TELEMETRY: '1'
+        run: pnpm --filter @masterio/client bundle:check

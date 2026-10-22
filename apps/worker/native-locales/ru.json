@@ -1,0 +1,13 @@
+{
+  "ios": {
+    "CFBundleDisplayName": "Masterio Pro",
+    "NSLocationWhenInUseUsageDescription": "Masterio Pro использует геопозицию, чтобы предлагать заказы рядом и показывать клиенту, где вы, во время активного заказа.",
+    "NSLocationAlwaysAndWhenInUseUsageDescription": "Разрешите «Всегда», чтобы заказы и живое отслеживание работали, когда Masterio Pro свёрнут. Клиент видит геопозицию только во время активного заказа.",
+    "NSLocationAlwaysUsageDescription": "Разрешите «Всегда», чтобы заказы и живое отслеживание работали, когда Masterio Pro свёрнут. Клиент видит геопозицию только во время активного заказа.",
+    "NSCameraUsageDescription": "Masterio Pro использует камеру, чтобы сфотографировать документы, селфи и результат работы.",
+    "NSPhotoLibraryUsageDescription": "Masterio Pro нужен доступ к фото, чтобы загрузить документы."
+  },
+  "android": {
+    "app_name": "Masterio Pro"
+  }
+}

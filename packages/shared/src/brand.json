@@ -1,0 +1,6 @@
+{
+  "platform": "Masterio",
+  "clientApp": { "name": "Masterio", "bundleId": "com.masterio.client", "scheme": "masterio" },
+  "workerApp": { "name": "Masterio Pro", "bundleId": "com.masterio.pro", "scheme": "masteriopro" },
+  "admin": { "name": "Masterio CRM" }
+}

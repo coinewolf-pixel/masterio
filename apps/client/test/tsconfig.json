@@ -1,0 +1,14 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "types": [
+      "jest",
+      "node"
+    ]
+  },
+  "include": [
+    "./**/*.ts",
+    "../src",
+    "../expo-env.d.ts"
+  ]
+}

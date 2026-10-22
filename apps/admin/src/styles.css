@@ -1,0 +1,810 @@
+/*
+ * Masterio CRM. Рабочий инструмент диспетчера: плотные таблицы, спокойный фон,
+ * цвет только там, где он что-то значит (статус, «мало мастеров», живые метки).
+ */
+:root {
+  --ink: #13263a;
+  --ink-2: #4a5b6e;
+  --ink-3: #75879a;
+  --paper: #f5f7fa;
+  --surface: #ffffff;
+  --surface-2: #eef2f6;
+  --line: #dce2ea;
+  --harbor: #1f4e79;
+  --harbor-ink: #ffffff;
+  --rail: #173b5c;
+  --rail-ink: #c9d8e6;
+  --signal: #ffc43d;
+  --ok: #2e7d5b;
+  --warn: #a86a12;
+  --alert: #b3261e;
+  --focus: #2f6fb0;
+  --radius: 6px;
+  --shadow-pop: 0 12px 32px rgba(19, 38, 58, 0.18);
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --ink: #e6edf5;
+    --ink-2: #a7b8ca;
+    --ink-3: #7d91a6;
+    --paper: #0e1824;
+    --surface: #152434;
+    --surface-2: #1b2e42;
+    --line: #2a3e53;
+    --harbor: #7fb2e0;
+    --harbor-ink: #0e1824;
+    --rail: #0a131d;
+    --rail-ink: #a7b8ca;
+    --ok: #5dbb8e;
+    --warn: #e0a341;
+    --alert: #f07167;
+    --focus: #8fc1ef;
+    --shadow-pop: 0 12px 32px rgba(0, 0, 0, 0.5);
+    color-scheme: dark;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
+  font-size: 14px;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-weight: 600;
+  line-height: 1.2;
+}
+h1 {
+  font-size: 22px;
+}
+h2 {
+  font-size: 16px;
+}
+h3 {
+  font-size: 14px;
+}
+p {
+  margin: 0;
+}
+a {
+  color: var(--harbor);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+}
+.muted {
+  color: var(--ink-2);
+}
+.faint {
+  color: var(--ink-3);
+  font-size: 13px;
+}
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.spacer {
+  flex: 1;
+}
+
+/* ── Каркас: рельс навигации слева, рабочая область справа ── */
+.shell {
+  display: grid;
+  grid-template-columns: 232px 1fr;
+  min-height: 100%;
+}
+.rail {
+  background: var(--rail);
+  color: var(--rail-ink);
+  padding: 18px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 8px;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 16px;
+}
+.brand svg {
+  flex: none;
+}
+.navgroup {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.navgroup-title {
+  padding: 0 8px 4px;
+  font-size: 12px;
+  color: var(--ink-3);
+}
+.rail a {
+  color: var(--rail-ink);
+  padding: 7px 8px;
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.rail a:hover {
+  background: rgba(255, 255, 255, 0.06);
+  text-decoration: none;
+}
+.rail a[aria-current='page'] {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  box-shadow: inset 3px 0 0 var(--signal);
+}
+.badge {
+  min-width: 20px;
+  padding: 0 6px;
+  border-radius: 10px;
+  background: var(--signal);
+  color: #13263a;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+}
+.rail-foot {
+  margin-top: auto;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 13px;
+}
+.rail-foot select {
+  background: transparent;
+  color: var(--rail-ink);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+.rail-foot button,
+.rail-foot button.quiet {
+  color: var(--rail-ink);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+.rail-foot .field {
+  color: var(--rail-ink);
+}
+
+.main {
+  min-width: 0;
+  padding: 24px 28px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.page-head {
+  display: flex;
+  align-items: flex-end;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.page-head .sub {
+  color: var(--ink-2);
+  margin-top: 4px;
+}
+
+.menu-toggle {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .shell {
+    grid-template-columns: 1fr;
+  }
+  .rail {
+    position: fixed;
+    inset: 0 auto 0 0;
+    width: 260px;
+    z-index: 1000;
+    transform: translateX(-100%);
+    transition: transform 0.2s ease;
+  }
+  .rail[data-open='true'] {
+    transform: none;
+    box-shadow: var(--shadow-pop);
+  }
+  .menu-toggle {
+    display: inline-flex;
+  }
+  .main {
+    padding: 16px 16px 40px;
+  }
+}
+
+/* ── Секции: заголовок и содержимое, без карточек ради карточек ── */
+.section {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.section > header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--line);
+  flex-wrap: wrap;
+}
+.section > .body {
+  padding: 14px 16px;
+}
+.section > .body.flush {
+  padding: 0;
+}
+.grid-2 {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+.grid-cols {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  align-items: start;
+}
+@media (max-width: 1100px) {
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Цифры дня ── */
+.figures {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+.figure {
+  padding: 14px 16px;
+  border-right: 1px solid var(--line);
+}
+.figure:last-child {
+  border-right: 0;
+}
+.figure .value {
+  font-size: 26px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.figure .label {
+  color: var(--ink-2);
+  font-size: 13px;
+}
+.figure[data-tone='alert'] .value {
+  color: var(--alert);
+}
+.figure[data-tone='warn'] .value {
+  color: var(--warn);
+}
+
+/* ── Пульс городов: онлайн-мастера против минимума ── */
+.pulse {
+  width: 100%;
+  border-collapse: collapse;
+}
+.pulse td {
+  padding: 10px 16px;
+  border-top: 1px solid var(--line);
+  vertical-align: middle;
+}
+.pulse tr:first-child td {
+  border-top: 0;
+}
+.pulse .city {
+  width: 26%;
+  font-weight: 500;
+}
+.meter {
+  position: relative;
+  height: 10px;
+  background: var(--surface-2);
+  border-radius: 5px;
+  overflow: visible;
+}
+.meter > .fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  border-radius: 5px;
+  background: var(--harbor);
+}
+.meter[data-low='true'] > .fill {
+  background: var(--signal);
+}
+.meter > .tick {
+  position: absolute;
+  top: -4px;
+  bottom: -4px;
+  width: 2px;
+  background: var(--ink);
+}
+.pulse .warn-text {
+  color: var(--warn);
+  font-size: 13px;
+}
+
+/* ── Таблицы ── */
+.table-wrap {
+  overflow-x: auto;
+}
+table.data {
+  width: 100%;
+  border-collapse: collapse;
+}
+table.data th,
+table.data td {
+  text-align: left;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+table.data th {
+  font-weight: 500;
+  color: var(--ink-2);
+  font-size: 13px;
+  background: var(--surface);
+  position: sticky;
+  top: 0;
+  white-space: nowrap;
+}
+table.data td.num,
+table.data th.num {
+  text-align: right;
+  white-space: nowrap;
+}
+table.data tbody tr:hover {
+  background: var(--surface-2);
+}
+table.data tr[data-clickable='true'] {
+  cursor: pointer;
+}
+table.data tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+/* ── Статусы: точка цвета фазы и текст ── */
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+.status::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--ink-3);
+  flex: none;
+}
+.status[data-tone='live']::before {
+  background: var(--signal);
+  box-shadow: 0 0 0 2px rgba(255, 196, 61, 0.35);
+}
+.status[data-tone='active']::before {
+  background: var(--harbor);
+}
+.status[data-tone='ok']::before {
+  background: var(--ok);
+}
+.status[data-tone='warn']::before {
+  background: var(--warn);
+}
+.status[data-tone='alert']::before {
+  background: var(--alert);
+}
+
+/* ── Формы ── */
+label.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 13px;
+  color: var(--ink-2);
+}
+input,
+select,
+textarea {
+  font: inherit;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 7px 9px;
+  min-height: 34px;
+}
+textarea {
+  min-height: 72px;
+  resize: vertical;
+}
+input[type='checkbox'] {
+  min-height: auto;
+  width: 16px;
+  height: 16px;
+  accent-color: var(--harbor);
+}
+label.check {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ink);
+}
+.field-error {
+  color: var(--alert);
+  font-size: 13px;
+}
+.filters {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+.filters label.field {
+  min-width: 140px;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  padding: 7px 12px;
+  min-height: 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+button:hover:not(:disabled) {
+  background: var(--surface-2);
+}
+button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+button.primary {
+  background: var(--harbor);
+  border-color: var(--harbor);
+  color: var(--harbor-ink);
+  font-weight: 500;
+}
+button.primary:hover:not(:disabled) {
+  background: var(--harbor);
+  filter: brightness(1.08);
+}
+button.danger {
+  color: var(--alert);
+  border-color: color-mix(in srgb, var(--alert) 45%, var(--line));
+}
+button.quiet {
+  border-color: transparent;
+  background: transparent;
+  color: var(--harbor);
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
+/* ── Сообщения ── */
+.note {
+  border-left: 3px solid var(--harbor);
+  background: var(--surface);
+  padding: 10px 12px;
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+.note[data-tone='alert'] {
+  border-left-color: var(--alert);
+  color: var(--alert);
+}
+.note[data-tone='warn'] {
+  border-left-color: var(--warn);
+}
+.note[data-tone='ok'] {
+  border-left-color: var(--ok);
+}
+.empty {
+  padding: 28px 16px;
+  text-align: center;
+  color: var(--ink-2);
+}
+
+/* ── Списки «ключ — значение» ── */
+dl.facts {
+  display: grid;
+  grid-template-columns: minmax(120px, max-content) 1fr;
+  gap: 6px 16px;
+  margin: 0;
+}
+dl.facts dt {
+  color: var(--ink-2);
+}
+dl.facts dd {
+  margin: 0;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+/* ── Таймлайн заказа ── */
+ol.timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+ol.timeline li {
+  display: grid;
+  grid-template-columns: 76px 1fr;
+  gap: 12px;
+  padding: 6px 0;
+  border-top: 1px solid var(--line);
+}
+ol.timeline li:first-child {
+  border-top: 0;
+}
+
+/* ── Чат заказа ── */
+.chat {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 360px;
+  overflow-y: auto;
+}
+.bubble {
+  max-width: 80%;
+  padding: 7px 10px;
+  border-radius: 10px;
+  background: var(--surface-2);
+}
+.bubble[data-side='worker'] {
+  align-self: flex-end;
+  background: color-mix(in srgb, var(--harbor) 14%, var(--surface));
+}
+.bubble .meta {
+  font-size: 12px;
+  color: var(--ink-3);
+}
+.bubble[data-filtered='true'] {
+  outline: 1px dashed var(--warn);
+}
+
+/* ── Карта ── */
+.map {
+  height: 420px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--surface-2);
+}
+.map.tall {
+  height: calc(100vh - 170px);
+  min-height: 420px;
+}
+.map-pin {
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+}
+.map-legend {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  color: var(--ink-2);
+}
+.map-legend span::before {
+  content: '';
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 6px;
+  vertical-align: -1px;
+}
+.map-legend .free::before {
+  background: #2e7d5b;
+}
+.map-legend .busy::before {
+  background: #ffc43d;
+}
+.map-legend .order::before {
+  background: #1f4e79;
+  border-radius: 2px;
+}
+.map-legend .waiting::before {
+  background: #b3261e;
+  border-radius: 2px;
+}
+
+/* ── Диалог ── */
+dialog {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 0;
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: var(--shadow-pop);
+  width: min(520px, calc(100vw - 32px));
+}
+dialog::backdrop {
+  background: rgba(10, 19, 29, 0.45);
+}
+dialog > form,
+dialog > div {
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+dialog .actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+/* ── Вход ── */
+.login {
+  min-height: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 440px);
+}
+.login-side {
+  background: var(--rail);
+  color: var(--rail-ink);
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.login-side h1 {
+  color: #ffffff;
+  font-size: 30px;
+  max-width: 14ch;
+}
+.login-form {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 14px;
+  background: var(--surface);
+}
+@media (max-width: 800px) {
+  .login {
+    grid-template-columns: 1fr;
+  }
+  .login-side {
+    padding: 24px;
+  }
+  .login-form {
+    padding: 24px 16px;
+  }
+}
+
+.tabs {
+  display: flex;
+  gap: 4px;
+  border-bottom: 1px solid var(--line);
+  flex-wrap: wrap;
+}
+.tabs button {
+  border: 0;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  background: transparent;
+  color: var(--ink-2);
+}
+.tabs button[aria-selected='true'] {
+  color: var(--ink);
+  border-bottom-color: var(--harbor);
+}
+
+code.json {
+  display: block;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-size: 12.5px;
+  background: var(--surface-2);
+  padding: 8px 10px;
+  border-radius: var(--radius);
+}
+
+.qr {
+  align-self: center;
+  background: #ffffff;
+  padding: 8px;
+  border-radius: var(--radius);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* ── Телефон: пульс городов в две строки, без горизонтальной прокрутки ── */
+@media (max-width: 640px) {
+  .pulse,
+  .pulse tbody {
+    display: block;
+  }
+  .pulse tr {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 4px 12px;
+    padding: 10px 16px;
+    border-top: 1px solid var(--line);
+  }
+  .pulse tr:first-child {
+    border-top: 0;
+  }
+  .pulse td {
+    display: block;
+    padding: 0;
+    border: 0;
+    width: auto;
+  }
+  .pulse td:nth-child(2) {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+  .pulse td:nth-child(4) {
+    grid-column: 1 / -1;
+    white-space: normal !important;
+  }
+  .figure {
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+}

@@ -1,0 +1,73 @@
+name: Release apps (EAS)
+
+# Сборка Masterio и Masterio Pro в облаке Expo вручную: Actions → Release apps → Run workflow.
+# Нужны: секрет EXPO_TOKEN (expo.dev → Account settings → Access tokens) и переменные CLIENT_EAS_PROJECT_ID,
+# WORKER_EAS_PROJECT_ID (id проектов после `eas init` в apps/client и apps/worker).
+# Переменные приложений (EAS_PROJECT_ID, API_URL, ключи карт, Stripe publishable key) хранятся в EAS:
+# expo.dev → проект → Environment variables, окружения development / preview / production.
+on:
+  workflow_dispatch:
+    inputs:
+      app:
+        description: Which app
+        type: choice
+        options: [both, client, worker]
+        default: both
+      platform:
+        description: Platform
+        type: choice
+        options: [all, android, ios]
+        default: all
+      profile:
+        description: EAS build profile (preview = APK for testers, production = store build)
+        type: choice
+        options: [preview, production]
+        default: preview
+      submit:
+        description: Send production builds to Google Play (internal track) and App Store Connect (TestFlight)
+        type: boolean
+        default: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        app: [client, worker]
+    steps:
+      - name: Skip the app that was not selected
+        id: pick
+        run: |
+          if [ "${{ inputs.app }}" = "both" ] || [ "${{ inputs.app }}" = "${{ matrix.app }}" ]; then echo "run=true" >> "$GITHUB_OUTPUT"; else echo "run=false" >> "$GITHUB_OUTPUT"; fi
+      - uses: actions/checkout@v4
+        if: steps.pick.outputs.run == 'true'
+      - uses: pnpm/action-setup@v4
+        if: steps.pick.outputs.run == 'true'
+      - uses: actions/setup-node@v4
+        if: steps.pick.outputs.run == 'true'
+        with:
+          node-version: 22
+          cache: pnpm
+      - uses: expo/expo-github-action@v8
+        if: steps.pick.outputs.run == 'true'
+        with:
+          eas-version: 25.3.0
+          token: ${{ secrets.EXPO_TOKEN }}
+      - run: pnpm install --frozen-lockfile
+        if: steps.pick.outputs.run == 'true'
+      - name: Build shared package (needed for app config)
+        if: steps.pick.outputs.run == 'true'
+        run: pnpm --filter @masterio/shared build
+      - name: EAS build
+        if: steps.pick.outputs.run == 'true'
+        working-directory: apps/${{ matrix.app }}
+        env:
+          # id проектов Expo: Settings → Secrets and variables → Actions → Variables
+          EAS_PROJECT_ID: ${{ matrix.app == 'client' && vars.CLIENT_EAS_PROJECT_ID || vars.WORKER_EAS_PROJECT_ID }}
+        run: >-
+          eas build --non-interactive --no-wait
+          --platform ${{ inputs.platform }}
+          --profile ${{ inputs.profile }}
+          ${{ inputs.submit && inputs.profile == 'production' && '--auto-submit' || '' }}

@@ -1,0 +1,13 @@
+{
+  "ios": {
+    "CFBundleDisplayName": "Masterio Pro",
+    "NSLocationWhenInUseUsageDescription": "Masterio Pro-ն օգտագործում է ձեր գտնվելու վայրը՝ մոտակա պատվերներ առաջարկելու և ակտիվ պատվերի ընթացքում հաճախորդին ցույց տալու, թե որտեղ եք։",
+    "NSLocationAlwaysAndWhenInUseUsageDescription": "Թույլատրեք «Միշտ», որպեսզի պատվերներն ու կենդանի հետևումն աշխատեն, երբ Masterio Pro-ն ծալված է։ Հաճախորդը տեսնում է գտնվելու վայրը միայն ակտիվ պատվերի ընթացքում։",
+    "NSLocationAlwaysUsageDescription": "Թույլատրեք «Միշտ», որպեսզի պատվերներն ու կենդանի հետևումն աշխատեն, երբ Masterio Pro-ն ծալված է։ Հաճախորդը տեսնում է գտնվելու վայրը միայն ակտիվ պատվերի ընթացքում։",
+    "NSCameraUsageDescription": "Masterio Pro-ն օգտագործում է տեսախցիկը՝ փաստաթղթերը, սելֆին և աշխատանքի արդյունքը լուսանկարելու համար։",
+    "NSPhotoLibraryUsageDescription": "Masterio Pro-ին անհրաժեշտ է լուսանկարների հասանելիություն՝ փաստաթղթերը վերբեռնելու համար։"
+  },
+  "android": {
+    "app_name": "Masterio Pro"
+  }
+}

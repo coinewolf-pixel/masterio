@@ -1,0 +1,11 @@
+{
+  "ios": {
+    "CFBundleDisplayName": "Masterio",
+    "NSLocationWhenInUseUsageDescription": "Masterio usa tu ubicación para rellenar la dirección donde necesitas ayuda y encontrar profesionales cerca.",
+    "NSCameraUsageDescription": "Masterio usa la cámara para que puedas fotografiar el problema para el profesional.",
+    "NSPhotoLibraryUsageDescription": "Masterio necesita acceso a las fotos para adjuntar imágenes del problema al pedido."
+  },
+  "android": {
+    "app_name": "Masterio"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "ios": {
+    "CFBundleDisplayName": "Masterio Pro",
+    "NSLocationWhenInUseUsageDescription": "Masterio Pro usa tu ubicación para ofrecerte pedidos cercanos y mostrar al cliente dónde estás durante un pedido activo.",
+    "NSLocationAlwaysAndWhenInUseUsageDescription": "Permite «Siempre» para que los pedidos y el seguimiento en directo funcionen con Masterio Pro en segundo plano. El cliente solo ve la ubicación durante un pedido activo.",
+    "NSLocationAlwaysUsageDescription": "Permite «Siempre» para que los pedidos y el seguimiento en directo funcionen con Masterio Pro en segundo plano. El cliente solo ve la ubicación durante un pedido activo.",
+    "NSCameraUsageDescription": "Masterio Pro usa la cámara para fotografiar tus documentos, tu selfie y el resultado del trabajo.",
+    "NSPhotoLibraryUsageDescription": "Masterio Pro necesita acceso a las fotos para subir tus documentos."
+  },
+  "android": {
+    "app_name": "Masterio Pro"
+  }
+}

@@ -1,0 +1,1253 @@
+// Masterio — схема БД, фаза 1
+// PostgreSQL 16 + PostGIS. Деньги: целые центы (Int для сумм заказа, BigInt в ledger), без float.
+// Геоданные: geography(Point,4326) через Unsupported, запросы радиуса — raw SQL (ST_DWithin) + GiST-индексы в миграции.
+
+generator client {
+  provider     = "prisma-client"
+  output       = "../src/generated/prisma"
+  moduleFormat = "cjs"
+  runtime      = "nodejs"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+  provider   = "postgresql"
+  extensions = [postgis, pgcrypto]
+}
+
+// ───────────────────────── ENUMS ─────────────────────────
+
+enum UserRole {
+  CLIENT
+  WORKER
+  ADMIN
+}
+
+enum AdminSubRole {
+  SUPPORT
+  MODERATOR
+  FINANCE
+  SUPERADMIN
+}
+
+enum UserStatus {
+  ACTIVE
+  WARNED
+  PREPAY_REQUIRED
+  SUSPENDED
+  BLOCKED
+  DELETED
+}
+
+enum Locale {
+  en
+  ru
+  de
+  es
+  hy
+}
+
+enum WorkerType {
+  INDEPENDENT
+  COMPANY
+}
+
+enum TeamMemberRole {
+  LEADER
+  MASTER
+  HELPER
+  EMPLOYEE
+}
+
+enum VerificationStatus {
+  NOT_VERIFIED
+  VERIFIED
+  EXPIRED
+  REJECTED
+}
+
+enum DocumentKind {
+  ID_DOCUMENT
+  SELFIE
+  LICENSE
+  INSURANCE
+  COMPANY_REGISTRATION
+  QUALIFICATION
+  OTHER
+}
+
+enum OrderStatus {
+  DRAFT
+  SEARCHING
+  NO_WORKERS
+  ACCEPTED
+  EN_ROUTE
+  ARRIVED
+  IN_PROGRESS
+  COMPLETED_BY_WORKER
+  CONFIRMED
+  AUTO_CONFIRMED
+  CANCELLED_BY_CLIENT
+  CANCELLED_BY_WORKER
+  CANCELLED_BY_ADMIN
+  DISPUTED
+  CLOSED
+}
+
+enum OrderTiming {
+  ASAP
+  SCHEDULED
+}
+
+enum PaymentMethod {
+  CASH
+  CARD
+}
+
+enum OfferStatus {
+  PENDING
+  ACCEPTED
+  DECLINED
+  EXPIRED
+  REVOKED
+  TAKEN_BY_OTHER
+  CANCELLED
+}
+
+enum EstimateStatus {
+  PROPOSED
+  APPROVED
+  REJECTED
+  SUPERSEDED
+}
+
+enum EstimateItemType {
+  LABOR
+  MATERIAL
+  TRAVEL
+  OTHER
+}
+
+enum CancelActor {
+  CLIENT
+  WORKER
+  ADMIN
+  SYSTEM
+}
+
+enum DisputeReason {
+  POOR_QUALITY
+  UNFINISHED
+  PROPERTY_DAMAGE
+  ACCIDENT_INJURY
+  PRICE_DISAGREEMENT
+  CLIENT_NO_SHOW
+  WORKER_NO_SHOW
+  PAYMENT_REFUSED
+  REFUND_REFUSED
+  FRAUD_SUSPECTED
+  PERFORMER_MISMATCH
+  INSURANCE_OR_LICENSE
+  CASH_AMOUNT_MISMATCH
+  OTHER
+}
+
+enum DisputeStatus {
+  OPEN
+  AWAITING_RESPONSE
+  UNDER_REVIEW
+  ESCALATED
+  SETTLED
+  UNRESOLVED_REFERRED
+  CLOSED
+}
+
+enum TicketStatus {
+  OPEN
+  PENDING_USER
+  RESOLVED
+  CLOSED
+}
+
+enum LedgerAccountType {
+  CLIENT_PAYMENT
+  PLATFORM_REVENUE
+  WORKER_EARNINGS
+  WORKER_TOPUP
+  WORKER_PENDING
+  WORKER_BONUS
+  WORKER_PROMO
+  WORKER_DEBT
+  BONUS_EXPENSE
+  BONUS_EXPIRED
+  PROMO_EXPENSE
+  PROMO_EXPIRED
+  REFUNDS
+  COMPENSATION
+  STRIPE_CLEARING
+  PENALTIES
+}
+
+enum LedgerTxKind {
+  TOPUP
+  COMMISSION
+  BONUS_ACCRUAL
+  BONUS_EXPIRY
+  PROMO_GRANT
+  PROMO_EXPIRY
+  PENALTY
+  COMPENSATION
+  REFUND
+  CHARGEBACK
+  CARD_CAPTURE
+  PAYOUT
+  TOPUP_REFUND
+  REVERSAL
+}
+
+enum GrantStatus {
+  PENDING_APPROVAL
+  APPROVED
+  REJECTED
+  EXPIRED
+  BURNED
+}
+
+enum BonusRunStatus {
+  DRAFT
+  APPROVED
+  APPLIED
+  CANCELLED
+}
+
+enum PaymentStatus {
+  CREATED
+  REQUIRES_ACTION
+  SUCCEEDED
+  FAILED
+  REFUNDED
+}
+
+enum SettingScope {
+  GLOBAL
+  COUNTRY
+  CITY
+  CATEGORY
+  CITY_CATEGORY
+}
+
+enum LegalAudience {
+  CLIENT
+  INDEPENDENT_WORKER
+  COMPANY
+  TEAM_MEMBER
+  DISPUTE_POLICY
+  INCIDENT_POLICY
+  INSURANCE_REQUIREMENTS
+  PRIVACY_POLICY
+  TOPUP_TERMS
+}
+
+enum IncidentType {
+  ACCIDENT
+  INJURY
+  PROPERTY_DAMAGE
+  OTHER
+}
+
+enum FraudFlagType {
+  HIGH_CANCEL_RATE
+  HIGH_DISPUTE_RATE
+  GPS_MISMATCH
+  SUSPICIOUS_PAIR
+  OFF_PLATFORM_ATTEMPT
+  MULTI_ACCOUNT
+  CASH_HIDDEN_ORDER
+  LARGE_GRANT
+  REFUND_SPIKE
+  TOPUP_SPIKE
+}
+
+// ───────────────────────── ПОЛЬЗОВАТЕЛИ И АВТОРИЗАЦИЯ ─────────────────────────
+
+model User {
+  id          String     @id @default(uuid()) @db.Uuid
+  role        UserRole
+  phone       String?    @unique // E.164; у админов может быть пусто
+  email       String?    @unique
+  // ФИО, дата рождения и т.п. хранятся зашифрованными (AES-GCM на уровне приложения)
+  firstNameEnc Bytes?
+  lastNameEnc  Bytes?
+  photoKey    String?
+  locale      Locale     @default(en)
+  countryCode String     @db.Char(2)
+  status      UserStatus @default(ACTIVE)
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  deletedAt   DateTime?
+
+  admin         AdminProfile?
+  client        ClientProfile?
+  worker        WorkerProfile?
+  devices       Device[]
+  refreshTokens RefreshToken[]
+  consents      UserConsent[]
+  documents     Document[]       @relation("DocumentOwner")
+  teamMembers   TeamMember[]
+  ledgerAccounts LedgerAccount[]
+  notifications Notification[]
+  addresses     Address[]
+  paymentMethods SavedPaymentMethod[]
+}
+
+model AdminProfile {
+  userId       String         @id @db.Uuid
+  user         User           @relation(fields: [userId], references: [id])
+  subRoles     AdminSubRole[]
+  passwordHash String
+  totpSecretEnc Bytes?
+  dailyGrantLimitCents Int    @default(0)
+}
+
+model ClientProfile {
+  userId           String   @id @db.Uuid
+  user             User     @relation(fields: [userId], references: [id])
+  cancelCount30d   Int      @default(0)
+  completedOrders  Int      @default(0)
+  stripeCustomerId String?  @unique
+  orders           Order[]
+  blacklist        ClientBlacklist[]
+}
+
+model WorkerProfile {
+  userId           String       @id @db.Uuid
+  user             User         @relation(fields: [userId], references: [id])
+  type             WorkerType   @default(INDEPENDENT)
+  companyName      String?
+  companyRegNumber String?
+  kycStatus        VerificationStatus @default(NOT_VERIFIED)
+  isOnline         Boolean      @default(false)
+  lastLocation     Unsupported("geography(Point,4326)")?
+  lastLocationAt   DateTime?
+  preferredRadiusM Int?         // не больше лимита админа
+  ratingAvg        Decimal      @default(0) @db.Decimal(3, 2)
+  ratingCount      Int          @default(0)
+  acceptRate       Decimal      @default(1) @db.Decimal(5, 4)
+  cancelCount30d   Int          @default(0)
+  cancelRate       Decimal      @default(0) @db.Decimal(5, 4)
+  autoUseEarnings  Boolean      @default(false)
+  stripeAccountId  String?      @unique // Connect, на запуске не используется
+  createdAt        DateTime     @default(now())
+
+  categories WorkerCategory[]
+  cities     WorkerCity[]
+  team       Team?
+  offers     Offer[]
+  orders     Order[]          @relation("OrderWorker")
+
+  @@index([lastLocation], map: "worker_last_location_gix", type: Gist)
+}
+
+model Device {
+  id          String   @id @default(uuid()) @db.Uuid
+  userId      String   @db.Uuid
+  user        User     @relation(fields: [userId], references: [id])
+  fingerprint String   // для антимультиаккаунта
+  platform    String   // ios | android | web
+  pushToken   String?
+  appVersion  String?
+  lastSeenAt  DateTime @default(now())
+
+  @@unique([userId, fingerprint])
+  @@index([fingerprint])
+}
+
+model OtpCode {
+  id        String   @id @default(uuid()) @db.Uuid
+  phone     String
+  codeHash  String
+  attempts  Int      @default(0)
+  expiresAt DateTime
+  usedAt    DateTime?
+  ip        String?
+  createdAt DateTime @default(now())
+
+  @@index([phone, createdAt])
+}
+
+model RefreshToken {
+  id         String    @id @default(uuid()) @db.Uuid
+  userId     String    @db.Uuid
+  user       User      @relation(fields: [userId], references: [id])
+  tokenHash  String    @unique
+  familyId   String    @db.Uuid // ротация: повторное использование → отзыв семьи
+  expiresAt  DateTime
+  revokedAt  DateTime?
+  replacedBy String?   @db.Uuid
+  createdAt  DateTime  @default(now())
+
+  @@index([familyId])
+}
+
+model Address {
+  id        String   @id @default(uuid()) @db.Uuid
+  userId    String   @db.Uuid
+  user      User     @relation(fields: [userId], references: [id])
+  label     String?
+  formatted String
+  placeId   String?
+  location  Unsupported("geography(Point,4326)")? // NOT NULL проверяется в сервисе, запись через raw SQL
+  details   String?  // этаж, подъезд, код
+  createdAt DateTime @default(now())
+}
+
+model SavedPaymentMethod {
+  id              String   @id @default(uuid()) @db.Uuid
+  userId          String   @db.Uuid
+  user            User     @relation(fields: [userId], references: [id])
+  stripePmId      String   @unique
+  brand           String
+  last4           String   @db.Char(4)
+  fingerprint     String   // Stripe card fingerprint, антимультиаккаунт
+  isDefault       Boolean  @default(false)
+  createdAt       DateTime @default(now())
+
+  @@index([fingerprint])
+}
+
+// ───────────────────────── СПРАВОЧНИКИ ─────────────────────────
+
+model City {
+  id          String   @id @default(uuid()) @db.Uuid
+  countryCode String   @db.Char(2)
+  names       Json     // { en, ru, de, es, hy }
+  timezone    String
+  currency    String   @db.Char(3) @default("EUR")
+  center      Unsupported("geography(Point,4326)")?
+  emergencyNumber String @default("112")
+  isActive    Boolean  @default(true)
+
+  categories CityCategory[]
+  workers    WorkerCity[]
+  orders     Order[]
+
+  @@index([center], map: "city_center_gix", type: Gist)
+}
+
+model CategoryGroup {
+  id         String     @id @default(uuid()) @db.Uuid
+  code       String     @unique // auto, home, urgent, moving, extra
+  names      Json
+  sortOrder  Int        @default(0)
+  categories Category[]
+}
+
+model Category {
+  id                String   @id @default(uuid()) @db.Uuid
+  code              String   @unique
+  groupId           String   @db.Uuid
+  group             CategoryGroup @relation(fields: [groupId], references: [id])
+  names             Json
+  icon              String?
+  isUrgent          Boolean  @default(false)
+  requiresLicense   Boolean  @default(false)
+  requiresInsurance Boolean  @default(false) // детальные правила в InsuranceRule
+  isActive          Boolean  @default(true)
+  sortOrder         Int      @default(0)
+
+  cities  CityCategory[]
+  workers WorkerCategory[]
+  orders  Order[]
+  licenses License[]
+}
+
+model CityCategory {
+  cityId     String  @db.Uuid
+  categoryId String  @db.Uuid
+  city       City     @relation(fields: [cityId], references: [id])
+  category   Category @relation(fields: [categoryId], references: [id])
+  isActive   Boolean  @default(true)
+
+  @@id([cityId, categoryId])
+}
+
+model WorkerCategory {
+  workerId   String @db.Uuid
+  categoryId String @db.Uuid
+  worker     WorkerProfile @relation(fields: [workerId], references: [userId])
+  category   Category      @relation(fields: [categoryId], references: [id])
+
+  @@id([workerId, categoryId])
+}
+
+model WorkerCity {
+  workerId String @db.Uuid
+  cityId   String @db.Uuid
+  worker   WorkerProfile @relation(fields: [workerId], references: [userId])
+  city     City          @relation(fields: [cityId], references: [id])
+
+  @@id([workerId, cityId])
+}
+
+model ClientBlacklist {
+  clientId  String   @db.Uuid
+  workerId  String   @db.Uuid
+  client    ClientProfile @relation(fields: [clientId], references: [userId])
+  createdAt DateTime @default(now())
+
+  @@id([clientId, workerId])
+}
+
+// ───────────────────────── КОМАНДЫ ─────────────────────────
+
+model Team {
+  id         String   @id @default(uuid()) @db.Uuid
+  ownerId    String   @unique @db.Uuid // аккаунт мастера или компании (баланс, рейтинг, комиссия)
+  owner      WorkerProfile @relation(fields: [ownerId], references: [userId])
+  name       String
+  createdAt  DateTime @default(now())
+  members    TeamMember[]
+  invites    TeamInvite[]
+  events     TeamEvent[]
+}
+
+enum TeamInviteStatus {
+  PENDING
+  ACCEPTED
+  DECLINED
+  REVOKED
+  EXPIRED
+}
+
+// Приглашение по номеру телефона: участник входит в Masterio Pro со своим номером и принимает его
+model TeamInvite {
+  id           String           @id @default(uuid()) @db.Uuid
+  teamId       String           @db.Uuid
+  team         Team             @relation(fields: [teamId], references: [id])
+  phone        String           // E.164
+  role         TeamMemberRole
+  status       TeamInviteStatus @default(PENDING)
+  invitedById  String           @db.Uuid
+  acceptedById String?          @db.Uuid
+  expiresAt    DateTime
+  createdAt    DateTime         @default(now())
+  respondedAt  DateTime?
+
+  @@index([phone, status])
+  @@index([teamId, status])
+}
+
+// Журнал команды: приглашения, вступления, выходы, назначения и замены (раздел 18.2). Только дописывается.
+model TeamEvent {
+  id        String   @id @default(uuid()) @db.Uuid
+  teamId    String   @db.Uuid
+  team      Team     @relation(fields: [teamId], references: [id])
+  actorId   String?  @db.Uuid
+  memberId  String?  @db.Uuid
+  orderId   String?  @db.Uuid
+  type      String   // invited, invite_revoked, joined, declined, removed, left, assigned, replaced, change_requested, change_approved, change_declined, change_cancelled, auto_assigned
+  payload   Json     @default("{}")
+  createdAt DateTime @default(now())
+
+  @@index([teamId, createdAt])
+}
+
+model TeamMember {
+  id           String         @id @default(uuid()) @db.Uuid
+  teamId       String         @db.Uuid
+  team         Team           @relation(fields: [teamId], references: [id])
+  userId       String         @db.Uuid // у участника свой вход в Masterio Pro
+  user         User           @relation(fields: [userId], references: [id])
+  role         TeamMemberRole
+  kycStatus    VerificationStatus @default(NOT_VERIFIED)
+  isActive     Boolean        @default(true)
+  joinedAt     DateTime       @default(now())
+  leftAt       DateTime?
+
+  documents   Document[]
+  assignments OrderAssignment[]
+
+  @@unique([teamId, userId])
+}
+
+// ───────────────────────── ДОКУМЕНТЫ, ЛИЦЕНЗИИ, СТРАХОВКИ ─────────────────────────
+
+model Document {
+  id            String             @id @default(uuid()) @db.Uuid
+  ownerId       String             @db.Uuid
+  owner         User               @relation("DocumentOwner", fields: [ownerId], references: [id])
+  teamMemberId  String?            @db.Uuid
+  teamMember    TeamMember?        @relation(fields: [teamMemberId], references: [id])
+  kind          DocumentKind
+  fileKey       String             // закрытый S3, доступ только по временным ссылкам
+  status        VerificationStatus @default(NOT_VERIFIED)
+  rejectReason  String?
+  reviewedById  String?            @db.Uuid
+  reviewedAt    DateTime?
+  validUntil    DateTime?
+  retentionUntil DateTime?
+  createdAt     DateTime           @default(now())
+
+  license   License?
+  insurance InsurancePolicy?
+  accessLog DocumentAccessLog[]
+
+  @@index([status, kind])
+}
+
+model License {
+  id         String   @id @default(uuid()) @db.Uuid
+  documentId String   @unique @db.Uuid
+  document   Document @relation(fields: [documentId], references: [id])
+  categoryId String   @db.Uuid
+  category   Category @relation(fields: [categoryId], references: [id])
+  number     String?
+  issuer     String?
+  countryCode String  @db.Char(2)
+}
+
+model InsurancePolicy {
+  id           String   @id @default(uuid()) @db.Uuid
+  documentId   String   @unique @db.Uuid
+  document     Document @relation(fields: [documentId], references: [id])
+  insurerName  String
+  policyNumber String
+  validFrom    DateTime
+  validUntil   DateTime
+  coveredRisks String[]
+  remindersSent Int[]   @default([]) // 30, 14, 3
+}
+
+model InsuranceRule {
+  id          String      @id @default(uuid()) @db.Uuid
+  countryCode String      @db.Char(2)
+  categoryId  String?     @db.Uuid
+  workerType  WorkerType?
+  required    Boolean     @default(true)
+  requiredRisks String[]
+  note        Json?       // пояснение на 5 языках
+  updatedAt   DateTime    @updatedAt
+
+  @@unique([countryCode, categoryId, workerType])
+}
+
+model DocumentAccessLog {
+  id         String   @id @default(uuid()) @db.Uuid
+  documentId String   @db.Uuid
+  document   Document @relation(fields: [documentId], references: [id])
+  viewerId   String   @db.Uuid
+  purpose    String   // review | dispute:<id> | owner
+  ip         String?
+  createdAt  DateTime @default(now())
+
+  @@index([documentId, createdAt])
+}
+
+// ───────────────────────── ЗАКАЗЫ ─────────────────────────
+
+model Order {
+  id               String        @id @default(uuid()) @db.Uuid
+  number           Int           @unique @default(autoincrement())
+  clientId         String        @db.Uuid
+  client           ClientProfile @relation(fields: [clientId], references: [userId])
+  workerId         String?       @db.Uuid // аккаунт мастера/компании
+  worker           WorkerProfile? @relation("OrderWorker", fields: [workerId], references: [userId])
+  categoryId       String        @db.Uuid
+  category         Category      @relation(fields: [categoryId], references: [id])
+  cityId           String        @db.Uuid
+  city             City          @relation(fields: [cityId], references: [id])
+  status           OrderStatus   @default(DRAFT)
+  version          Int           @default(0) // оптимистичная блокировка при принятии
+  timing           OrderTiming   @default(ASAP)
+  scheduledAt      DateTime?
+  description      String
+  addressFormatted String
+  addressDetails   String?
+  location         Unsupported("geography(Point,4326)")? // задаётся в той же транзакции, что и создание (CHECK в миграции)
+  searchRadiusM    Int
+  paymentMethod    PaymentMethod @default(CASH)
+  currency         String        @db.Char(3) @default("EUR")
+
+  // суммы в центах
+  confirmedAmountCents Int?      // из подтверждённой сметы
+  cashReportedByWorkerCents Int?
+  cashReportedByClientCents Int?
+  commissionPercentBp  Int?      // базисные пункты: 2000 = 20%, фиксируется на момент завершения
+  commissionCents      Int?
+  bonusDiscountCents   Int?
+  clientUnconfirmed    Boolean   @default(false)
+
+  dispatchRound    Int           @default(0)
+  dispatchStartedAt DateTime?
+  acceptedAt       DateTime?
+  enRouteAt        DateTime?
+  arrivedAt        DateTime?
+  startedAt        DateTime?
+  completedAt      DateTime?
+  confirmedAt      DateTime?
+  cancelledAt      DateTime?
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+
+  photos      OrderPhoto[]
+  offers      Offer[]
+  events      OrderEvent[]
+  estimates   Estimate[]
+  assignments OrderAssignment[]
+  messages    ChatMessage[]
+  reviews     Review[]
+  cancellation Cancellation?
+  disputes    Dispute[]
+  incidents   IncidentReport[]
+  locations   LocationPoint[]
+
+  @@index([status, cityId, categoryId])
+  @@index([clientId, createdAt])
+  @@index([workerId, createdAt])
+  @@index([location], map: "order_location_gix", type: Gist)
+}
+
+model OrderPhoto {
+  id        String   @id @default(uuid()) @db.Uuid
+  orderId   String   @db.Uuid
+  order     Order    @relation(fields: [orderId], references: [id])
+  uploaderId String  @db.Uuid
+  fileKey   String
+  purpose   String   // problem | estimate | no_show | completion
+  createdAt DateTime @default(now())
+}
+
+// Журнал рассылки: одна строка на каждое предложение
+model Offer {
+  id          String      @id @default(uuid()) @db.Uuid
+  orderId     String      @db.Uuid
+  order       Order       @relation(fields: [orderId], references: [id])
+  workerId    String      @db.Uuid
+  worker      WorkerProfile @relation(fields: [workerId], references: [userId])
+  round       Int
+  position    Int         // место в очереди
+  score       Decimal     @db.Decimal(10, 4)
+  distanceM   Int
+  status      OfferStatus @default(PENDING)
+  sentAt      DateTime    @default(now())
+  expiresAt   DateTime
+  respondedAt DateTime?
+  jobId       String?     // id отложенной задачи BullMQ
+
+  @@unique([orderId, workerId, round])
+  @@index([orderId, round])
+  @@index([workerId, status])
+}
+
+model OrderEvent {
+  id        String   @id @default(uuid()) @db.Uuid
+  orderId   String   @db.Uuid
+  order     Order    @relation(fields: [orderId], references: [id])
+  type      String   // status_changed, offer_sent, estimate_approved, performer_replaced, gps_mismatch...
+  actorId   String?  @db.Uuid
+  payload   Json?
+  location  Unsupported("geography(Point,4326)")?
+  createdAt DateTime @default(now())
+
+  @@index([orderId, createdAt])
+}
+
+model Estimate {
+  id          String         @id @default(uuid()) @db.Uuid
+  orderId     String         @db.Uuid
+  order       Order          @relation(fields: [orderId], references: [id])
+  version     Int
+  status      EstimateStatus @default(PROPOSED)
+  totalCents  Int
+  note        String?
+  createdById String         @db.Uuid
+  decidedAt   DateTime?
+  createdAt   DateTime       @default(now())
+  items       EstimateItem[]
+
+  @@unique([orderId, version])
+}
+
+model EstimateItem {
+  id          String           @id @default(uuid()) @db.Uuid
+  estimateId  String           @db.Uuid
+  estimate    Estimate         @relation(fields: [estimateId], references: [id])
+  type        EstimateItemType
+  title       String
+  quantity    Int              @default(1)
+  unitCents   Int
+  totalCents  Int
+  photoKeys   String[]
+}
+
+enum AssignmentState {
+  ACTIVE          // назначен сейчас (isCurrent = true)
+  PENDING_CONSENT // замена ждёт согласия клиента
+  ENDED           // заменён или заказ закрыт
+  DECLINED        // клиент не согласился на замену
+  CANCELLED       // руководитель отозвал замену
+}
+
+model OrderAssignment {
+  id            String     @id @default(uuid()) @db.Uuid
+  orderId       String     @db.Uuid
+  order         Order      @relation(fields: [orderId], references: [id])
+  teamMemberId  String     @db.Uuid
+  teamMember    TeamMember @relation(fields: [teamMemberId], references: [id])
+  assignedById  String     @db.Uuid
+  isCurrent     Boolean    @default(true)
+  state         AssignmentState @default(ACTIVE)
+  /** назначен автоматически: руководитель не выбрал исполнителя за TEAM_ASSIGN_TIMEOUT_MIN */
+  automatic     Boolean    @default(false)
+  clientConsentRequired Boolean @default(false)
+  clientConsentAt DateTime?
+  reason        String?
+  createdAt     DateTime   @default(now())
+  endedAt       DateTime?
+
+  @@index([orderId, isCurrent])
+}
+
+// Треки: хранятся LOCATION_RETENTION_DAYS, затем удаляются cron-задачей (партиции по месяцу в миграции)
+model LocationPoint {
+  id         BigInt   @id @default(autoincrement())
+  orderId    String   @db.Uuid
+  order      Order    @relation(fields: [orderId], references: [id])
+  userId     String   @db.Uuid // назначенный исполнитель
+  point      Unsupported("geography(Point,4326)")
+  accuracyM  Int?
+  speedMps   Decimal? @db.Decimal(6, 2)
+  heading    Int?
+  recordedAt DateTime // время на устройстве (буфер при потере связи)
+  receivedAt DateTime @default(now())
+
+  @@index([orderId, recordedAt])
+  @@index([point], map: "location_point_gix", type: Gist)
+}
+
+model ChatMessage {
+  id        String   @id @default(uuid()) @db.Uuid
+  orderId   String   @db.Uuid
+  order     Order    @relation(fields: [orderId], references: [id])
+  senderId  String   @db.Uuid
+  body      String   // уже отфильтрованный текст
+  bodyOriginalEnc Bytes? // оригинал, если фильтр сработал (для разбора)
+  filtered  Boolean  @default(false)
+  filterHits String[] // phone, link, messenger, iban, amount
+  attachmentKey String?
+  readAt    DateTime?
+  createdAt DateTime @default(now())
+
+  @@index([orderId, createdAt])
+}
+
+model Review {
+  id         String   @id @default(uuid()) @db.Uuid
+  orderId    String   @db.Uuid
+  order      Order    @relation(fields: [orderId], references: [id])
+  authorId   String   @db.Uuid
+  targetId   String   @db.Uuid
+  rating     Int      // 1..5, проверка в CHECK constraint
+  text       String?
+  isHidden   Boolean  @default(false)
+  createdAt  DateTime @default(now())
+
+  @@unique([orderId, authorId])
+}
+
+model Cancellation {
+  id           String      @id @default(uuid()) @db.Uuid
+  orderId      String      @unique @db.Uuid
+  order        Order       @relation(fields: [orderId], references: [id])
+  actor        CancelActor
+  actorId      String?     @db.Uuid
+  reasonCode   String
+  comment      String?
+  statusAtCancel OrderStatus
+  penaltyCents Int         @default(0)
+  compensationCents Int    @default(0)
+  createsReview Boolean    @default(false) // причины «не отвечает», «просит оплату вне приложения»
+  createdAt    DateTime    @default(now())
+}
+
+// ───────────────────────── СПОРЫ, ИНЦИДЕНТЫ, ПОДДЕРЖКА ─────────────────────────
+
+model Dispute {
+  id           String        @id @default(uuid()) @db.Uuid
+  orderId      String        @db.Uuid
+  order        Order         @relation(fields: [orderId], references: [id])
+  openedById   String        @db.Uuid
+  againstId    String?       @db.Uuid
+  reason       DisputeReason
+  description  String
+  status       DisputeStatus @default(OPEN)
+  isSuspicious Boolean       @default(false)
+  isAutomatic  Boolean       @default(false) // несоответствие исполнителя, расхождение наличных
+  assigneeId   String?       @db.Uuid
+  responseDueAt DateTime?
+  outcome      Json?         // решение и договорённости (не судебное решение)
+  createdAt    DateTime      @default(now())
+  closedAt     DateTime?
+
+  evidence DisputeEvidence[]
+  events   DisputeEvent[]
+  ticket   SupportTicket?
+
+  @@index([status, createdAt])
+}
+
+model DisputeEvidence {
+  id          String   @id @default(uuid()) @db.Uuid
+  disputeId   String   @db.Uuid
+  dispute     Dispute  @relation(fields: [disputeId], references: [id])
+  submittedById String @db.Uuid
+  kind        String   // photo, text, gps_snapshot, chat_export, estimate_snapshot, timeline_snapshot
+  fileKey     String?
+  content     Json?
+  retentionUntil DateTime?
+  createdAt   DateTime @default(now())
+}
+
+model DisputeEvent {
+  id        String   @id @default(uuid()) @db.Uuid
+  disputeId String   @db.Uuid
+  dispute   Dispute  @relation(fields: [disputeId], references: [id])
+  actorId   String?  @db.Uuid
+  type      String   // opened, response, assigned, escalated, proposal, settled, referred
+  payload   Json?
+  createdAt DateTime @default(now())
+}
+
+model IncidentReport {
+  id          String       @id @default(uuid()) @db.Uuid
+  orderId     String       @db.Uuid
+  order       Order        @relation(fields: [orderId], references: [id])
+  reporterId  String       @db.Uuid
+  type        IncidentType
+  description String
+  emergencyCalled Boolean  @default(false)
+  location    Unsupported("geography(Point,4326)")?
+  fileKeys    String[]
+  ticketId    String?      @unique @db.Uuid
+  createdAt   DateTime     @default(now())
+}
+
+model SupportTicket {
+  id         String       @id @default(uuid()) @db.Uuid
+  userId     String       @db.Uuid
+  orderId    String?      @db.Uuid
+  disputeId  String?      @unique @db.Uuid
+  dispute    Dispute?     @relation(fields: [disputeId], references: [id])
+  subject    String
+  status     TicketStatus @default(OPEN)
+  assigneeId String?      @db.Uuid
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+  messages   TicketMessage[]
+}
+
+model TicketMessage {
+  id        String        @id @default(uuid()) @db.Uuid
+  ticketId  String        @db.Uuid
+  ticket    SupportTicket @relation(fields: [ticketId], references: [id])
+  senderId  String        @db.Uuid
+  body      String
+  isInternal Boolean      @default(false)
+  attachmentKey String?
+  createdAt DateTime      @default(now())
+}
+
+// ───────────────────────── ДЕНЬГИ: LEDGER (двойная запись) ─────────────────────────
+
+model LedgerAccount {
+  id        String            @id @default(uuid()) @db.Uuid
+  type      LedgerAccountType
+  ownerId   String?           @db.Uuid // null для системных счетов платформы
+  owner     User?             @relation(fields: [ownerId], references: [id])
+  currency  String            @db.Char(3) @default("EUR")
+  createdAt DateTime          @default(now())
+
+  entries  LedgerEntry[]
+  balance  AccountBalance?
+
+  // для системных счетов (ownerId = NULL) уникальность (type, currency) — частичный индекс в raw SQL миграции
+  @@unique([type, ownerId, currency])
+  @@index([ownerId])
+}
+
+// Транзакция: сумма её записей всегда = 0 (проверяется триггером). UPDATE/DELETE запрещены триггером.
+model LedgerTransaction {
+  id             String       @id @default(uuid()) @db.Uuid
+  kind           LedgerTxKind
+  idempotencyKey String       @unique
+  orderId        String?      @db.Uuid
+  grantId        String?      @db.Uuid
+  bonusAwardId   String?      @db.Uuid
+  paymentId      String?      @db.Uuid
+  reversesId     String?      @unique @db.Uuid
+  actorId        String?      @db.Uuid
+  memo           String?
+  createdAt      DateTime     @default(now())
+  entries        LedgerEntry[]
+}
+
+model LedgerEntry {
+  id            BigInt            @id @default(autoincrement())
+  transactionId String            @db.Uuid
+  transaction   LedgerTransaction @relation(fields: [transactionId], references: [id])
+  accountId     String            @db.Uuid
+  account       LedgerAccount     @relation(fields: [accountId], references: [id])
+  amountCents   BigInt            // + приход, − расход
+  createdAt     DateTime          @default(now())
+
+  @@index([accountId, createdAt])
+}
+
+// Кэш остатка, обновляется в той же транзакции БД, что и записи; источник истины — LedgerEntry
+model AccountBalance {
+  accountId    String        @id @db.Uuid
+  account      LedgerAccount @relation(fields: [accountId], references: [id])
+  balanceCents BigInt        @default(0)
+  updatedAt    DateTime      @updatedAt
+}
+
+// Партии промо и бонусов со сроком сгорания (FIFO-списание)
+model BalanceLot {
+  id            String   @id @default(uuid()) @db.Uuid
+  accountId     String   @db.Uuid
+  originTxId    String   @db.Uuid
+  amountCents   BigInt
+  remainingCents BigInt
+  expiresAt     DateTime?
+  createdAt     DateTime @default(now())
+
+  @@index([accountId, expiresAt])
+}
+
+model WalletGrant {
+  id            String      @id @default(uuid()) @db.Uuid
+  workerId      String      @db.Uuid
+  amountCents   Int
+  reason        String
+  expiresAt     DateTime
+  status        GrantStatus @default(PENDING_APPROVAL)
+  createdById   String      @db.Uuid
+  approvedById  String?     @db.Uuid // второй админ (4 eyes), если выше лимита
+  isAutoWelcome Boolean     @default(false)
+  createdAt     DateTime    @default(now())
+  decidedAt     DateTime?
+
+  @@index([workerId])
+}
+
+model Payment {
+  id              String        @id @default(uuid()) @db.Uuid
+  userId          String        @db.Uuid
+  purpose         String        // worker_topup | order_card (позже) | client_card_check
+  amountCents     Int
+  currency        String        @db.Char(3) @default("EUR")
+  status          PaymentStatus @default(CREATED)
+  stripeIntentId  String        @unique
+  cardFingerprint String?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+}
+
+model StripeWebhookEvent {
+  id          String   @id // id события Stripe — защита от дублей
+  type        String
+  payload     Json
+  processedAt DateTime?
+  error       String?
+  receivedAt  DateTime @default(now())
+}
+
+model Payout {
+  id            String   @id @default(uuid()) @db.Uuid
+  workerId      String   @db.Uuid
+  amountCents   Int
+  stripeTransferId String? @unique
+  status        String   // pending | paid | failed (выключено флагом PAYOUTS_ENABLED на запуске)
+  createdAt     DateTime @default(now())
+}
+
+model ReconciliationReport {
+  id            String   @id @default(uuid()) @db.Uuid
+  day           DateTime @db.Date @unique
+  ledgerCents   BigInt
+  stripeCents   BigInt
+  diffCents     BigInt
+  alerted       Boolean  @default(false)
+  createdAt     DateTime @default(now())
+}
+
+// ───────────────────────── БОНУСЫ ─────────────────────────
+
+model BonusRule {
+  id           String   @id @default(uuid()) @db.Uuid
+  name         String
+  minOrders    Int
+  maxOrders    Int?
+  percentBp    Int      // 300 = 3% от уплаченной комиссии
+  minRating    Decimal  @db.Decimal(3, 2) @default(4.7)
+  maxCancelRateBp Int   @default(500)
+  maxLostDisputes Int   @default(0)
+  isActive     Boolean  @default(true)
+  validFrom    DateTime @default(now())
+  validTo      DateTime?
+}
+
+model BonusRun {
+  id          String         @id @default(uuid()) @db.Uuid
+  period      String         @unique // YYYY-MM
+  status      BonusRunStatus @default(DRAFT)
+  budgetCapCents Int
+  totalRawCents Int          @default(0)
+  scaleFactor Decimal        @db.Decimal(6, 5) @default(1)
+  approvedById String?       @db.Uuid
+  createdAt   DateTime       @default(now())
+  approvedAt  DateTime?
+  awards      BonusAward[]
+}
+
+model BonusAward {
+  id             String   @id @default(uuid()) @db.Uuid
+  runId          String   @db.Uuid
+  run            BonusRun @relation(fields: [runId], references: [id])
+  workerId       String   @db.Uuid
+  ruleId         String?  @db.Uuid
+  ordersCount    Int
+  commissionPaidCents Int
+  rawCents       Int
+  finalCents     Int
+  excludedOrders String[] // заказы из подозрительных пар
+  expiresAt      DateTime // конец следующего месяца
+  breakdown      Json     // формула для показа мастеру и в админке
+
+  @@unique([runId, workerId])
+}
+
+// ───────────────────────── НАСТРОЙКИ И ФЛАГИ ─────────────────────────
+
+model Setting {
+  id         String       @id @default(uuid()) @db.Uuid
+  key        String       // COMMISSION_PERCENT, OFFER_TTL_SECONDS, CASH_ENABLED ...
+  scope      SettingScope @default(GLOBAL)
+  scopeRef   String       @default("") // countryCode | cityId | categoryId | cityId:categoryId
+  value      Json
+  updatedById String?     @db.Uuid
+  updatedAt  DateTime     @updatedAt
+  history    SettingHistory[]
+
+  @@unique([key, scope, scopeRef])
+}
+
+model SettingHistory {
+  id         String   @id @default(uuid()) @db.Uuid
+  settingId  String   @db.Uuid
+  setting    Setting  @relation(fields: [settingId], references: [id])
+  oldValue   Json?
+  newValue   Json
+  changedById String  @db.Uuid
+  comment    String?
+  createdAt  DateTime @default(now())
+}
+
+// ───────────────────────── ЮРИДИЧЕСКОЕ ─────────────────────────
+
+model LegalDocument {
+  id        String        @id @default(uuid()) @db.Uuid
+  audience  LegalAudience
+  countryCode String      @db.Char(2)
+  versions  LegalDocumentVersion[]
+
+  @@unique([audience, countryCode])
+}
+
+model LegalDocumentVersion {
+  id           String        @id @default(uuid()) @db.Uuid
+  documentId   String        @db.Uuid
+  document     LegalDocument @relation(fields: [documentId], references: [id])
+  version      String        // 2026-11-01.1
+  locale       Locale
+  body         String        // Markdown, проверенный юристом
+  legalReviewedBy String?
+  publishedById String?      @db.Uuid
+  publishedAt  DateTime?
+  createdAt    DateTime      @default(now())
+  consents     UserConsent[]
+
+  @@unique([documentId, version, locale])
+}
+
+model UserConsent {
+  id          String   @id @default(uuid()) @db.Uuid
+  userId      String   @db.Uuid
+  user        User     @relation(fields: [userId], references: [id])
+  versionId   String   @db.Uuid
+  version     LegalDocumentVersion @relation(fields: [versionId], references: [id])
+  countryCode String   @db.Char(2)
+  context     String   // registration | add_helper | order | topup
+  ip          String?
+  userAgent   String?
+  acceptedAt  DateTime @default(now())
+  withdrawnAt DateTime?
+
+  @@index([userId])
+}
+
+// ───────────────────────── АУДИТ, АНТИФРОД, УВЕДОМЛЕНИЯ ─────────────────────────
+
+model AdminAuditLog {
+  id         String   @id @default(uuid()) @db.Uuid
+  adminId    String   @db.Uuid
+  action     String   // grant.create, document.approve, setting.update, user.block ...
+  entityType String
+  entityId   String
+  before     Json?
+  after      Json?
+  ip         String?
+  createdAt  DateTime @default(now())
+
+  @@index([entityType, entityId])
+  @@index([adminId, createdAt])
+}
+
+model FraudFlag {
+  id         String        @id @default(uuid()) @db.Uuid
+  type       FraudFlagType
+  userId     String?       @db.Uuid
+  orderId    String?       @db.Uuid
+  pairUserId String?       @db.Uuid // вторая сторона подозрительной пары
+  score      Int           @default(0)
+  details    Json
+  resolvedById String?     @db.Uuid
+  resolvedAt DateTime?
+  createdAt  DateTime      @default(now())
+
+  @@index([type, resolvedAt])
+}
+
+model Notification {
+  id        String   @id @default(uuid()) @db.Uuid
+  userId    String   @db.Uuid
+  user      User     @relation(fields: [userId], references: [id])
+  type      String   // i18n-ключ события
+  params    Json?
+  orderId   String?  @db.Uuid
+  readAt    DateTime?
+  createdAt DateTime @default(now())
+
+  @@index([userId, createdAt])
+}
+
+model DataRequest {
+  id          String   @id @default(uuid()) @db.Uuid
+  userId      String   @db.Uuid
+  type        String   // export | delete
+  status      String   // pending | processing | done | partially_retained
+  retainedReason String? // обязательные сроки хранения доказательств
+  fileKey     String?
+  createdAt   DateTime @default(now())
+  completedAt DateTime?
+}

@@ -1,0 +1,6 @@
+{
+  "name": "@masterio/docs",
+  "version": "0.3.0",
+  "private": true,
+  "description": "Masterio documentation (phase 2): API contract, screens, services and keys, checklist, limitations"
+}

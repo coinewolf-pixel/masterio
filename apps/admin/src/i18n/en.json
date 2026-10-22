@@ -1,0 +1,1320 @@
+{
+  "admins": {
+    "active": "Access allowed",
+    "create": "Add admin",
+    "editHint": "At least one active superadmin must remain.",
+    "email": "Email",
+    "empty": "No admins.",
+    "grantLimit": "Daily grant limit",
+    "password": "Temporary password",
+    "passwordHint": "Send the password through a separate secure channel. After saving you get a QR code for the authenticator.",
+    "passwordShort": "At least 12 characters",
+    "qrAlt": "QR code for the authenticator app",
+    "resetConfirm": "Reset the authenticator for {{email}}? Their sessions will be closed.",
+    "resetTotp": "Reset code",
+    "roleHelp": {
+      "FINANCE": "money, starting balance, finance settings",
+      "MODERATOR": "documents, blocking, suspicious activity",
+      "SUPERADMIN": "everything, including admins and services",
+      "SUPPORT": "orders, clients, cancelling orders"
+    },
+    "roles": "Roles",
+    "secret": "Secret (if the QR cannot be scanned)",
+    "sub": "Roles and access. Changing roles closes the admin’s sessions immediately.",
+    "title": "Admins",
+    "totpDone": "Done, I saved it",
+    "totpOnce": "The secret is shown only once. Scan it now or copy it.",
+    "totpSteps": "Open Google Authenticator, 1Password or another TOTP app, scan the QR code, then sign in with the 6-digit code.",
+    "totpTitle": "Authenticator setup",
+    "you": "you"
+  },
+  "audit": {
+    "action": "Action",
+    "actions": {
+      "admin_create": "Admin added",
+      "admin_reset_totp": "Authenticator reset",
+      "admin_update": "Admin changed",
+      "catalog_category_create": "Service added",
+      "catalog_category_update": "Service changed",
+      "catalog_city_categories": "Services of a city changed",
+      "catalog_city_create": "City added",
+      "catalog_city_update": "City changed",
+      "catalog_group_create": "Group added",
+      "catalog_group_update": "Group changed",
+      "document_approve": "Document approved",
+      "document_reject": "Document rejected",
+      "finance_export": "Ledger exported",
+      "fraud_flag_resolve": "Flag reviewed",
+      "grant_approve": "Grant approved",
+      "grant_create": "Grant created",
+      "grant_reject": "Grant rejected",
+      "order_cancel": "Order cancelled",
+      "setting_reset": "Override removed",
+      "setting_update": "Setting changed",
+      "user_block": "Blocked",
+      "user_unblock": "Restrictions removed",
+      "worker_kyc": "Identity decision"
+    },
+    "admin": "Admin",
+    "after": "After",
+    "before": "Before",
+    "empty": "No records.",
+    "entity": {
+      "Category": "Service",
+      "CategoryGroup": "Service group",
+      "City": "City",
+      "Document": "Document",
+      "FraudFlag": "Flag",
+      "Ledger": "Ledger",
+      "Order": "Order",
+      "Setting": "Setting",
+      "User": "User",
+      "WalletGrant": "Grant",
+      "WorkerProfile": "Professional"
+    },
+    "entityId": "Object ID",
+    "entityType": "Object type",
+    "object": "Object",
+    "sub": "Every admin action: who, what, when, before and after.",
+    "title": "Audit log",
+    "when": "When"
+  },
+  "bonuses": {
+    "addRule": "Add tier",
+    "approve": "Approve and credit",
+    "approveConfirm": "Credit bonuses for {{period}}? This cannot be undone.",
+    "beforeCap": "before the budget: {{amount}}",
+    "calculate": "Calculate draft",
+    "calculated": "Calculated",
+    "cancel": "Cancel draft",
+    "capped": "The budget is exceeded: all bonuses are reduced to {{share}}.",
+    "commissionPaid": "Commission paid",
+    "conditions": "Conditions",
+    "conditionsText": "rating ≥ {{rating}}, cancels ≤ {{cancel}}, lost disputes ≤ {{disputes}}",
+    "editRule": "Tier",
+    "excluded": "excluded: {{count}}",
+    "facts": "rating {{rating}}, cancels {{cancel}}, lost disputes {{lost}}",
+    "final": "To credit",
+    "how": "On the 1st a draft for the previous month is created and recalculated daily until approved. Only confirmed orders past the dispute window count, without open disputes, refunds or suspicious pairs. The bonus is a discount on commission and cannot be withdrawn.",
+    "maxCancel": "Max cancels, %",
+    "maxLost": "Max lost disputes",
+    "maxOrders": "To orders",
+    "minOrders": "From orders",
+    "minRating": "Min rating",
+    "noAwards": "No confirmed orders in this month.",
+    "noRules": "No tiers — nobody gets a bonus.",
+    "noRuns": "No calculations yet.",
+    "orders": "Orders",
+    "pendingShort": "in dispute window: {{count}}",
+    "pendingWindow": "{{count}} orders are still within the dispute window and are not counted yet. For a full calculation approve after the window ends.",
+    "percent": "Of commission",
+    "percentOfCommission": "% of commission",
+    "period": "Month",
+    "raw": "By rule",
+    "reason": {
+      "cancel_rate": "Too many cancellations",
+      "disputes": "Lost disputes",
+      "documents": "Required licence or insurance is not valid",
+      "no_tier": "Not enough orders for a tier",
+      "ok": "Meets the conditions",
+      "rating": "Rating below the tier minimum"
+    },
+    "recalculate": "Recalculate",
+    "rules": "Tiers and conditions",
+    "runSub": "calculated {{time}}",
+    "runTitle": "Bonuses for {{period}}",
+    "runs": "Calculations",
+    "status": {
+      "APPLIED": "Credited",
+      "APPROVED": "Approved",
+      "CANCELLED": "Cancelled",
+      "DRAFT": "Draft"
+    },
+    "sub": "Monthly bonuses for professionals by order count tiers.",
+    "tier": "Tier",
+    "title": "Bonuses",
+    "total": "to {{count}} professionals ({{currency}})",
+    "why": "Why",
+    "workers": "Professionals"
+  },
+  "catalog": {
+    "active": "Active",
+    "addCategory": "Add service",
+    "addCity": "Add city",
+    "addGroup": "Add group",
+    "cities": "Cities",
+    "cityHint": "The centre is used to pick the city of an order. After creating, choose which services work in the city.",
+    "cityServices": "Services in the city",
+    "cityServicesHint": "Clients order only the checked services in this city; professionals get only these orders.",
+    "cityServicesTitle": "Services in {{city}}",
+    "code": "Code",
+    "codeHint": "Code: lowercase latin letters, digits and _, it does not change in the apps.",
+    "countryCode": "Country (ISO)",
+    "currency": "Currency",
+    "currencyLocked": "The currency of a city with orders cannot be changed.",
+    "editCategory": "Edit service",
+    "editCity": "Edit city",
+    "editGroup": "Edit group",
+    "emergency": "Emergency number",
+    "flags": "Requirements",
+    "group": "Group",
+    "icon": "Icon (Ionicons name)",
+    "inCities": "Cities",
+    "inactive": "Off",
+    "insurance": "Insurance",
+    "insuranceLong": "Insurance required",
+    "lat": "Centre latitude",
+    "license": "Licence",
+    "licenseHint": "Without a verified licence for this service a professional does not get its orders.",
+    "licenseLong": "Licence required",
+    "lng": "Centre longitude",
+    "name": "Name",
+    "namesAll": "Name in every language",
+    "noCategories": "No services in this group.",
+    "noCities": "No cities yet.",
+    "noGroups": "No service groups yet.",
+    "readOnly": "Only a superadmin can edit.",
+    "services": "Services",
+    "servicesCount": "Services",
+    "sortOrder": "Order",
+    "sub": "Names in all 5 app languages. Changes appear in the apps within minutes.",
+    "timezone": "Time zone",
+    "title": "Services and cities",
+    "urgent": "Urgent"
+  },
+  "clients": {
+    "blacklist": "Professionals the client blocked",
+    "blacklistEmpty": "Nobody.",
+    "cancellation": "Cancellation",
+    "cancelled": "Cancelled by the client",
+    "cancels30d": "Cancels in 30 days",
+    "cancels30dCount": "in 30 days: {{count}}",
+    "completed": "Completed",
+    "empty": "No clients match the filters.",
+    "found": "Found: {{formatted}}",
+    "noDisputes": "No disputes.",
+    "orders": "Orders",
+    "penalty": "penalty {{amount}}",
+    "title": "Clients",
+    "worker": "Professional"
+  },
+  "common": {
+    "all": "All",
+    "amountInvalid": "Enter an amount like 45.50",
+    "change": "Edit",
+    "close": "Close",
+    "delete": "Delete",
+    "filters": "Filters",
+    "language": "Language",
+    "loadMore": "Show more",
+    "loading": "Loading…",
+    "network": "No connection to the server. Check the internet and try again.",
+    "noAccess": "Your role does not have access to this section.",
+    "noName": "No name",
+    "open": "Open",
+    "save": "Save",
+    "signOut": "Sign out"
+  },
+  "dashboard": {
+    "awaiting": "Awaiting client confirmation",
+    "cancelled": "Cancelled",
+    "cities": "Cities",
+    "cityNoWorkers": "Without a professional: {{count}}",
+    "cityOrders": "{{active}} active, {{searching}} searching",
+    "commission": "Commission",
+    "completed": "Completed",
+    "created": "Orders created",
+    "disputed": "Disputes",
+    "disputesOpen": "Open disputes",
+    "grantsPending": "Grants awaiting approval",
+    "incidentsWeek": "Incidents in 7 days",
+    "lowCount": "Cities with few professionals online: {{count}}",
+    "lowWorkers": "Few professionals: fewer than {{min}} online",
+    "noCities": "No active cities yet. Add one in Services and cities.",
+    "noWorkers": "No professionals found",
+    "now": "Right now",
+    "online": "Professionals online",
+    "onlineOfMin": "{{online}} online (minimum {{min}})",
+    "onlineShort": "Online",
+    "performing": "In progress",
+    "queues": "Queues",
+    "searching": "Searching for a professional",
+    "ticketsOpen": "Tickets waiting for support",
+    "title": "Dashboard",
+    "today": "Today",
+    "updated": "Updated at {{time}}"
+  },
+  "dispute": {
+    "reason": {
+      "ACCIDENT_INJURY": "Accident or injury",
+      "CASH_AMOUNT_MISMATCH": "Cash amounts differ",
+      "CLIENT_NO_SHOW": "Client did not show up",
+      "FRAUD_SUSPECTED": "Suspected fraud",
+      "INSURANCE_OR_LICENSE": "Insurance or licence",
+      "OTHER": "Other",
+      "PAYMENT_REFUSED": "Payment refused",
+      "PERFORMER_MISMATCH": "Different person came",
+      "POOR_QUALITY": "Poor quality",
+      "PRICE_DISAGREEMENT": "Price disagreement",
+      "PROPERTY_DAMAGE": "Property damage",
+      "REFUND_REFUSED": "Refund refused",
+      "UNFINISHED": "Work not finished",
+      "WORKER_NO_SHOW": "Professional did not arrive"
+    },
+    "status": {
+      "AWAITING_RESPONSE": "Awaiting response",
+      "CLOSED": "Closed",
+      "ESCALATED": "Escalated",
+      "OPEN": "Open",
+      "SETTLED": "Settled",
+      "UNDER_REVIEW": "Under review",
+      "UNRESOLVED_REFERRED": "Referred outside the platform"
+    }
+  },
+  "disputes": {
+    "action": "Action",
+    "actions": "Support actions",
+    "active": "Active",
+    "agreed": "Agreed amount",
+    "agreedLabel": "Agreed amount, {{currency}} (optional)",
+    "assignee": "Responsible",
+    "cashNote": "Cash goes directly to the professional: the platform can only refund its commission.",
+    "commissionCharged": "Commission charged",
+    "commissionRefunded": "Commission refunded",
+    "do": {
+      "escalate": "Escalate",
+      "note": "Internal note",
+      "proposal": "Propose a settlement",
+      "refer": "No agreement — refer",
+      "request_response": "Ask for an explanation",
+      "settle": "Settle"
+    },
+    "doHint": {
+      "escalate": "Pass to a senior specialist.",
+      "note": "Visible only to support.",
+      "proposal": "Both parties see the proposal and get a notification.",
+      "refer": "The parties are told they can contact an insurer, lawyer, authority or court.",
+      "request_response": "The parties get a new deadline to answer.",
+      "settle": "Record the outcome. The dispute closes; the order is closed."
+    },
+    "empty": "No disputes.",
+    "event": {
+      "assigned": "Responsible changed",
+      "automatic_signal": "System signal",
+      "escalated": "Escalated",
+      "note": "Note",
+      "opened": "Opened",
+      "proposal": "Settlement proposed",
+      "referred": "Referred",
+      "request_response": "Explanation requested",
+      "response": "Explanation",
+      "response_overdue": "No answer in time",
+      "settled": "Settled"
+    },
+    "internal": "internal",
+    "keepUntil": "kept until {{date}}",
+    "links": "Related",
+    "mine": "Assigned to me",
+    "noStatements": "No statements yet.",
+    "notCourt": "Support helps the parties agree. Its decision is not a court ruling and must not promise compensation the platform has no basis for.",
+    "opened": "Opened",
+    "openedBy": "opened by {{who}}, {{time}}",
+    "outcome": "Outcome",
+    "progress": "Progress",
+    "reason": "Reason",
+    "refund": "Commission refund",
+    "refundFinanceOnly": "A commission refund can be made only by finance.",
+    "refundLabel": "Refund commission to the professional (up to {{max}})",
+    "refundTooBig": "More than the commission charged",
+    "resolution": {
+      "agreement": "Parties agreed",
+      "in_favor_client": "In favour of the client",
+      "in_favor_worker": "In favour of the professional",
+      "no_fault": "No one is at fault",
+      "partial": "Partially",
+      "referred": "Referred outside the platform"
+    },
+    "resolutionLabel": "Resolution",
+    "responseDue": "Answer due",
+    "snapshot": {
+      "chat_export": "Chat",
+      "estimate_snapshot": "Estimates",
+      "gps_snapshot": "GPS track",
+      "no_show": "No-show report",
+      "order_snapshot": "Order amounts and times",
+      "timeline_snapshot": "Order timeline"
+    },
+    "snapshots": "Order materials at opening",
+    "snapshotsHint": "Saved automatically",
+    "statements": "Statements of the parties",
+    "sub": "One process for all conflicts: the parties explain, support proposes a settlement, the outcome is recorded.",
+    "summary": "What was agreed (visible to both parties)",
+    "support": "Support",
+    "suspicious": "suspicious",
+    "suspiciousHint": "The professional marked “Arrived” while the GPS track was far from the address.",
+    "system": "System",
+    "text": "Text",
+    "ticket": "Support ticket",
+    "title": "Disputes"
+  },
+  "documents": {
+    "approve": "Approve",
+    "details": "Details",
+    "empty": "No documents.",
+    "emptyQueue": "The queue is empty — all documents are reviewed.",
+    "kind": "Document",
+    "kinds": {
+      "COMPANY_REGISTRATION": "Company registration",
+      "ID_DOCUMENT": "ID document",
+      "INSURANCE": "Insurance",
+      "LICENSE": "Licence",
+      "OTHER": "Other",
+      "QUALIFICATION": "Qualification",
+      "SELFIE": "Selfie"
+    },
+    "open": "Open file",
+    "owner": "Professional",
+    "reason": "Reason",
+    "reject": "Reject",
+    "rejectHint": "The professional sees this reason in the app and can upload a new file.",
+    "rejectTitle": "Reject the document",
+    "rejectedBecause": "Rejected: {{reason}}",
+    "sub": "ID, selfie, licences and insurance. Every file view is logged.",
+    "tab": {
+      "EXPIRED": "Expired",
+      "NOT_VERIFIED": "To review",
+      "REJECTED": "Rejected",
+      "VERIFIED": "Verified"
+    },
+    "title": "Documents",
+    "uploaded": "Uploaded",
+    "validUntil": "Valid until {{date}}"
+  },
+  "eligibility": {
+    "active_order": "has an active order",
+    "balance": "balance below the minimum",
+    "blocked": "account restricted",
+    "debt": "debt above the limit",
+    "kyc": "identity not verified",
+    "no_categories": "no services selected",
+    "no_cities": "no cities selected",
+    "offline": "offline"
+  },
+  "finance": {
+    "account": "Account",
+    "accounts": {
+      "BONUS_EXPENSE": "Bonus expense",
+      "BONUS_EXPIRED": "Expired bonuses",
+      "CLIENT_PAYMENT": "Client payments",
+      "COMPENSATION": "Compensation",
+      "PENALTIES": "Penalties",
+      "PLATFORM_REVENUE": "Platform revenue",
+      "PROMO_EXPENSE": "Welcome credit expense",
+      "PROMO_EXPIRED": "Expired welcome credit",
+      "REFUNDS": "Refunds",
+      "STRIPE_CLEARING": "Stripe clearing",
+      "WORKER_BONUS": "Bonus",
+      "WORKER_DEBT": "Debt",
+      "WORKER_EARNINGS": "Earnings",
+      "WORKER_PENDING": "Pending",
+      "WORKER_PROMO": "Welcome credit",
+      "WORKER_TOPUP": "Top-up"
+    },
+    "amount": "Amount",
+    "badPeriod": "The start date must not be later than the end date.",
+    "bonusAccrued": "Bonuses accrued",
+    "bonusExpired": "Bonuses expired",
+    "chargebacks": "Chargebacks",
+    "commission": "Commission",
+    "commissionFrom": "Commission paid from",
+    "debts": "Debts of professionals",
+    "entries": "Entries",
+    "export": "Download CSV",
+    "from": "From",
+    "grant": "Grant",
+    "integrityBad": "Ledger check failed: sum of entries {{total}}, mismatched accounts {{accounts}}. Notify the engineers.",
+    "integrityOk": "Ledger is balanced: all entries sum to zero and cached balances match.",
+    "kind": "Operation",
+    "kinds": {
+      "BONUS_ACCRUAL": "Bonus accrual",
+      "BONUS_EXPIRY": "Bonus expiry",
+      "CARD_CAPTURE": "Card payment",
+      "CHARGEBACK": "Chargeback",
+      "COMMISSION": "Commission",
+      "COMPENSATION": "Compensation",
+      "PAYOUT": "Payout",
+      "PENALTY": "Penalty",
+      "PROMO_EXPIRY": "Welcome credit expiry",
+      "PROMO_GRANT": "Welcome credit",
+      "REFUND": "Refund",
+      "REVERSAL": "Reversal",
+      "TOPUP": "Top-up",
+      "TOPUP_REFUND": "Top-up refund"
+    },
+    "liabilities": "Balances now",
+    "link": "Linked to",
+    "memo": "Note",
+    "noData": "No operations in this period.",
+    "noTx": "No operations.",
+    "order": "Order",
+    "orders": "Orders completed",
+    "promoExpired": "Welcome credit expired",
+    "promoGranted": "Welcome credit granted",
+    "sub": "Turnover, commission and platform obligations by currency. All figures come from the double-entry ledger.",
+    "time": "Time",
+    "title": "Finance",
+    "to": "To",
+    "toDebt": "Went to debt",
+    "topups": "Top-ups ({{count}})",
+    "transactions": "Operations",
+    "turnover": "Turnover",
+    "when": "When"
+  },
+  "fraud": {
+    "details": "Details",
+    "empty": "No open flags.",
+    "emptyResolved": "No reviewed flags yet.",
+    "explain": {
+      "CASH_HIDDEN_ORDER": "Signs that the order was done but cancelled to avoid commission.",
+      "GPS_MISMATCH": "Marked “Arrived” while the track was far from the address.",
+      "HIGH_CANCEL_RATE": "Many cancellations or a cancellation reason that points to the professional.",
+      "HIGH_DISPUTE_RATE": "Unusually many disputes.",
+      "LARGE_GRANT": "An unusually large starting balance.",
+      "MULTI_ACCOUNT": "Signs of several accounts of one person.",
+      "OFF_PLATFORM_ATTEMPT": "Contacts in chat or a client says the professional asked to pay outside the app.",
+      "REFUND_SPIKE": "A bank chargeback on a top-up.",
+      "SUSPICIOUS_PAIR": "The same client and professional too often or share a device.",
+      "TOPUP_SPIKE": "Unusually many top-ups in a short time."
+    },
+    "note": "Comment",
+    "open": "To review",
+    "resolve": "Mark as reviewed",
+    "resolveHint": "Describe what you found and what you did (warning, block, nothing). The note goes to the audit log.",
+    "resolveTitle": "Review result",
+    "resolved": "Reviewed",
+    "role": {
+      "ADMIN": "admin",
+      "CLIENT": "client",
+      "WORKER": "professional"
+    },
+    "sub": "Signals for review. A flag is not a verdict: check the order and the history before acting.",
+    "title": "Suspicious activity",
+    "type": {
+      "CASH_HIDDEN_ORDER": "Hidden cash order",
+      "GPS_MISMATCH": "GPS does not match",
+      "HIGH_CANCEL_RATE": "Frequent cancellations",
+      "HIGH_DISPUTE_RATE": "Frequent disputes",
+      "LARGE_GRANT": "Large grant",
+      "MULTI_ACCOUNT": "Multiple accounts",
+      "OFF_PLATFORM_ATTEMPT": "Payment outside the app",
+      "REFUND_SPIKE": "Card chargeback",
+      "SUSPICIOUS_PAIR": "Suspicious pair",
+      "TOPUP_SPIKE": "Top-up spike"
+    },
+    "typeLabel": "Signal",
+    "when": "When",
+    "who": "Who"
+  },
+  "grants": {
+    "amount": "Amount",
+    "approve": "Approve",
+    "approvedBy": "decided by {{who}}",
+    "auto": "Automatic welcome credit",
+    "by": "Created by",
+    "create": "Grant starting balance",
+    "created": "Created",
+    "custom": "Other amount",
+    "customAmount": "Amount, {{currency}}",
+    "days": "Valid for, days (default {{days}})",
+    "doneApproved": "{{amount}} credited to the professional.",
+    "donePending": "{{amount}} awaits approval by another superadmin.",
+    "empty": "No grants.",
+    "emptyQueue": "Nothing awaits approval.",
+    "expires": "Expires",
+    "findWorker": "Find a professional",
+    "limits": "Limits: up to {{perWorker}} per professional, second approval above {{second}}, finance daily limit {{daily}}, valid {{days}} days by default.",
+    "ownGrant": "Your grant — another superadmin approves it",
+    "reason": "Reason",
+    "reasonHint": "For example: first week in Berlin, launch campaign",
+    "reject": "Reject",
+    "rules": "You cannot grant to yourself or related accounts. Above the limit a second admin must approve. The grant and its reason are logged.",
+    "status": {
+      "APPROVED": "Credited",
+      "PENDING_APPROVAL": "Awaiting approval",
+      "REJECTED": "Rejected"
+    },
+    "sub": "Welcome credit for professionals. It counts towards access and commission but cannot be withdrawn.",
+    "submit": "Grant",
+    "title": "Starting balance",
+    "worker": "Professional"
+  },
+  "incidents": {
+    "called": "called",
+    "description": "What happened",
+    "emergency": "Emergency services",
+    "empty": "No incidents.",
+    "noPromises": "Masterio is not an insurer. Help the parties contact the responsible company and their insurer; do not promise payments.",
+    "notCalled": "not called",
+    "place": "Place",
+    "reporter": "Reported by",
+    "reporters": {
+      "client": "Client",
+      "worker": "Professional"
+    },
+    "sub": "Accidents, injuries and property damage reported from orders.",
+    "title": "Incidents",
+    "type": "Type",
+    "types": {
+      "ACCIDENT": "Accident",
+      "INJURY": "Injury",
+      "OTHER": "Other",
+      "PROPERTY_DAMAGE": "Property damage"
+    },
+    "when": "Reported"
+  },
+  "insurance": {
+    "add": "Add rule",
+    "anyCategory": "Any service",
+    "anyType": "Any type",
+    "deleteConfirm": "Delete this rule?",
+    "edit": "Edit rule",
+    "empty": "No rules — only service flags apply.",
+    "noGuarantee": "Checking a policy is not a guarantee of cover for a specific event, and the platform does not insure anyone.",
+    "notRequired": "not required",
+    "noteEn": "Explanation for professionals (English)",
+    "noteRu": "Explanation for professionals (Russian)",
+    "order": "The most specific rule wins: service + type → service → type → whole country. Without rules the “insurance required” flag of the service applies.",
+    "required": "required",
+    "requiredLong": "A valid policy is required",
+    "requirement": "Policy",
+    "risks": "Risks that must be covered",
+    "risksHint": "The policy must list each of these risks exactly as entered by the professional, e.g. liability.",
+    "risksLabel": "Required risks (comma-separated)",
+    "sub": "Which professionals must have a valid policy, by country, service and type.",
+    "title": "Insurance rules",
+    "type": {
+      "COMPANY": "Company",
+      "INDEPENDENT": "Independent professional"
+    },
+    "updated": "Changed",
+    "workerType": "Professional type"
+  },
+  "legal": {
+    "audience": {
+      "CLIENT": "Terms for clients",
+      "COMPANY": "Terms for companies",
+      "DISPUTE_POLICY": "Dispute policy",
+      "INCIDENT_POLICY": "Incident policy",
+      "INDEPENDENT_WORKER": "Terms for independent professionals",
+      "INSURANCE_REQUIREMENTS": "Insurance requirements",
+      "PRIVACY_POLICY": "Privacy and evidence retention",
+      "TEAM_MEMBER": "Terms for team members",
+      "TOPUP_TERMS": "Top-up terms"
+    },
+    "consents": "Consents",
+    "deleteDraft": "Delete draft",
+    "document": "Document",
+    "draft": "draft",
+    "empty": "No documents yet. Until a document is published for a country, the apps do not ask for consent.",
+    "newVersion": "New version",
+    "publish": "Publish",
+    "publishConfirm": "Publish version {{version}}? Users will be asked to accept it.",
+    "published": "published {{date}}",
+    "read": "Read",
+    "reviewWarning": "Publish only texts checked by a lawyer for this country. Published versions cannot be changed — release a new version instead.",
+    "reviewedBy": "Legal review",
+    "reviewedByHint": "e.g. Law firm, Berlin",
+    "reviewedByLabel": "Reviewed by (lawyer or firm)",
+    "saveDraft": "Save draft",
+    "sub": "Versions by country in 5 languages. Users accept the current version; the consent records version, date, time and country.",
+    "text": "Text — {{lang}} (Markdown)",
+    "textHint": "All 5 languages are required. Do not write “Masterio is not responsible for anything”: describe the limits concretely for this jurisdiction.",
+    "title": "Legal documents",
+    "version": "Version"
+  },
+  "login": {
+    "email": "Email",
+    "headline": "Orders, professionals and money of the platform in one place.",
+    "lost": "Lost the phone with the authenticator? Ask a superadmin to reset the code.",
+    "note": "Access only for platform staff. All actions are logged.",
+    "password": "Password",
+    "submit": "Sign in",
+    "title": "Sign in to Masterio CRM",
+    "totp": "Code from the authenticator app"
+  },
+  "map": {
+    "busy": "On an order",
+    "free": "Free",
+    "lastPoint": "Last point at {{time}}",
+    "live": "Live: positions update as professionals move",
+    "noWaiting": "No orders are waiting.",
+    "offline": "No live connection — showing the last snapshot, reconnecting…",
+    "order": "Order address",
+    "performing": "Orders in progress",
+    "summary": "Summary",
+    "title": "Live map",
+    "waiting": "Waiting for a professional",
+    "waitingTitle": "Waiting for a professional: {{count}}"
+  },
+  "nav": {
+    "admins": "Admins",
+    "audit": "Audit log",
+    "bonuses": "Bonuses",
+    "cases": "Cases",
+    "catalog": "Services and cities",
+    "clients": "Clients",
+    "control": "Control",
+    "dashboard": "Dashboard",
+    "disputes": "Disputes",
+    "documents": "Documents",
+    "finance": "Finance",
+    "fraud": "Suspicious activity",
+    "grants": "Starting balance",
+    "incidents": "Incidents",
+    "insurance": "Insurance rules",
+    "label": "Sections",
+    "legal": "Legal documents",
+    "map": "Live map",
+    "menu": "Menu",
+    "money": "Money",
+    "operations": "Operations",
+    "orders": "Orders",
+    "people": "People",
+    "privacy": "Personal data",
+    "settings": "Settings",
+    "support": "Support",
+    "workers": "Professionals"
+  },
+  "orderCard": {
+    "actor": {
+      "ADMIN": "Support",
+      "CLIENT": "Client",
+      "SYSTEM": "System",
+      "WORKER": "Professional"
+    },
+    "address": "Address",
+    "approved": "Approved estimate",
+    "asap": "As soon as possible",
+    "automatic": "automatic",
+    "bonusDiscount": "Bonus discount on commission",
+    "cancel": "Cancel order",
+    "cancelConfirm": "Cancel the order",
+    "cancelHint": "The client and the professional get a notification. No penalty or compensation is charged when support cancels.",
+    "cancelReason": "Reason (visible in the audit log)",
+    "cancelTitle": "Cancel order #{{number}}",
+    "cancellation": "Cancellation",
+    "cancelledBy": "Cancelled by",
+    "cashClient": "Cash according to the client",
+    "cashWorker": "Cash according to the professional",
+    "chat": "Chat",
+    "chatNote": "Contacts in messages are hidden automatically; the original text is not stored.",
+    "clientUnconfirmed": "Confirmed automatically: the client did not confirm the payment in time.",
+    "compensation": "Travel compensation",
+    "createdAt": "Created {{time}}",
+    "description": "Problem",
+    "details": "Details",
+    "dispatch": "Dispatch log",
+    "disputes": "Disputes",
+    "distance": "Distance",
+    "estimateStatus": {
+      "APPROVED": "Approved",
+      "PROPOSED": "Awaiting client",
+      "REJECTED": "Rejected",
+      "SUPERSEDED": "Replaced"
+    },
+    "estimates": "Estimates",
+    "event": {
+      "auto_confirmed": "Confirmed automatically",
+      "cancelled_by_admin": "Cancelled by support",
+      "cancelled_by_client": "Cancelled by the client",
+      "cash_mismatch_dispute": "Cash amounts differ — dispute opened",
+      "completed_by_worker": "Professional completed the work",
+      "created": "Order created",
+      "dispatch_started": "Search started",
+      "dispatch_timeout": "Search time is over",
+      "estimate_approved": "Estimate approved",
+      "estimate_proposed": "Estimate proposed",
+      "estimate_rejected": "Estimate rejected",
+      "gps_mismatch": "GPS does not match the address",
+      "no_workers": "No professionals found",
+      "offer_accepted": "Offer accepted",
+      "offer_declined": "Offer declined",
+      "offer_expired": "Offer expired",
+      "payment_confirmed": "Client confirmed the payment",
+      "performer_assigned": "Performer assigned",
+      "performer_change_declined": "Client declined the replacement",
+      "performer_change_requested": "Replacement waits for the client",
+      "performer_mismatch": "Client: a different person came",
+      "performer_replaced": "Performer replaced",
+      "status_arrived": "Professional arrived",
+      "status_en_route": "Professional on the way",
+      "status_in_progress": "Work started",
+      "worker_cancelled": "Professional cancelled",
+      "worker_nearby": "Professional is nearby"
+    },
+    "eventDetails": "Details",
+    "filterHit": {
+      "email": "email",
+      "iban": "bank account",
+      "link": "link",
+      "messenger": "messenger",
+      "phone": "phone number"
+    },
+    "filtered": "Hidden: {{hits}}",
+    "fromClient": "Client",
+    "fromWorker": "Professional",
+    "items": "Items",
+    "lastPoint": "Last point at {{time}}",
+    "ledger": "Ledger entries",
+    "method": {
+      "CARD": "Card in the app",
+      "CASH": "Cash to the professional"
+    },
+    "money": "Money",
+    "noEvents": "No events yet.",
+    "noMessages": "No messages.",
+    "noOffers": "The order has not been offered to anyone yet.",
+    "offer": {
+      "ACCEPTED": "Accepted",
+      "CANCELLED": "Order cancelled",
+      "DECLINED": "Declined",
+      "EXPIRED": "No answer in time",
+      "PENDING": "Waiting for an answer",
+      "REVOKED": "Revoked",
+      "TAKEN_BY_OTHER": "Taken by another"
+    },
+    "outcome": "Outcome",
+    "payment": "Payment",
+    "penalty": "Client penalty",
+    "photoPurpose": {
+      "completion": "Work result",
+      "estimate": "Estimate photo",
+      "no_show": "Client no-show",
+      "problem": "Problem photo"
+    },
+    "photos": "Photos",
+    "photosNote": "Links are valid for 5 minutes.",
+    "radius": "Search",
+    "reason": "Reason",
+    "reviews": "Reviews",
+    "round": "round {{round}}",
+    "roundShort": "Round",
+    "score": "Score",
+    "sent": "Sent",
+    "statusAtCancel": "Status at cancellation",
+    "timeline": "Timeline",
+    "total": "Total",
+    "track": "Route of the professional",
+    "trackPoints": "{{count}} GPS points",
+    "version": "Version",
+    "when": "When"
+  },
+  "orders": {
+    "amount": "Amount",
+    "category": "Service",
+    "city": "City",
+    "client": "Client",
+    "commission": "Commission",
+    "created": "Created",
+    "day": "Day",
+    "empty": "No orders match the filters.",
+    "found": "Found: {{formatted}}",
+    "number": "Order #{{number}}",
+    "numberLabel": "No.",
+    "resetPerson": "Reset filters",
+    "status": "Status",
+    "title": "Orders",
+    "worker": "Professional"
+  },
+  "people": {
+    "block": "Block",
+    "blockHint": "Sessions are closed immediately. For a professional the welcome credit burns and new orders stop.",
+    "blockTitle": "Block the account",
+    "country": "Country",
+    "language": "Language",
+    "name": "Name",
+    "search": "Search",
+    "searchHint": "Phone (3+ digits) or user ID — names are encrypted",
+    "since": "Registered",
+    "sinceDate": "registered {{date}}",
+    "status": "Status",
+    "unblock": "Remove restrictions",
+    "unblockHint": "The account becomes active again. A burned welcome credit is not returned.",
+    "unblockTitle": "Remove restrictions"
+  },
+  "pockets": {
+    "bonus": "Bonus",
+    "debt": "Debt",
+    "earnings": "Earnings",
+    "pending": "Pending (dispute window)",
+    "promo": "Welcome credit",
+    "topup": "Top-up"
+  },
+  "privacy": {
+    "empty": "No requests.",
+    "how": "Users do this themselves in the app. Deletion anonymises the profile; records the platform must keep by law stay until their retention ends.",
+    "kept": {
+      "consents": "consent records",
+      "dispute_evidence": "dispute evidence",
+      "documents": "documents under legal hold",
+      "incidents": "incident reports",
+      "ledger": "accounting records",
+      "orders": "orders (anonymised)"
+    },
+    "retained": "Kept by law",
+    "status": {
+      "done": "Done",
+      "partially_retained": "Done, some records kept",
+      "pending": "Pending"
+    },
+    "sub": "Data export and account deletion requests (GDPR).",
+    "title": "Personal data",
+    "type": "Request",
+    "types": {
+      "delete": "Account deletion",
+      "export": "Data export"
+    },
+    "user": "User",
+    "when": "When"
+  },
+  "roles": {
+    "FINANCE": "Finance",
+    "MODERATOR": "Moderator",
+    "SUPERADMIN": "Superadmin",
+    "SUPPORT": "Support"
+  },
+  "settings": {
+    "change": "Change",
+    "comment": "Comment",
+    "commentHint": "Why it is changed — visible in the history",
+    "country": "Country code",
+    "enabled": "Enabled",
+    "enum": {
+      "from_payment": "From the order payment",
+      "from_wallet": "From the professional’s balance",
+      "none": "Not refundable",
+      "on_account_closure": "Refunded when the account is closed",
+      "on_request": "Refunded on request"
+    },
+    "field": {
+      "ACCEPTED": "after acceptance",
+      "ARRIVED": "arrived",
+      "EN_ROUTE": "on the way",
+      "acceptRate": "acceptance",
+      "block": "block",
+      "cancelRate": "cancellations",
+      "distance": "distance",
+      "prepay": "prepayment",
+      "rating": "rating",
+      "warn": "warning"
+    },
+    "filter": "Find a setting",
+    "finance": "finance",
+    "global": "Global value",
+    "group": {
+      "bonuses": "Bonuses",
+      "cancellations": "Cancellations and confirmation",
+      "cash": "Cash and access balance",
+      "commission": "Commission",
+      "dispatch": "Dispatch and search radius",
+      "disputes": "Disputes and evidence",
+      "grants": "Starting balance",
+      "location": "Location",
+      "payments": "Payments and top-ups",
+      "teams": "Teams and helpers"
+    },
+    "history": "History",
+    "invalid": "The value is outside the allowed range.",
+    "key": {
+      "ARRIVAL_GEOFENCE_M": {
+        "help": "How close to the address the professional must be.",
+        "label": "“Arrived” zone"
+      },
+      "AUTO_CONFIRM_HOURS": {
+        "help": "If the client does not confirm the payment.",
+        "label": "Automatic confirmation"
+      },
+      "AUTO_WELCOME_AMOUNT": {
+        "help": "Credited when the identity check is passed, if enabled.",
+        "label": "Automatic welcome amount"
+      },
+      "AUTO_WELCOME_ENABLED": {
+        "help": "Once per verified professional.",
+        "label": "Automatic welcome credit"
+      },
+      "BATCH_SIZE": {
+        "help": "1 — strictly one by one; 2–3 for urgent services.",
+        "label": "Offers at once"
+      },
+      "BONUS_BUDGET_CAP": {
+        "help": "0 — no cap. Above it all bonuses are reduced proportionally.",
+        "label": "Monthly bonus budget"
+      },
+      "BONUS_EXPIRES_DAYS": {
+        "help": "An unused bonus burns after this many days.",
+        "label": "Bonus validity"
+      },
+      "BONUS_MAX_DISCOUNT_SHARE_BP": {
+        "help": "Share of the commission that a bonus can cover.",
+        "label": "Maximum bonus discount, %"
+      },
+      "CARD_PAYMENTS_ENABLED": {
+        "help": "Enable only after the card payment flow and the legal check are ready.",
+        "label": "Card payments by clients"
+      },
+      "CASH_COMMISSION_BUFFER_BP": {
+        "help": "Extra balance required on top of the expected commission.",
+        "label": "Reserve above commission, %"
+      },
+      "CASH_DEBT_LIMIT": {
+        "help": "Above it cash orders stop.",
+        "label": "Debt limit"
+      },
+      "CASH_ENABLED": {
+        "help": "Clients can pay the professional in cash.",
+        "label": "Cash orders"
+      },
+      "CASH_MAX_ORDER_AMOUNT": {
+        "help": "An estimate above it cannot be paid in cash.",
+        "label": "Maximum cash order"
+      },
+      "CASH_MAX_ORDER_AMOUNT_NEW_WORKER": {
+        "help": "A lower limit until the professional has completed orders.",
+        "label": "Maximum cash order, new professional"
+      },
+      "CASH_MIN_BALANCE": {
+        "help": "Below it a professional does not receive orders.",
+        "label": "Minimum balance for cash orders"
+      },
+      "CLIENT_CANCEL_PENALTY": {
+        "help": "By order status at cancellation.",
+        "label": "Client cancellation fee"
+      },
+      "CLIENT_CANCEL_THRESHOLDS": {
+        "help": "Cancellations in 30 days → warning, prepayment, block.",
+        "label": "Client cancellation limits"
+      },
+      "CLIENT_CARD_REQUIRED_FOR_CASH": {
+        "help": "A client must link a card (without charging it) before a cash order.",
+        "label": "Card check for cash orders"
+      },
+      "COMMISSION_MODE": {
+        "help": "From the professional’s balance (cash orders) or from the order payment (card orders).",
+        "label": "How commission is charged"
+      },
+      "COMMISSION_PERCENT": {
+        "help": "Share of the order amount. Never above 20%. Shown to users in the apps.",
+        "label": "Platform commission, %"
+      },
+      "DISPUTE_ESCALATE_HOURS": {
+        "help": "An unresolved dispute is escalated to a senior specialist.",
+        "label": "Automatic escalation"
+      },
+      "DISPUTE_OPEN_WINDOW_DAYS": {
+        "help": "How many days after the order a party can open a dispute.",
+        "label": "Dispute window"
+      },
+      "DISPUTE_RESPONSE_HOURS": {
+        "help": "After it the dispute goes to review without the explanation.",
+        "label": "Time for the other side to respond"
+      },
+      "EVIDENCE_RETENTION_DAYS": {
+        "help": "Dispute and incident materials; check the legal minimum in each country.",
+        "label": "Keep evidence"
+      },
+      "EXPECTED_ORDER_AMOUNT": {
+        "help": "Used to check the balance before there is an estimate.",
+        "label": "Expected order amount"
+      },
+      "FREE_CANCEL_MINUTES": {
+        "help": "Minutes after acceptance when the client cancels for free.",
+        "label": "Free cancellation"
+      },
+      "GRANT_FINANCE_DAILY_LIMIT": {
+        "help": "Total a finance admin can grant per day.",
+        "label": "Daily limit of a finance admin"
+      },
+      "GRANT_MAX_PER_WORKER": {
+        "help": "Total of all starting balance grants to one professional.",
+        "label": "Maximum per professional"
+      },
+      "GRANT_SECOND_APPROVAL_ABOVE": {
+        "help": "Larger grants wait for another superadmin.",
+        "label": "Second approval above"
+      },
+      "LOCATION_RETENTION_DAYS": {
+        "help": "Tracks of orders with disputes are kept longer.",
+        "label": "Keep tracks"
+      },
+      "LOW_WORKERS_WARNING": {
+        "help": "Fewer professionals online in a city → warning on the dashboard.",
+        "label": "“Few professionals” warning"
+      },
+      "MAX_DISPATCH_MINUTES": {
+        "help": "Then the client sees “no professionals”.",
+        "label": "Maximum search time"
+      },
+      "MAX_ROUNDS": {
+        "help": "How many times the queue is repeated.",
+        "label": "Search rounds"
+      },
+      "MAX_SEARCH_RADIUS_M": {
+        "help": "Up to this radius the client can expand the search.",
+        "label": "Maximum radius"
+      },
+      "NEARBY_NOTIFY_M": {
+        "help": "The client gets a push when the professional is this close.",
+        "label": "“Professional nearby” notice"
+      },
+      "NO_SHOW_WAIT_MINUTES": {
+        "help": "Before the professional can report a no-show.",
+        "label": "Waiting for the client"
+      },
+      "OFFER_TTL_SECONDS": {
+        "help": "How long one professional sees the offer.",
+        "label": "Time to answer an offer"
+      },
+      "PAYOUTS_ENABLED": {
+        "help": "Payouts of earnings from card orders through Stripe Connect.",
+        "label": "Payouts to professionals"
+      },
+      "PERFORMER_CHANGE_CONSENT": {
+        "help": "After the first assignment, a new performer is sent only after the client agrees.",
+        "label": "Client consent for a replacement"
+      },
+      "PROMO_EXPIRES_DAYS": {
+        "help": "Unused welcome credit burns after this many days.",
+        "label": "Welcome credit validity"
+      },
+      "QUEUE_WEIGHTS": {
+        "help": "How distance, rating, acceptance and cancellations order the queue.",
+        "label": "Queue weights"
+      },
+      "SEARCH_RADIUS_M": {
+        "help": "Professionals within this distance from the address get the offer.",
+        "label": "Search radius"
+      },
+      "TEAMS_ENABLED": {
+        "help": "Turn off in countries where the law does not allow working with helpers through the platform.",
+        "label": "Teams allowed"
+      },
+      "TEAM_ASSIGN_TIMEOUT_MIN": {
+        "help": "How long a company has to assign a team member to an accepted order.",
+        "label": "Team assignment time"
+      },
+      "TEAM_INVITE_TTL_HOURS": {
+        "help": "An invitation that was not accepted expires after this time.",
+        "label": "Invitation validity"
+      },
+      "TEAM_MAX_MEMBERS": {
+        "help": "Members plus pending invitations, without the leader.",
+        "label": "Team size limit"
+      },
+      "TOPUP_MAX_AMOUNT": {
+        "help": "Largest amount of one top-up — limits the risk of chargebacks.",
+        "label": "Maximum top-up"
+      },
+      "TOPUP_MIN_AMOUNT": {
+        "help": "Smallest amount a professional can top up at once.",
+        "label": "Minimum top-up"
+      },
+      "TOPUP_REFUND_POLICY": {
+        "help": "What happens to the remaining top-up.",
+        "label": "Top-up refund policy"
+      },
+      "TRAVEL_COMPENSATION": {
+        "help": "Paid to the professional when the client cancels after arrival.",
+        "label": "Travel compensation"
+      },
+      "WELCOME_PRESETS": {
+        "help": "Buttons in the grant form.",
+        "label": "Quick amounts"
+      },
+      "WORKER_CANCEL_THRESHOLDS": {
+        "help": "Cancellations in 30 days → warning, block.",
+        "label": "Professional cancellation limits"
+      },
+      "WORKER_ONLINE_STALE_SECONDS": {
+        "help": "After this a professional is considered offline.",
+        "label": "Online without location"
+      },
+      "WORKER_TOPUP_ENABLED": {
+        "help": "Professionals can top up their balance in the app.",
+        "label": "Top-ups by card"
+      }
+    },
+    "noHistory": "No changes yet — the default value is used.",
+    "off": "Off",
+    "on": "On",
+    "order": "Lookup order: city + service → service → city → country → global value. Finance keys are changed by finance or a superadmin, the rest only by a superadmin. Amounts are in the currency of each country.",
+    "overrides": "Overrides",
+    "removed": "removed",
+    "reset": "Remove override",
+    "scope": {
+      "CATEGORY": "Service",
+      "CITY": "City",
+      "CITY_CATEGORY": "City + service",
+      "COUNTRY": "Country",
+      "GLOBAL": "Everywhere"
+    },
+    "scopeLabel": "Applies to",
+    "setting": "Setting",
+    "sub": "Changes apply within seconds, without a release. Every change is kept in the history.",
+    "title": "Settings",
+    "unit": {
+      "days": "days",
+      "h": "h",
+      "m": "m",
+      "min": "min",
+      "money": "in units of the currency (e.g. 20.00)",
+      "moneyList": "amounts separated by “;”",
+      "s": "s"
+    },
+    "value": "Value",
+    "when": "When",
+    "willBe": "Will be: {{value}}"
+  },
+  "support": {
+    "addNote": "Add note",
+    "conversation": "Conversation",
+    "deletedUser": "deleted user",
+    "empty": "No tickets.",
+    "from": "From",
+    "internalCheck": "Internal note (the user will not see it)",
+    "kind": "Type",
+    "kinds": {
+      "dispute": "Dispute",
+      "general": "Question",
+      "incident": "Incident"
+    },
+    "languageHint": "The user receives a push notification in their language.",
+    "noteLabel": "Internal note",
+    "replyHint": "Write in the user’s language. Do not promise compensation or insurance payments on behalf of Masterio.",
+    "replyLabel": "Reply to the user",
+    "send": "Send",
+    "status": {
+      "CLOSED": "Closed",
+      "OPEN": "Waiting for support",
+      "PENDING_USER": "Waiting for the user",
+      "RESOLVED": "Resolved"
+    },
+    "sub": "Requests from the apps, disputes and incidents. Bold — waiting for our answer.",
+    "subject": "Subject",
+    "takeIt": "Take it",
+    "title": "Support",
+    "updated": "Updated",
+    "user": "User"
+  },
+  "teams": {
+    "automatic": "assigned automatically",
+    "capacity": "Can take {{count}} orders at the same time (leader plus verified members).",
+    "clientConsented": "client agreed {{date}}",
+    "event": {
+      "assigned": "Assigned to an order",
+      "auto_assigned": "Assigned automatically",
+      "change_approved": "Client agreed to the replacement",
+      "change_cancelled": "Replacement withdrawn",
+      "change_declined": "Client declined the replacement",
+      "change_requested": "Replacement sent to the client",
+      "created": "Team created",
+      "declined": "Declined the invitation",
+      "invite_revoked": "Invitation revoked",
+      "invited": "Invitation sent",
+      "joined": "Joined the team",
+      "left": "Left the team",
+      "performer_mismatch": "Client: a different person came",
+      "removed": "Removed from the team",
+      "renamed": "Team renamed",
+      "replaced": "Performer replaced"
+    },
+    "inviteStatus": {
+      "ACCEPTED": "Accepted",
+      "DECLINED": "Declined",
+      "EXPIRED": "Expired",
+      "PENDING": "Pending",
+      "REVOKED": "Revoked"
+    },
+    "invites": "Invitations",
+    "journal": "Team journal",
+    "journalEmpty": "No events yet.",
+    "kyc": "Identity",
+    "member": "Member",
+    "memberBadge": "Team member · {{role}}",
+    "memberNote": "A team member gets orders only from the leader; commission, balance, rating and cancellations belong to the leader.",
+    "memberOf": "Team membership",
+    "openOrder": "Order",
+    "performers": "Performers",
+    "period": "In the team",
+    "role": {
+      "EMPLOYEE": "Employee",
+      "HELPER": "Helper",
+      "LEADER": "Leader",
+      "MASTER": "Master"
+    },
+    "roleLabel": "Role",
+    "since": "since {{date}}",
+    "state": {
+      "ACTIVE": "Current",
+      "CANCELLED": "Withdrawn",
+      "DECLINED": "Client declined",
+      "ENDED": "Replaced",
+      "PENDING_CONSENT": "Waiting for the client"
+    },
+    "title": "Team «{{name}}»"
+  },
+  "userStatus": {
+    "ACTIVE": "Active",
+    "BLOCKED": "Blocked",
+    "DELETED": "Deleted",
+    "PREPAY_REQUIRED": "Prepayment required",
+    "SUSPENDED": "Suspended",
+    "WARNED": "Warned"
+  },
+  "verification": {
+    "EXPIRED": "Expired",
+    "NOT_VERIFIED": "Awaiting review",
+    "REJECTED": "Rejected",
+    "VERIFIED": "Verified"
+  },
+  "workers": {
+    "acceptRate": "Accepted",
+    "access": "Access to orders",
+    "accessBalance": "Balance for access",
+    "activeOrder": "Active order",
+    "cancelRate": "Cancels",
+    "cancels30d": "{{count}} cancellations in 30 days",
+    "categories": "Services",
+    "cities": "Cities",
+    "company": "Company",
+    "completed": "Completed orders",
+    "debt": "Debt",
+    "debtLimit": "Debt limit",
+    "disputes": "Disputes",
+    "documents": "Documents",
+    "eligible": "Receives orders: all access conditions are met.",
+    "empty": "No professionals match the filters.",
+    "found": "Found: {{formatted}}",
+    "independent": "Independent professional",
+    "kyc": "Identity check",
+    "lastLocation": "Last location",
+    "noDocuments": "No documents uploaded.",
+    "noOrders": "No orders yet.",
+    "noWithdrawal": "Top-ups, welcome credit and bonuses cannot be withdrawn — they only cover the commission.",
+    "notEligible": "Does not receive orders",
+    "ofTotal": "of {{total}}",
+    "online": "Online",
+    "onlineNo": "Offline",
+    "onlineYes": "Online",
+    "profile": "Profile",
+    "radius": "Own search radius",
+    "radiusDefault": "As set by the platform",
+    "rating": "Rating",
+    "ratingCount": "{{count}} reviews",
+    "recentOrders": "Recent orders",
+    "regNumber": "Registration number",
+    "setKyc": "Identity decision",
+    "threshold": "Minimum balance",
+    "title": "Professionals",
+    "wallet": "Wallet"
+  }
+}

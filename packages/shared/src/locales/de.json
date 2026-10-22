@@ -1,0 +1,1066 @@
+{
+  "app": {
+    "platform": "Masterio",
+    "client": "Masterio",
+    "worker": "Masterio Pro"
+  },
+  "errors": {
+    "VALIDATION_FAILED": "Bitte überprüfe deine Eingaben.",
+    "UNAUTHORIZED": "Bitte melde dich erneut an.",
+    "FORBIDDEN": "Kein Zugriff.",
+    "NOT_FOUND": "Nicht gefunden.",
+    "RATE_LIMITED": "Zu viele Versuche. Bitte versuche es später erneut.",
+    "OTP_INVALID": "Falscher Code. Bitte versuche es erneut.",
+    "OTP_EXPIRED": "Der Code ist abgelaufen. Fordere einen neuen an.",
+    "OTP_TOO_MANY_ATTEMPTS": "Zu viele falsche Codes. Fordere später einen neuen an.",
+    "TOKEN_REUSED": "Deine Sitzung wurde aus Sicherheitsgründen beendet. Bitte melde dich erneut an.",
+    "ACCOUNT_BLOCKED": "Dein Konto ist eingeschränkt. Bitte wende dich an den Support.",
+    "ORDER_ALREADY_TAKEN": "Dieser Auftrag wurde bereits angenommen.",
+    "OFFER_EXPIRED": "Die Zeit zum Annehmen ist abgelaufen.",
+    "OFFER_NOT_ACTIVE": "Dieser Auftrag ist nicht mehr verfügbar.",
+    "ORDER_NOT_CANCELLABLE": "Dieser Auftrag kann nicht mehr storniert werden.",
+    "INVALID_STATUS_TRANSITION": "Diese Aktion ist im aktuellen Auftragsstatus nicht möglich.",
+    "OUTSIDE_GEOFENCE": "Dafür musst du an der Adresse sein.",
+    "WORKER_HAS_ACTIVE_ORDER": "Schließe zuerst deinen aktuellen Auftrag ab.",
+    "WORKER_NOT_ELIGIBLE": "Du kannst gerade keine Aufträge erhalten.",
+    "NO_APPROVED_ESTIMATE": "Der Kunde muss zuerst den Kostenvoranschlag bestätigen.",
+    "ESTIMATE_LOCKED": "Der Kostenvoranschlag kann nicht mehr geändert werden.",
+    "FEATURE_DISABLED": "Diese Funktion ist noch nicht verfügbar.",
+    "CASH_LIMIT_EXCEEDED": "Der Betrag überschreitet das Limit für Barzahlung.",
+    "CARD_REQUIRED": "Verknüpfe eine Karte, um bar zu bezahlen.",
+    "INSUFFICIENT_BALANCE": "Nicht genug Guthaben. Bitte lade dein Guthaben auf.",
+    "GRANT_LIMIT_EXCEEDED": "Der Betrag überschreitet das zulässige Limit.",
+    "GRANT_SELF_FORBIDDEN": "Gutschriften auf das eigene oder ein verbundenes Konto sind nicht erlaubt.",
+    "GRANT_SECOND_APPROVER_REQUIRED": "Diese Gutschrift muss ein zweiter Administrator bestätigen.",
+    "IDEMPOTENCY_CONFLICT": "Diese Anfrage wurde bereits mit anderen Daten verarbeitet.",
+    "REVIEW_NOT_ALLOWED": "Bewertungen sind nur für abgeschlossene Aufträge möglich.",
+    "CITY_OR_CATEGORY_UNAVAILABLE": "Dieser Service ist in deiner Stadt noch nicht verfügbar.",
+    "INTERNAL": "Etwas ist schiefgelaufen. Bitte versuche es erneut.",
+    "ALREADY_EXISTS": "Das existiert bereits. Verwende einen anderen Code oder eine andere E-Mail.",
+    "LAST_SUPERADMIN": "Mindestens ein aktiver Superadmin muss bleiben.",
+    "DISPUTE_NOT_ALLOWED": "Für diesen Auftrag kann jetzt kein Streitfall eröffnet werden.",
+    "DISPUTE_ALREADY_OPEN": "Für diesen Auftrag läuft bereits ein Streitfall – ergänze dort deine Erklärung.",
+    "DISPUTE_CLOSED": "Der Streitfall ist abgeschlossen.",
+    "NO_SHOW_TOO_EARLY": "Ein Nichterscheinen kannst du erst nach der Wartezeit an der Adresse melden.",
+    "CONSENT_REQUIRED": "Bitte akzeptiere die aktuellen Bedingungen, um fortzufahren.",
+    "ACCOUNT_DELETE_BLOCKED": "Das Konto kann noch nicht gelöscht werden: Schließe aktive Aufträge und Streitfälle ab und begleiche Schulden.",
+    "BONUS_RUN_LOCKED": "Diese Bonusberechnung ist bereits genehmigt oder storniert.",
+    "TEAMS_DISABLED": "Teams sind in deinem Land nicht verfügbar.",
+    "TEAM_MEMBER_NOT_ELIGIBLE": "Dieses Teammitglied kann den Auftrag nicht übernehmen: Prüfe Identität, Lizenz, Versicherung und laufende Arbeit.",
+    "TEAM_MEMBER_MODE": "Du arbeitest im Team: Aufträge weist deine Teamleitung zu.",
+    "ALREADY_IN_TEAM": "Diese Person ist bereits in einem Team.",
+    "TEAM_HAS_ACTIVE_WORK": "Schließe zuerst den aktiven Auftrag ab oder gib ihn weiter.",
+    "TEAM_LIMIT_REACHED": "Das Team ist voll ({{limit}} Personen)."
+  },
+  "push": {
+    "offer_new": {
+      "title": "Neuer Auftrag",
+      "body": "{{category}}, {{distance}} entfernt. Innerhalb von {{seconds}} s annehmen."
+    },
+    "offer_closed": {
+      "title": "Auftrag nicht verfügbar",
+      "body": "Dieser Auftrag ist nicht mehr verfügbar."
+    },
+    "order_accepted": {
+      "title": "Ein Profi ist unterwegs",
+      "body": "{{name}} hat deinen Auftrag angenommen."
+    },
+    "worker_en_route": {
+      "title": "Dein Profi ist losgefahren",
+      "body": "{{name}} ist auf dem Weg zu dir."
+    },
+    "worker_nearby": {
+      "title": "Dein Profi ist in der Nähe",
+      "body": "{{name}} ist weniger als {{distance}} entfernt."
+    },
+    "worker_arrived": {
+      "title": "Dein Profi ist da",
+      "body": "{{name}} ist an deiner Adresse."
+    },
+    "order_cancelled": {
+      "title": "Auftrag storniert",
+      "body": "Auftrag Nr. {{number}} wurde storniert."
+    },
+    "no_workers": {
+      "title": "Gerade keine Profis verfügbar",
+      "body": "Du kannst den Suchradius erweitern, warten oder kostenlos stornieren."
+    },
+    "estimate_new": {
+      "title": "Neuer Kostenvoranschlag",
+      "body": "Bitte prüfe den Kostenvoranschlag: {{amount}}."
+    },
+    "payment_confirm_request": {
+      "title": "Zahlung bestätigen",
+      "body": "Der Profi meldet den Erhalt von {{amount}} in bar. Bitte bestätige."
+    },
+    "order_completed": {
+      "title": "Arbeit abgeschlossen",
+      "body": "Bitte bewerte die Arbeit für Auftrag Nr. {{number}}."
+    },
+    "dispute_opened": {
+      "title": "Streitfall eröffnet",
+      "body": "Zu Auftrag Nr. {{number}} wurde ein Streitfall eröffnet. Du kannst eine Stellungnahme hinzufügen."
+    },
+    "topup_succeeded": {
+      "title": "Guthaben aufgeladen",
+      "body": "{{amount}} wurde deinem Guthaben gutgeschrieben."
+    },
+    "commission_charged": {
+      "title": "Provision abgebucht",
+      "body": "Provision {{commission}}, Bonusrabatt {{discount}}, abgebucht {{charged}}."
+    },
+    "grant_received": {
+      "title": "Willkommensbonus",
+      "body": "Willkommensguthaben {{amount}} gültig bis {{date}}."
+    },
+    "document_approved": {
+      "title": "Dokument bestätigt",
+      "body": "Dein Dokument „{{document}}“ wurde geprüft."
+    },
+    "document_rejected": {
+      "title": "Dokument abgelehnt",
+      "body": "Dein Dokument „{{document}}“ wurde abgelehnt: {{reason}}. Bitte lade es erneut hoch."
+    },
+    "dispute_update": {
+      "title": "Neues im Streitfall",
+      "body": "Im Streitfall zu Auftrag Nr. {{number}} gibt es eine neue Erklärung oder Anfrage."
+    },
+    "dispute_proposal": {
+      "title": "Einigungsvorschlag",
+      "body": "Der Support hat eine Einigung zum Auftrag Nr. {{number}} vorgeschlagen."
+    },
+    "dispute_settled": {
+      "title": "Streitfall beigelegt",
+      "body": "Der Streitfall zu Auftrag Nr. {{number}} ist beigelegt. Das Ergebnis steht im Auftrag."
+    },
+    "dispute_referred": {
+      "title": "Streitfall nicht beigelegt",
+      "body": "Keine Einigung zu Auftrag Nr. {{number}}. Sieh nach, an wen du dich wenden kannst."
+    },
+    "support_reply": {
+      "title": "Antwort vom Support",
+      "body": "Öffne die App, um die Antwort zu lesen."
+    },
+    "insurance_expiring": {
+      "title": "Versicherung läuft bald ab",
+      "body": "Deine Police läuft in {{days}} Tagen ab. Lade die neue hoch, damit Aufträge weiterlaufen."
+    },
+    "document_expired": {
+      "title": "Dokument abgelaufen",
+      "body": "Aufträge, die dieses Dokument erfordern, sind pausiert, bis du ein gültiges hochlädst."
+    },
+    "bonus_credited": {
+      "title": "Bonus gutgeschrieben",
+      "body": "Dein Bonus für {{period}} ist gutgeschrieben und senkt die Provision neuer Aufträge."
+    },
+    "team_invite": {
+      "title": "Einladung ins Team",
+      "body": "„{{team}}“ lädt dich zur Zusammenarbeit ein. Öffne Masterio Pro, um zu antworten."
+    },
+    "team_member_joined": {
+      "title": "Neues Teammitglied",
+      "body": "{{name}} hat die Einladung angenommen. Aufträge nach der Identitätsprüfung zuweisen."
+    },
+    "team_removed": {
+      "title": "Du bist nicht mehr im Team",
+      "body": "„{{team}}“ hat dich aus dem Team entfernt. Du kannst selbstständig arbeiten."
+    },
+    "team_assign_needed": {
+      "title": "Wähle, wer fährt",
+      "body": "Auftrag Nr. {{number}}: Wähle in {{minutes}} Min. ein Teammitglied, sonst fährst du selbst."
+    },
+    "team_assigned": {
+      "title": "Neuer Auftrag für dich",
+      "body": "Auftrag Nr. {{number}}. Öffne ihn für Adresse und Start."
+    },
+    "team_unassigned": {
+      "title": "Auftrag weitergegeben",
+      "body": "Du führst Auftrag Nr. {{number}} nicht mehr aus."
+    },
+    "performer_assigned": {
+      "title": "Wer kommt",
+      "body": "{{name}} übernimmt deinen Auftrag. Die Prüfabzeichen siehst du in der App."
+    },
+    "performer_change_request": {
+      "title": "Neuer Ausführender — deine Zustimmung",
+      "body": "Der Handwerker möchte, dass {{name}} deinen Auftrag übernimmt. Stimme zu oder behalte den bisherigen."
+    },
+    "performer_changed": {
+      "title": "Ausführender gewechselt",
+      "body": "Jetzt übernimmt {{name}} deinen Auftrag."
+    },
+    "performer_change_approved": {
+      "title": "Kunde ist einverstanden",
+      "body": "Der Wechsel für Auftrag Nr. {{number}} ist bestätigt."
+    },
+    "performer_change_declined": {
+      "title": "Kunde hat abgelehnt",
+      "body": "Auftrag Nr. {{number}} bleibt beim bisherigen Ausführenden."
+    },
+    "team_incident": {
+      "title": "Vorfall im Team",
+      "body": "Ein Teammitglied hat bei Auftrag Nr. {{number}} einen Vorfall gemeldet. Melde dich jetzt bei ihm."
+    }
+  },
+  "order": {
+    "status": {
+      "DRAFT": "Entwurf",
+      "SEARCHING": "Profi wird gesucht",
+      "NO_WORKERS": "Keine Profis verfügbar",
+      "ACCEPTED": "Angenommen",
+      "EN_ROUTE": "Unterwegs",
+      "ARRIVED": "Angekommen",
+      "IN_PROGRESS": "In Arbeit",
+      "COMPLETED_BY_WORKER": "Abgeschlossen, wartet auf Bestätigung",
+      "CONFIRMED": "Bestätigt",
+      "AUTO_CONFIRMED": "Automatisch bestätigt",
+      "CANCELLED_BY_CLIENT": "Vom Kunden storniert",
+      "CANCELLED_BY_WORKER": "Vom Profi storniert",
+      "CANCELLED_BY_ADMIN": "Vom Support storniert",
+      "DISPUTED": "Streitfall",
+      "CLOSED": "Geschlossen"
+    },
+    "client_unconfirmed": "Vom Kunden nicht bestätigt"
+  },
+  "cancel": {
+    "client": {
+      "changed_mind": "Ich habe es mir anders überlegt",
+      "found_other": "Ich habe eine andere Lösung gefunden",
+      "wrong_address": "Falsche Adresse",
+      "too_long_wait": "Die Wartezeit ist zu lang",
+      "worker_unresponsive": "Der Profi antwortet nicht",
+      "off_platform_payment": "Der Profi verlangt Zahlung außerhalb der App",
+      "worker_asked_to_cancel": "Der Profi hat mich gebeten zu stornieren",
+      "other": "Sonstiges"
+    },
+    "worker": {
+      "client_unreachable": "Der Kunde ist nicht erreichbar",
+      "cannot_arrive": "Ich kann nicht hinkommen",
+      "vehicle_problem": "Problem mit dem Fahrzeug",
+      "wrong_category": "Falsche Servicekategorie",
+      "client_asked_off_platform": "Der Kunde will außerhalb der App zahlen",
+      "safety_concern": "Sicherheitsbedenken",
+      "other": "Sonstiges"
+    }
+  },
+  "wallet": {
+    "pocket": {
+      "topup": "Aufladung",
+      "earnings": "Verdienst",
+      "bonus": "Bonus",
+      "promo": "Willkommensguthaben",
+      "debt": "Schulden"
+    },
+    "not_withdrawable": "Nicht auszahlbar. Wird nur für die Plattformprovision verwendet.",
+    "promo_valid_until": "Willkommensguthaben: {{amount}}, gültig bis {{date}}",
+    "bonus_expires": "Bonus {{amount}} verfällt am {{date}}",
+    "commission_breakdown": "Provision {{commission}}, Bonusrabatt −{{discount}}, abgebucht {{charged}}"
+  },
+  "worker": {
+    "ineligible": {
+      "kyc": "Deine Identität wurde noch nicht bestätigt.",
+      "balance": "Dein Guthaben liegt unter dem Minimum. Lade auf, um Aufträge zu erhalten.",
+      "debt": "Du hast offene Schulden. Lade auf, um Aufträge zu erhalten.",
+      "blocked": "Dein Konto ist eingeschränkt.",
+      "offline": "Du bist offline.",
+      "active_order": "Du hast einen aktiven Auftrag.",
+      "no_categories": "Du hast keine Servicekategorien ausgewählt.",
+      "no_cities": "Du hast keine Stadt ausgewählt.",
+      "team_member": "Du bist im Team: Aufträge weist deine Teamleitung zu."
+    }
+  },
+  "units": {
+    "m": "m",
+    "km": "km"
+  },
+  "chat": {
+    "off_platform_warning": "Absprachen außerhalb der App sind nicht geschützt. Kommuniziere und bestätige Zahlungen nur in Masterio."
+  },
+  "pro": {
+    "common": {
+      "back": "Zurück",
+      "cancel": "Abbrechen",
+      "confirm": "Bestätigen",
+      "done": "Fertig",
+      "save": "Speichern",
+      "amountInvalid": "Gib einen gültigen Betrag ein, z. B. 45,50."
+    },
+    "errors": {
+      "network": "Keine Verbindung zum Server. Prüfe das Internet und versuche es erneut."
+    },
+    "tabs": {
+      "work": "Arbeit",
+      "history": "Verlauf",
+      "wallet": "Wallet",
+      "profile": "Profil"
+    },
+    "auth": {
+      "title": "Anmelden",
+      "codeTitle": "Code aus der SMS",
+      "subtitle": "Aufträge von Kunden in deiner Nähe. Melde dich mit deiner Telefonnummer an.",
+      "phoneLabel": "Telefonnummer mit Ländervorwahl",
+      "phoneInvalid": "Gib die Nummer im internationalen Format ein, z. B. +49 151 1234567.",
+      "sendCode": "Code anfordern",
+      "legalNote": "Mit der Anmeldung stimmst du den Bedingungen für selbstständige Profis und der Datenschutzerklärung zu.",
+      "codeSent": "Wir haben einen Code an {{phone}} gesendet.",
+      "codeLabel": "Code",
+      "verify": "Anmelden",
+      "resend": "Code erneut senden",
+      "resendIn": "Erneut senden in {{seconds}} s"
+    },
+    "onboarding": {
+      "title": "Über dich",
+      "intro": "Sag Kunden, wer du bist und wo du arbeitest. Du kannst das später im Profil ändern.",
+      "firstName": "Dein Name (Kunden sehen ihn)",
+      "typeTitle": "Wie arbeitest du?",
+      "independent": "Selbstständiger Profi",
+      "company": "Firma",
+      "companyName": "Firmenname",
+      "citiesTitle": "Städte",
+      "categoriesTitle": "Leistungen, die du anbietest",
+      "licenseNeeded": "Lizenz",
+      "continue": "Weiter"
+    },
+    "work": {
+      "hello": "Hallo, {{name}}",
+      "online": "Du bist online",
+      "offline": "Du bist offline",
+      "onlineHint": "Neue Aufträge kommen hier an. Tippe, um zu pausieren.",
+      "offlineHint": "Tippe, um Aufträge zu erhalten.",
+      "locationDenied": "Masterio Pro braucht deinen Standort, um dir Aufträge in der Nähe anzubieten und Kunden zu zeigen, wo du bist.",
+      "openSettings": "Einstellungen öffnen",
+      "backgroundDenied": "Erlaube den Standort „Immer“, damit Aufträge und Tracking auch im Hintergrund funktionieren.",
+      "activeOrder": "Aktiver Auftrag",
+      "activeOrderHint": "Tippe, um Auftrag, Navigation und Chat zu öffnen.",
+      "whyNoOrders": "Warum keine Aufträge kommen",
+      "topUp": "Aufladen",
+      "uploadDocuments": "Dokumente hochladen",
+      "editProfile": "Leistungen und Städte wählen",
+      "openOrder": "Auftrag öffnen",
+      "waiting": "Warte auf Aufträge",
+      "waitingHint": "Wenn ein Kunde in der Nähe Hilfe braucht, kommt ein Angebot mit Timer. Halte dein Handy bereit.",
+      "accessBalance": "Guthaben für Aufträge",
+      "threshold": "Minimum: {{amount}}",
+      "debt": "Schulden bei der Plattform: {{amount}}"
+    },
+    "offer": {
+      "title": "Neuer Auftrag",
+      "urgentTitle": "Dringender Auftrag",
+      "distance": "{{distance}} von dir entfernt",
+      "cash": "Barzahlung",
+      "card": "Kartenzahlung in der App",
+      "accept": "Annehmen",
+      "decline": "Ablehnen",
+      "unavailable": "Der Auftrag ist nicht mehr verfügbar."
+    },
+    "order": {
+      "title": "Auftrag",
+      "number": "Auftrag Nr. {{number}}",
+      "address": "Adresse",
+      "navigate": "Navigation",
+      "call": "Anrufen",
+      "chat": "Chat",
+      "action": {
+        "EN_ROUTE": "Bin unterwegs",
+        "ARRIVED": "Bin angekommen",
+        "IN_PROGRESS": "Arbeit beginnen"
+      },
+      "arriveHint": "„Bin angekommen“ geht nur an der Adresse.",
+      "estimate": "Kostenvoranschlag",
+      "estimateApproved": "Vom Kunden bestätigt",
+      "estimateWaiting": "Wartet auf den Kunden",
+      "estimateNone": "Noch kein Kostenvoranschlag. Stimme den Preis mit dem Kunden ab und sende ihn hier.",
+      "estimateCreate": "Kostenvoranschlag erstellen",
+      "estimateChange": "Kostenvoranschlag ändern",
+      "estimateChangeHint": "Ein neuer Kostenvoranschlag gilt erst, wenn der Kunde ihn bestätigt.",
+      "completeTitle": "Auftrag abschließen",
+      "cashReceived": "Bar erhalten, {{currency}}",
+      "commissionNote": "Die Plattformprovision wird aus dem bestätigten Kostenvoranschlag berechnet und von deinem Guthaben abgebucht.",
+      "complete": "Fertig, Bargeld erhalten",
+      "completeConfirmTitle": "Auftrag abschließen?",
+      "completeConfirmBody": "Du bestätigst, dass du {{amount}} in bar erhalten hast. Der Kunde wird gebeten, denselben Betrag zu bestätigen.",
+      "commissionTitle": "Abrechnung",
+      "amount": "Auftragsbetrag",
+      "commission": "Plattformprovision",
+      "bonusDiscount": "Bonusrabatt",
+      "charged": "Vom Guthaben abgebucht",
+      "debtNote": "Guthaben reichte nicht: {{amount}} wurden als Schulden gebucht. Lade auf, um weiter Aufträge zu erhalten.",
+      "waitingClient": "Warte auf die Zahlungsbestätigung des Kunden.",
+      "cancel": "Auftrag stornieren",
+      "cancelTitle": "Warum stornierst du?",
+      "cancelWarning": "Stornierungen nach der Annahme senken Bewertung und Platz in der Warteschlange. Häufige Stornierungen führen zur Sperre.",
+      "cancelConfirm": "Auftrag stornieren"
+    },
+    "estimate": {
+      "title": "Kostenvoranschlag",
+      "hint": "Liste Arbeit und Material auf. Der Kunde bestätigt in der App – erst dann gilt der Betrag.",
+      "type": {
+        "LABOR": "Arbeit",
+        "MATERIAL": "Material",
+        "TRAVEL": "Anfahrt",
+        "OTHER": "Sonstiges"
+      },
+      "itemTitle": "Beschreibung",
+      "quantity": "Menge",
+      "price": "Preis, {{currency}}",
+      "remove": "Zeile entfernen",
+      "add": "Zeile hinzufügen",
+      "note": "Kommentar für den Kunden (optional)",
+      "total": "Gesamt",
+      "fillAll": "Fülle Beschreibung, Menge und Preis in jeder Zeile aus.",
+      "send": "An den Kunden senden"
+    },
+    "chat": {
+      "title": "Chat",
+      "placeholder": "Nachricht",
+      "send": "Senden"
+    },
+    "history": {
+      "orders": "Aufträge",
+      "gross": "Verdient (vor Provision)",
+      "commission": "Plattformprovision",
+      "bonusUsed": "Genutzter Bonus",
+      "net": "Nettoeinkommen",
+      "netOrder": "Netto",
+      "rating": "Durchschnittsbewertung",
+      "cancelRate": "Stornierungen",
+      "vsPrevious": "Im Vergleich zum Vormonat: {{amount}}",
+      "bonusTitle": "Monatsbonus",
+      "currentTier": "Aktuelle Stufe: {{tier}} ({{percent}} % der gezahlten Provision)",
+      "noTier": "Diesen Monat noch keine Bonusstufe.",
+      "toNextTier": "Aufträge bis {{tier}} ({{percent}} %): {{count}}",
+      "bonusConditions": "Bedingungen: Bewertung ab {{rating}}, Stornierungen bis {{cancel}} %, keine verlorenen Streitfälle.",
+      "bonusFormula": "Der Bonus ist ein Anteil der gezahlten Provision. Er ist kein Geld: Er senkt im nächsten Monat die Provision für neue Aufträge und verfällt danach.",
+      "export": "Bericht exportieren (CSV)",
+      "empty": "Keine abgeschlossenen Aufträge in diesem Monat."
+    },
+    "bonus": {
+      "tier": {
+        "base": "Basis",
+        "silver": "Silber",
+        "gold": "Gold"
+      }
+    },
+    "wallet": {
+      "access": "Guthaben für Aufträge",
+      "daysLeft": "verbleibende Tage: {{count}}",
+      "debtHint": "Du hast Schulden bei der Plattform. Neue Aufträge kommen nach dem Aufladen.",
+      "topUp": "Guthaben aufladen",
+      "howItWorks": "So wird die Provision bezahlt",
+      "order": "Kunden zahlen dir bar. Nach jedem Auftrag wird die Plattformprovision in dieser Reihenfolge vom Guthaben abgebucht: Bonus (bis zur Hälfte der Provision), Willkommensguthaben, Aufladung. Reicht das Guthaben nicht, wird der Rest zu Schulden.",
+      "history": "Buchungen",
+      "noTransactions": "Noch keine Buchungen.",
+      "kind": {
+        "TOPUP": "Aufladung",
+        "COMMISSION": "Plattformprovision",
+        "BONUS_ACCRUAL": "Monatsbonus",
+        "BONUS_EXPIRY": "Bonus verfallen",
+        "PROMO_GRANT": "Willkommensguthaben",
+        "PROMO_EXPIRY": "Willkommensguthaben verfallen",
+        "PENALTY": "Strafe",
+        "COMPENSATION": "Anfahrtsentschädigung",
+        "REFUND": "Erstattung",
+        "CHARGEBACK": "Zahlung von der Bank angefochten",
+        "TOPUP_REFUND": "Erstattung der Aufladung",
+        "REVERSAL": "Korrektur"
+      }
+    },
+    "topup": {
+      "title": "Aufladen",
+      "hint": "Das Guthaben wird für Aufträge und die Plattformprovision verwendet.",
+      "amount": "Betrag, {{currency}}",
+      "terms": "Eine Aufladung ist eine Vorauszahlung für Plattformleistungen. Sie ist nicht auszahlbar; der Rest wird bei Kontoschließung abzüglich Schulden erstattet.",
+      "pay": "{{amount}} bezahlen",
+      "success": "Zahlung angenommen. Das Guthaben wird innerhalb einer Minute aktualisiert."
+    },
+    "documents": {
+      "title": "Dokumente",
+      "privacy": "Dokumente liegen in einem geschlossenen Speicher. Nur du und befugte Masterio-Mitarbeiter sehen sie; jeder Zugriff wird protokolliert.",
+      "id": "Ausweis",
+      "idHint": "Reisepass oder Personalausweis. Das Foto muss scharf und lesbar sein.",
+      "selfie": "Selfie",
+      "selfieHint": "Fotografiere dein Gesicht bei gutem Licht, ohne Brille und Kopfbedeckung.",
+      "licenses": "Lizenzen",
+      "licensesHint": "Für manche Leistungen ist eine Lizenz nötig. Wähle eine Leistung, um die Lizenz hochzuladen.",
+      "license": "Lizenz",
+      "licenseHint": "Foto oder Scan der gültigen Lizenz für die gewählte Leistung.",
+      "camera": "Foto aufnehmen",
+      "gallery": "Aus der Galerie",
+      "notUploaded": "Nicht hochgeladen",
+      "status": {
+        "NOT_VERIFIED": "In Prüfung",
+        "VERIFIED": "Bestätigt",
+        "EXPIRED": "Abgelaufen",
+        "REJECTED": "Abgelehnt"
+      },
+      "permissionDenied": "Erlaube den Zugriff auf Kamera oder Fotos in den Telefoneinstellungen.",
+      "tooLarge": "Die Datei ist größer als 10 MB.",
+      "continue": "Weiter"
+    },
+    "profile": {
+      "rating": "Bewertung",
+      "type": "Status",
+      "kyc": "Identitätsprüfung",
+      "documents": "Dokumente",
+      "editWork": "Leistungen und Städte",
+      "radius": "Auftragsradius",
+      "radiusHint": "Du kannst die Entfernung zu Aufträgen verringern, aber nicht über das Plattformlimit hinaus.",
+      "radiusDefault": "Wie von der Plattform festgelegt",
+      "autoEarnings": "Provision aus dem Verdienst zahlen",
+      "autoEarningsHint": "Für Kartenaufträge, sobald sie in deiner Stadt verfügbar sind.",
+      "language": "Sprache",
+      "signOut": "Abmelden",
+      "platformNote": "Masterio verbindet Kunden und selbstständige Profis; die Arbeit führt der Profi aus und haftet dafür."
+    },
+    "notifications": {
+      "offersChannel": "Auftragsangebote",
+      "defaultChannel": "Benachrichtigungen"
+    },
+    "tracking": {
+      "onlineTitle": "Masterio Pro: du bist online",
+      "onlineBody": "Dein Standort wird genutzt, um dir Aufträge in der Nähe anzubieten.",
+      "activeTitle": "Masterio Pro: aktiver Auftrag",
+      "activeBody": "Der Kunde sieht, wo du bist, bis der Auftrag abgeschlossen ist."
+    },
+    "permissions": {
+      "location": "Masterio Pro nutzt deinen Standort, um dir Aufträge in der Nähe anzubieten und dem Kunden während eines aktiven Auftrags zu zeigen, wo du bist.",
+      "locationAlways": "Erlaube „Immer“, damit Aufträge und Live-Tracking auch im Hintergrund funktionieren. Der Kunde sieht den Standort nur während eines aktiven Auftrags.",
+      "camera": "Masterio Pro nutzt die Kamera für Fotos deiner Dokumente, deines Selfies und der Arbeitsergebnisse.",
+      "photos": "Masterio Pro braucht Zugriff auf Fotos, um deine Dokumente hochzuladen."
+    },
+    "team": {
+      "role": {
+        "LEADER": "Teamleitung",
+        "MASTER": "Handwerker",
+        "HELPER": "Helfer",
+        "EMPLOYEE": "Mitarbeiter des Unternehmens"
+      },
+      "title": "Mein Team",
+      "legalNote": "Masterio ist weder Arbeitgeber noch Versicherer der Teammitglieder. Die Leitung bzw. das Unternehmen haftet im gesetzlichen Rahmen für Helfer.",
+      "disabled": "Teams sind in deinem Land nicht verfügbar.",
+      "createTitle": "Mit Helfern arbeiten",
+      "createText": "Erstelle ein Team, lade Helfer oder Mitarbeiter ein und schicke sie zu Aufträgen. Provision, Guthaben und Bewertung bleiben bei deinem Konto.",
+      "name": "Teamname",
+      "create": "Team erstellen",
+      "capacity": "Du kannst {{count}} Aufträge gleichzeitig übernehmen.",
+      "journal": "Teamprotokoll",
+      "members": "Mitglieder: {{count}} von {{limit}}",
+      "noMembers": "Noch keine Mitglieder. Lade jemanden per Telefonnummer ein.",
+      "removeTitle": "Aus dem Team entfernen",
+      "removeConfirm": "{{name}} entfernen? Die Person kann dann selbstständig arbeiten.",
+      "remove": "Entfernen",
+      "pendingInvites": "Warten auf Antwort",
+      "until": "bis {{date}}",
+      "revoke": "Zurückziehen",
+      "blocked": "Konto gesperrt",
+      "kyc": "Identität: {{status}}",
+      "licenses": "Lizenzen: {{count}}",
+      "insured": "Versichert",
+      "noExtraDocs": "Keine Lizenzen oder Versicherungen",
+      "busy": "Bei Auftrag Nr. {{number}}",
+      "notAssignable": "Kann erst nach bestätigter Identität zugewiesen werden.",
+      "inviteTitle": "Ins Team einladen",
+      "inviteText": "Die Person installiert Masterio Pro, meldet sich mit dieser Nummer an und nimmt die Einladung an. Danach lädt sie Dokumente zur Identitätsprüfung hoch.",
+      "consentNeeded": "Akzeptiere vor dem Hinzufügen von Helfern die Bedingungen für Teams.",
+      "phone": "Telefonnummer",
+      "inviteSentExisting": "Einladung gesendet. Die Person sieht sie in Masterio Pro.",
+      "inviteSentNew": "Einladung gespeichert. Bitte die Person, Masterio Pro zu installieren und sich mit dieser Nummer anzumelden.",
+      "invite": "Einladen",
+      "leader": "Leitung",
+      "myRole": "Meine Rolle",
+      "since": "Im Team seit",
+      "memberRules": "Im Team bekommst du Aufträge nur von deiner Leitung: kein Online-Gehen, keine Geldbörse. Provision, Bewertung und Stornos liegen bei der Leitung.",
+      "leaveTitle": "Team verlassen",
+      "leaveConfirm": "Danach kannst du selbstständig mit deinen Leistungen und Städten arbeiten.",
+      "leave": "Team verlassen",
+      "invitesTitle": "Team-Einladungen",
+      "invitesText": "Nimm an, um als Teammitglied zu arbeiten, oder arbeite selbstständig weiter.",
+      "noInvites": "Keine aktiven Einladungen.",
+      "fromCompany": "Unternehmen: {{name}}",
+      "fromMaster": "Handwerker: {{name}}",
+      "asRole": "Rolle: {{role}}",
+      "accept": "Annehmen",
+      "decline": "Ablehnen",
+      "workAlone": "Selbstständig arbeiten",
+      "journalEmpty": "Noch keine Ereignisse.",
+      "more": "Mehr anzeigen",
+      "memberOnboarding": "Du bist im Team „{{team}}“. Gib deinen Namen ein – der Kunde sieht ihn – und lade Dokumente zur Identitätsprüfung hoch.",
+      "memberHome": "„{{team}}“ · {{role}}",
+      "memberKyc": "Deine Leitung kann dich nach der Identitätsprüfung zu Aufträgen schicken.",
+      "memberActiveHint": "Öffnen: Adresse, Route und Status-Tasten. Während des Auftrags sieht der Kunde deinen Standort.",
+      "noAssignments": "Keine zugewiesenen Aufträge",
+      "noAssignmentsHint": "Wenn deine Leitung dich zu einem Auftrag schickt, bekommst du eine Benachrichtigung.",
+      "pastAssignments": "Frühere Aufträge",
+      "teamOrders": "Teammitglieder sind bei {{count}} Aufträgen (bis zu {{capacity}} gleichzeitig)",
+      "performerTitle": "Wer fährt",
+      "assignNeeded": "Wähle bis {{time}} ein Teammitglied, sonst fährst du selbst.",
+      "performer": "Ausführend: {{name}} ({{role}})",
+      "performerYou": "Ausführend: du",
+      "autoAssigned": "Automatisch zugewiesen: Die Zeit zur Auswahl ist abgelaufen.",
+      "performerConfirms": "Status, Kostenvoranschlag und Abschluss bestätigt der Ausführende auf seinem Telefon.",
+      "pendingChange": "Warten auf Zustimmung des Kunden zu {{name}}.",
+      "cancelChange": "Wechsel zurückziehen",
+      "assign": "Ausführenden wählen",
+      "replace": "Ausführenden wechseln",
+      "consentHint": "Der Kunde muss dem Wechsel zustimmen; bis dahin bleibt der bisherige Ausführende.",
+      "notifyHint": "Der Kunde wird über den neuen Ausführenden informiert.",
+      "reason": "Grund für den Kunden (optional)",
+      "now": "jetzt",
+      "choose": "Wählen",
+      "memberOrderNote": "Stornierung und Streitfälle zu diesem Auftrag übernimmt deine Leitung.",
+      "roleHint": {
+        "MASTER": "Ein zweiter Handwerker, der zugewiesene Aufträge selbstständig ausführt.",
+        "HELPER": "Ein Helfer, der zu Aufträgen fährt und unter deiner Verantwortung arbeitet.",
+        "EMPLOYEE": "Ein Mitarbeiter deines Unternehmens; die Firmenversicherung kann ihn abdecken."
+      },
+      "blocker": {
+        "inactive": "nicht im Team",
+        "kyc": "Identität nicht bestätigt",
+        "blocked": "Konto gesperrt",
+        "license": "keine gültige Lizenz für diese Leistung",
+        "insurance": "keine passende gültige Versicherung",
+        "busy": "bei einem anderen Auftrag"
+      },
+      "actor": {
+        "you": "Du",
+        "client": "Kunde",
+        "system": "Automatisch"
+      },
+      "event": {
+        "created": "Team erstellt",
+        "renamed": "Team umbenannt",
+        "invited": "Einladung gesendet",
+        "invite_revoked": "Einladung zurückgezogen",
+        "joined": "Ist dem Team beigetreten",
+        "declined": "Einladung abgelehnt",
+        "removed": "Aus dem Team entfernt",
+        "left": "Hat das Team verlassen",
+        "assigned": "Dem Auftrag zugewiesen",
+        "auto_assigned": "Automatisch zugewiesen",
+        "replaced": "Ausführender gewechselt",
+        "change_requested": "Wechsel an den Kunden gesendet",
+        "change_approved": "Kunde hat dem Wechsel zugestimmt",
+        "change_declined": "Kunde hat den Wechsel abgelehnt",
+        "change_cancelled": "Wechsel zurückgezogen",
+        "performer_mismatch": "Kunde: eine andere Person kam"
+      }
+    }
+  },
+  "client": {
+    "common": {
+      "back": "Zurück",
+      "cancel": "Abbrechen",
+      "confirm": "Bestätigen"
+    },
+    "tabs": {
+      "home": "Start",
+      "orders": "Meine Aufträge",
+      "profile": "Profil"
+    },
+    "auth": {
+      "title": "Anmelden",
+      "codeTitle": "Code aus der SMS",
+      "subtitle": "Schnelle Hilfe zu Hause und unterwegs. Melde dich mit deiner Telefonnummer an.",
+      "phoneLabel": "Telefonnummer mit Ländervorwahl",
+      "phoneInvalid": "Gib die Nummer im internationalen Format ein, z. B. +49 151 1234567.",
+      "sendCode": "Code anfordern",
+      "legalNote": "Mit der Anmeldung stimmst du den Nutzungsbedingungen und der Datenschutzerklärung zu.",
+      "codeSent": "Wir haben einen Code an {{phone}} gesendet.",
+      "codeLabel": "Code",
+      "verify": "Anmelden",
+      "resend": "Code erneut senden",
+      "resendIn": "Erneut senden in {{seconds}} s"
+    },
+    "onboarding": {
+      "title": "Willkommen",
+      "intro": "Wie soll dich der Profi ansprechen?",
+      "firstName": "Dein Name",
+      "continue": "Weiter",
+      "platformNote": "Masterio verbindet dich mit selbstständigen Profis. Die Leistung erbringt der Profi."
+    },
+    "home": {
+      "hello": "Hallo, {{name}}",
+      "subtitle": "Was ist passiert? Wähle einen Service – wir finden einen Profi in der Nähe.",
+      "activeOrder": "Aktiver Auftrag",
+      "urgent": "Dringend"
+    },
+    "newOrder": {
+      "title": "Neuer Auftrag",
+      "urgentHint": "Dringender Service: Wir bieten den Auftrag zuerst den nächsten freien Profis an.",
+      "description": "Was ist passiert?",
+      "descriptionPlaceholder": "Zum Beispiel: Das Auto springt nicht an, die Batterie ist leer",
+      "photos": "Fotos helfen dem Profi, das Problem zu verstehen (optional). Lange drücken zum Entfernen.",
+      "removePhotoHint": "Lange drücken entfernt das Foto",
+      "camera": "Foto aufnehmen",
+      "gallery": "Aus der Galerie",
+      "permissionDenied": "Kein Zugriff auf Kamera oder Fotos. Erlaube ihn in den Telefoneinstellungen.",
+      "tooLarge": "Das Foto ist zu groß (max. 10 MB).",
+      "address": "Adresse",
+      "chooseAddress": "Adresse wählen",
+      "available": "Freie Profis in der Nähe: {{count}}. Nächster: {{distance}}.",
+      "noneNearby": "Gerade keine freien Profis. Du kannst trotzdem bestellen – wir suchen weiter.",
+      "noneNearbyFar": "In der Nähe keine Profis, aber weiter weg schon. Nach der Bestellung kannst du den Suchradius erweitern.",
+      "when": "Wann?",
+      "asap": "So schnell wie möglich",
+      "inHours": "In {{count}} Std.",
+      "payment": "Zahlung",
+      "cash": "Bar an den Profi",
+      "card": "Mit Karte in der App",
+      "cashWarning": "Zahle nur den Betrag aus dem Kostenvoranschlag in der App. Keine Zahlungen außerhalb der App – solche Aufträge sind nicht geschützt.",
+      "legal": "Den Preis vereinbart der Profi vor Ort, du bestätigst ihn in der App vor Arbeitsbeginn.",
+      "submit": "Profi finden"
+    },
+    "address": {
+      "title": "Adresse",
+      "search": "Adresse suchen",
+      "searchPlaceholder": "Straße, Hausnummer, Stadt",
+      "myLocation": "Mein Standort",
+      "saved": "Gespeicherte Adressen",
+      "dragHint": "Verschiebe die Karte, bis die Nadel genau auf den Ort zeigt.",
+      "selected": "Gewählte Adresse",
+      "resolving": "Adresse wird ermittelt…",
+      "details": "Eingang, Etage, Wohnung, Orientierungspunkt",
+      "detailsPlaceholder": "Zum Beispiel: Eingang 2, 5. OG, Whg. 18",
+      "save": "Adresse speichern",
+      "label": "Bezeichnung",
+      "labelPlaceholder": "Zuhause, Arbeit…",
+      "permissionDenied": "Kein Zugriff auf den Standort. Erlaube ihn in den Einstellungen oder suche die Adresse.",
+      "confirm": "Adresse bestätigen"
+    },
+    "addresses": {
+      "title": "Meine Adressen",
+      "empty": "Noch keine gespeicherten Adressen. Du kannst eine beim Bestellen speichern.",
+      "delete": "Löschen",
+      "deleteTitle": "Diese Adresse löschen?"
+    },
+    "orders": {
+      "count": "Aufträge",
+      "spent": "Ausgegeben",
+      "empty": "Keine Aufträge in diesem Monat.",
+      "worker": "Profi",
+      "paid": "Bezahlt",
+      "repeat": "Erneut bestellen"
+    },
+    "order": {
+      "title": "Auftrag",
+      "number": "Auftrag Nr. {{number}}",
+      "searchingTitle": "Wir suchen einen Profi",
+      "searchingText": "Wir bieten deinen Auftrag nacheinander an, die nächsten zuerst, im Umkreis von {{distance}}.",
+      "noWorkersTitle": "Noch hat kein Profi den Auftrag angenommen",
+      "noWorkersText": "Du kannst den Suchradius erweitern, erneut suchen oder stornieren.",
+      "expandRadius": "Im Umkreis von {{distance}} suchen",
+      "searchAgain": "Erneut suchen",
+      "noWorkersCancelFree": "Eine Stornierung ist jetzt kostenlos.",
+      "performer": "Profi",
+      "newWorker": "Neu bei Masterio",
+      "badgeVerified": "Identität geprüft",
+      "badgeLicense": "Lizenz geprüft",
+      "badgeInsured": "Eigene Versicherung",
+      "call": "Anrufen",
+      "chat": "Chat",
+      "arrived": "Der Profi ist da. Besprecht Arbeit und Preis – der Kostenvoranschlag erscheint hier.",
+      "inProgress": "Die Arbeit läuft. Ändert sich der Preis, musst du einen neuen Kostenvoranschlag bestätigen.",
+      "disputed": "Die Beträge stimmten nicht überein, daher wurde ein Streitfall eröffnet. Der Support meldet sich. Zahle nichts zusätzlich außerhalb der App.",
+      "address": "Adresse",
+      "scheduled": "Geplant für",
+      "payment": "Zahlung",
+      "emergency": "Lebensgefahr? Ruf {{number}} an",
+      "platformNote": "Masterio ist eine Plattform: Die Leistung erbringt ein selbstständiger Profi. Die Plattform versichert die Arbeiten nicht."
+    },
+    "track": {
+      "destination": "Deine Adresse",
+      "worker": "Profi",
+      "etaMinutes": "Ankunft in ca. {{count}} Min.",
+      "etaHours": "Ankunft in ca. {{hours}} Std. {{minutes}} Min.",
+      "distance": "Entfernung: {{distance}}",
+      "waitingGps": "Warten auf den Standort des Profis…",
+      "connectionLost": "Verbindung zum Profi verloren – letzter bekannter Standort wird angezeigt.",
+      "recenter": "Profi und Adresse zeigen"
+    },
+    "estimate": {
+      "proposed": "Neuer Kostenvoranschlag – bitte bestätigen",
+      "approved": "Bestätigter Kostenvoranschlag",
+      "total": "Gesamt",
+      "replaces": "Ersetzt den vorherigen Kostenvoranschlag über {{amount}}.",
+      "approve": "Bestätigen",
+      "reject": "Ablehnen",
+      "hint": "Der Profi beginnt erst nach deiner Bestätigung."
+    },
+    "payment": {
+      "title": "Zahlung bestätigen",
+      "reported": "Laut Profi hast du bezahlt",
+      "paid": "Wie viel hast du bar bezahlt? ({{currency}})",
+      "invalid": "Gib einen gültigen Betrag ein, z. B. 45,50.",
+      "confirm": "Zahlung bestätigen",
+      "confirmTitle": "Zahlung bestätigen?",
+      "confirmBody": "Du hast dem Profi {{amount}} bezahlt.",
+      "mismatchBody": "Du hast {{amount}} angegeben, der Profi {{reported}}. Es wird ein Streitfall eröffnet, den der Support prüft.",
+      "hint": "Wenn der Profi nicht fertig ist oder mehr verlangt, gib an, was du tatsächlich bezahlt hast – wir klären das."
+    },
+    "review": {
+      "title": "Bewerte den Profi",
+      "stars": "{{count}} von 5",
+      "text": "Kommentar (optional)",
+      "send": "Bewertung senden",
+      "thanks": "Danke für deine Bewertung!"
+    },
+    "blacklist": {
+      "block": "Meine Aufträge diesem Profi nicht mehr anbieten",
+      "unblock": "Meine Aufträge diesem Profi wieder anbieten",
+      "blockedHint": "Dieser Profi erhält deine neuen Aufträge nicht mehr."
+    },
+    "cancel": {
+      "open": "Auftrag stornieren",
+      "title": "Warum stornierst du?",
+      "comment": "Kommentar",
+      "fee": "Stornogebühr: {{amount}} – Ausgleich für die Anfahrt des Profis.",
+      "free": "Die Stornierung ist kostenlos.",
+      "reportHint": "Danke für den Hinweis. Der Support prüft den Profi; dir wird nichts berechnet.",
+      "confirm": "Auftrag stornieren",
+      "keep": "Nicht stornieren"
+    },
+    "chat": {
+      "title": "Chat",
+      "placeholder": "Nachricht",
+      "send": "Senden"
+    },
+    "profile": {
+      "save": "Speichern",
+      "addresses": "Meine Adressen",
+      "language": "Sprache",
+      "safetyTitle": "Sicherheit",
+      "safetyText": "Jeder Profi durchläuft eine Identitätsprüfung. Zahle nur den in der App bestätigten Betrag, kommuniziere im App-Chat und melde Anfragen, außerhalb der App zu zahlen.",
+      "signOut": "Abmelden"
+    },
+    "notifications": {
+      "orderChannel": "Auftragsstatus",
+      "defaultChannel": "Weitere Benachrichtigungen"
+    },
+    "permissions": {
+      "location": "Masterio nutzt deinen Standort, um die Adresse für die Hilfe einzutragen und Profis in der Nähe zu finden.",
+      "camera": "Masterio nutzt die Kamera, damit du das Problem für den Profi fotografieren kannst.",
+      "photos": "Masterio braucht Zugriff auf Fotos, um Bilder des Problems an den Auftrag anzuhängen."
+    }
+  },
+  "case": {
+    "common": {
+      "cancel": "Abbrechen"
+    },
+    "legal": {
+      "screen": "Bedingungen",
+      "document": "Dokument",
+      "title": "Bitte lies die Bedingungen",
+      "intro": "Um fortzufahren, lies und akzeptiere die aktuellen Dokumente. Wir speichern, welche Fassung du wann akzeptiert hast.",
+      "version": "Fassung {{version}}",
+      "versionFrom": "Fassung {{version}} vom {{date}}",
+      "read": "Lesen",
+      "alsoRead": "Außerdem zur Information:",
+      "agree": "Ich habe diese Dokumente gelesen und akzeptiere sie",
+      "accept": "Akzeptieren",
+      "continue": "Weiter",
+      "decline": "Ablehnen und abmelden",
+      "topupNeeded": "Akzeptiere vor dem Aufladen die Bedingungen für das Aufladen des Guthabens.",
+      "readAccept": "Lesen und akzeptieren",
+      "audience": {
+        "CLIENT": "Bedingungen für Kunden",
+        "INDEPENDENT_WORKER": "Bedingungen für selbstständige Handwerker",
+        "COMPANY": "Bedingungen für Unternehmen",
+        "TEAM_MEMBER": "Bedingungen für Teams",
+        "DISPUTE_POLICY": "Regeln für Streitfälle",
+        "INCIDENT_POLICY": "Regeln bei Vorfällen",
+        "INSURANCE_REQUIREMENTS": "Versicherungsanforderungen",
+        "PRIVACY_POLICY": "Datenschutzerklärung",
+        "TOPUP_TERMS": "Bedingungen für das Aufladen"
+      }
+    },
+    "reason": {
+      "POOR_QUALITY": "Schlechte Arbeitsqualität",
+      "UNFINISHED": "Arbeit nicht fertig",
+      "PROPERTY_DAMAGE": "Sachschaden",
+      "ACCIDENT_INJURY": "Unfall oder Verletzung",
+      "PRICE_DISAGREEMENT": "Uneinigkeit über den Preis",
+      "WORKER_NO_SHOW": "Handwerker ist nicht gekommen",
+      "REFUND_REFUSED": "Erstattung verweigert",
+      "FRAUD_SUSPECTED": "Betrugsverdacht",
+      "PERFORMER_MISMATCH": "Eine andere Person ist gekommen",
+      "INSURANCE_OR_LICENSE": "Problem mit Versicherung oder Lizenz",
+      "PAYMENT_REFUSED": "Kunde verweigert die Zahlung",
+      "CLIENT_NO_SHOW": "Kunde war nicht an der Adresse",
+      "CASH_AMOUNT_MISMATCH": "Barbeträge stimmen nicht überein",
+      "OTHER": "Sonstiges"
+    },
+    "status": {
+      "OPEN": "Streitfall eröffnet",
+      "AWAITING_RESPONSE": "Warten auf die Antwort der Gegenseite",
+      "UNDER_REVIEW": "Wird vom Support geprüft",
+      "ESCALATED": "An einen Senior-Spezialisten übergeben",
+      "SETTLED": "Beigelegt",
+      "UNRESOLVED_REFERRED": "Nicht beigelegt – sieh nach, an wen du dich wenden kannst",
+      "CLOSED": "Geschlossen"
+    },
+    "event": {
+      "opened": "Streitfall eröffnet",
+      "response": "Erklärung",
+      "client_no_show": "Nichterscheinen des Kunden gemeldet",
+      "assigned": "Spezialist zugewiesen",
+      "request_response": "Der Support bittet um eine Erklärung",
+      "proposal": "Einigungsvorschlag",
+      "escalated": "An einen Senior-Spezialisten übergeben",
+      "note": "Hinweis vom Support",
+      "settled": "Entscheidung",
+      "referred": "Keine Einigung erzielt",
+      "automatic_signal": "Automatisches Signal",
+      "response_overdue": "Antwortfrist abgelaufen"
+    },
+    "resolution": {
+      "agreement": "Die Parteien haben sich geeinigt",
+      "in_favor_client": "Zugunsten des Kunden entschieden",
+      "in_favor_worker": "Zugunsten des Handwerkers entschieden",
+      "partial": "Teilweise zugunsten beider Seiten",
+      "no_fault": "Niemand trägt Schuld"
+    },
+    "dispute": {
+      "title": "Streitfall",
+      "newTitle": "Streitfall eröffnen",
+      "open": "Streitfall eröffnen",
+      "view": "Streitfall: {{status}}",
+      "order": "Auftrag Nr. {{number}}",
+      "newIntro": "Beschreibe, was schiefgelaufen ist. Der Support sieht den Chat, den Auftragsverlauf und die Fotos und bittet die Gegenseite um eine Erklärung.",
+      "reasonTitle": "Was ist passiert?",
+      "injuryHint": "Wenn jemand verletzt ist oder Gefahr besteht, ruf zuerst den Notruf an.",
+      "description": "Beschreibung",
+      "descriptionHint": "Was genau stimmt nicht und welche Lösung erwartest du?",
+      "howItWorks": "Die Gegenseite bekommt eine Frist zur Antwort. Danach prüft der Support alles und schlägt eine Lösung vor. Ein Streitfall hindert euch nicht daran, miteinander zu sprechen.",
+      "submit": "Streitfall eröffnen",
+      "answerBy": "Bitte antworte bis {{time}}",
+      "you": "Du",
+      "support": "Support",
+      "worker": "Handwerker",
+      "client": "Kunde",
+      "outcome": "Ergebnis",
+      "nextStepsTitle": "Was du als Nächstes tun kannst",
+      "nextSteps": "Innerhalb der Plattform konnte keine Einigung erzielt werden. Du kannst dich an eine Verbraucherschutzorganisation, eine Schlichtungsstelle oder ein Gericht in deinem Land wenden. Alle Unterlagen bleiben gespeichert und können unter Datenschutz exportiert werden.",
+      "yourAnswer": "Deine Erklärung",
+      "send": "Senden",
+      "notCourt": "Der Support hilft den Parteien, sich zu einigen. Er ist kein Gericht, und sein Vorschlag ersetzt kein Gerichtsurteil.",
+      "toOrder": "Zum Auftrag"
+    },
+    "noShow": {
+      "title": "Kunde nicht da",
+      "button": "Kunde ist nicht da",
+      "intro": "Wenn du an der Adresse gewartet hast und der Kunde nicht kam oder nicht antwortet, melde es hier. Der Auftrag geht an den Support.",
+      "rules": "Du musst an der Adresse sein, die vorgeschriebene Zeit gewartet haben und den Eingang oder die Tür fotografieren. Dein Standort wird geprüft.",
+      "photo": "Foto aufnehmen",
+      "retake": "Neu aufnehmen",
+      "comment": "Kommentar (optional)",
+      "submit": "Melden",
+      "tooEarly": "Bitte warte noch {{minutes}} Min. an der Adresse."
+    },
+    "photos": {
+      "camera": "Kamera",
+      "gallery": "Galerie",
+      "hint": "Bis zu {{max}} Fotos. Lange drücken, um ein Foto zu entfernen.",
+      "remove": "Lange drücken zum Entfernen",
+      "permission": "Erlaube den Zugriff in den Telefoneinstellungen, um ein Foto hinzuzufügen.",
+      "tooLarge": "Die Datei ist zu groß."
+    },
+    "incident": {
+      "title": "Vorfall",
+      "report": "Vorfall melden",
+      "emergencyTitle": "Ist jemand in Gefahr?",
+      "emergencyText": "Wenn jemand verletzt ist oder Feuer-, Gas-, Wasser- oder Stromgefahr besteht – ruf sofort den Notruf an. Masterio ist kein Notdienst.",
+      "call": "{{number}} anrufen",
+      "notify": "Melde den Vorfall danach hier, damit der Support Bescheid weiß.",
+      "continue": "Weiter zur Meldung",
+      "typeTitle": "Was ist passiert?",
+      "types": {
+        "ACCIDENT": "Unfall",
+        "INJURY": "Verletzung",
+        "PROPERTY_DAMAGE": "Sachschaden",
+        "OTHER": "Sonstiges"
+      },
+      "description": "Was, wo und wann passiert ist",
+      "called": "Ich habe den Notruf bereits verständigt",
+      "noPromise": "Masterio dokumentiert den Vorfall und hilft bei der Kommunikation. Die Plattform bietet keine Versicherung und verspricht keine Entschädigung.",
+      "submit": "Meldung senden",
+      "saved": "Vorfall dokumentiert",
+      "savedText": "Der Support hat die Meldung erhalten und antwortet im Ticket.",
+      "openTicket": "Ticket öffnen",
+      "back": "Zurück zum Auftrag"
+    },
+    "support": {
+      "title": "Support",
+      "new": "Neue Anfrage",
+      "newTitle": "Neue Anfrage",
+      "ticket": "Anfrage",
+      "empty": "Noch keine Anfragen.",
+      "newIntro": "Beschreibe dein Anliegen. Bei Problemen mit einem Auftrag eröffne besser einen Streitfall über den Auftrag.",
+      "subject": "Betreff",
+      "message": "Nachricht",
+      "send": "Senden",
+      "openDispute": "Streitfall öffnen",
+      "status": {
+        "OPEN": "Wartet auf den Support",
+        "PENDING_USER": "Der Support hat geantwortet",
+        "RESOLVED": "Gelöst",
+        "CLOSED": "Geschlossen"
+      }
+    },
+    "privacy": {
+      "title": "Meine Daten",
+      "exportTitle": "Meine Daten herunterladen",
+      "exportText": "Wir erstellen eine Datei mit Profil, Aufträgen, Nachrichten, Zahlungen und Einwilligungen. Der Link ist begrenzt gültig.",
+      "exportButton": "Datei erstellen",
+      "exportReady": "Datei vom {{time}} – öffnen",
+      "deleteTitle": "Konto löschen",
+      "deleteText": "Deine personenbezogenen Daten werden gelöscht. Was wir gesetzlich aufbewahren müssen (Zahlungen, Buchungen, Streitfälle und Belege), bleibt ohne Namen und Kontaktdaten für die vorgeschriebene Frist gespeichert.",
+      "reason": "Grund (optional)",
+      "deleteButton": "Konto löschen",
+      "deleteConfirm": "Das kann nicht rückgängig gemacht werden. Konto löschen?"
+    },
+    "insurance": {
+      "title": "Versicherung",
+      "notRequired": "Für deine Leistungen und Städte ist derzeit keine Versicherung erforderlich.",
+      "ok": "gültige Police",
+      "missing": "Police nötig – ohne sie keine Aufträge",
+      "risks": "Muss abdecken: {{risks}}",
+      "policy": "Police: {{status}}, gültig bis {{date}}",
+      "disclaimer": "Masterio prüft, ob die Police existiert und gültig ist, versichert dich aber nicht und garantiert nicht, dass ein bestimmter Fall abgedeckt ist – das entscheidet dein Versicherer.",
+      "upload": "Police hochladen",
+      "photo": "Foto der Police wählen",
+      "otherPhoto": "Anderes Foto wählen",
+      "insurer": "Versicherungsgesellschaft",
+      "number": "Policennummer",
+      "from": "Gültig ab (TT.MM.JJJJ)",
+      "until": "Gültig bis (TT.MM.JJJJ)",
+      "coveredRisks": "Abgedeckte Risiken, durch Komma getrennt (wie in der Police)",
+      "badDate": "Prüfe die Daten: Format TT.MM.JJJJ, Ende nach Beginn.",
+      "send": "Zur Prüfung senden"
+    },
+    "bonus": {
+      "awards": "Monatliche Boni",
+      "awardLine": "{{orders}} Aufträge, gezahlte Provision {{commission}}. Nutzbar bis {{date}}.",
+      "note": "Boni verringern nur künftige Provisionen. Sie können nicht als Geld ausgezahlt werden."
+    },
+    "team": {
+      "role": {
+        "LEADER": "Teamleitung",
+        "MASTER": "Handwerker im Team",
+        "HELPER": "Helfer",
+        "EMPLOYEE": "Mitarbeiter des Unternehmens"
+      },
+      "changeTitle": "Eine andere Person kommt",
+      "changeText": "Der Handwerker möchte stattdessen {{name}} ({{role}}) schicken.",
+      "changeReason": "Grund: {{reason}}",
+      "changeHint": "Diese Person hat die Identitätsprüfung bestanden. Lehnst du ab, bleibt der bisherige Ausführende; bei Bedarf hilft der Support.",
+      "approve": "Einverstanden",
+      "decline": "Bisherigen behalten",
+      "mismatch": "Eine andere Person ist gekommen",
+      "mismatchTitle": "Nicht die Person aus der App?",
+      "mismatchHint": "Laut App sollte {{name}} kommen. Ist jemand anderes da, lass ihn nicht anfangen – wir eröffnen einen Streitfall und der Support meldet sich.",
+      "mismatchDescription": "Was ist passiert (optional)",
+      "mismatchConfirm": "Der Auftrag wird gestoppt und ein Streitfall eröffnet. Fortfahren?",
+      "mismatchSend": "Melden"
+    }
+  }
+}

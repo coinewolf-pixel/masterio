@@ -1,0 +1,1066 @@
+{
+  "app": {
+    "platform": "Masterio",
+    "client": "Masterio",
+    "worker": "Masterio Pro"
+  },
+  "errors": {
+    "VALIDATION_FAILED": "Revisa los datos introducidos.",
+    "UNAUTHORIZED": "Vuelve a iniciar sesión.",
+    "FORBIDDEN": "No tienes acceso.",
+    "NOT_FOUND": "No encontrado.",
+    "RATE_LIMITED": "Demasiados intentos. Inténtalo más tarde.",
+    "OTP_INVALID": "Código incorrecto. Inténtalo de nuevo.",
+    "OTP_EXPIRED": "El código ha caducado. Solicita uno nuevo.",
+    "OTP_TOO_MANY_ATTEMPTS": "Demasiados códigos incorrectos. Solicita uno nuevo más tarde.",
+    "TOKEN_REUSED": "Tu sesión se ha cerrado por seguridad. Vuelve a iniciar sesión.",
+    "ACCOUNT_BLOCKED": "Tu cuenta está restringida. Contacta con soporte.",
+    "ORDER_ALREADY_TAKEN": "Este pedido ya ha sido aceptado.",
+    "OFFER_EXPIRED": "Se acabó el tiempo para aceptar.",
+    "OFFER_NOT_ACTIVE": "Este pedido ya no está disponible.",
+    "ORDER_NOT_CANCELLABLE": "Este pedido ya no se puede cancelar.",
+    "INVALID_STATUS_TRANSITION": "Esta acción no está disponible en la etapa actual del pedido.",
+    "OUTSIDE_GEOFENCE": "Para esto tienes que estar en la dirección.",
+    "WORKER_HAS_ACTIVE_ORDER": "Primero termina tu pedido actual.",
+    "WORKER_NOT_ELIGIBLE": "Ahora mismo no puedes recibir pedidos.",
+    "NO_APPROVED_ESTIMATE": "Primero el cliente debe aprobar el presupuesto.",
+    "ESTIMATE_LOCKED": "El presupuesto ya no se puede modificar.",
+    "FEATURE_DISABLED": "Esta función aún no está disponible.",
+    "CASH_LIMIT_EXCEEDED": "El importe supera el límite de pago en efectivo.",
+    "CARD_REQUIRED": "Vincula una tarjeta para pagar en efectivo.",
+    "INSUFFICIENT_BALANCE": "Saldo insuficiente. Recarga tu saldo.",
+    "GRANT_LIMIT_EXCEEDED": "El importe supera el límite permitido.",
+    "GRANT_SELF_FORBIDDEN": "No puedes abonar en tu propia cuenta ni en una vinculada.",
+    "GRANT_SECOND_APPROVER_REQUIRED": "Un segundo administrador debe aprobar este abono.",
+    "IDEMPOTENCY_CONFLICT": "Esta solicitud ya se procesó con otros datos.",
+    "REVIEW_NOT_ALLOWED": "Solo se pueden valorar pedidos completados.",
+    "CITY_OR_CATEGORY_UNAVAILABLE": "Este servicio aún no está disponible en tu ciudad.",
+    "INTERNAL": "Algo salió mal. Inténtalo de nuevo.",
+    "ALREADY_EXISTS": "Ya existe. Usa otro código u otro correo.",
+    "LAST_SUPERADMIN": "Debe quedar al menos un superadmin activo.",
+    "DISPUTE_NOT_ALLOWED": "Ahora no se puede abrir una disputa para este pedido.",
+    "DISPUTE_ALREADY_OPEN": "Ya hay una disputa abierta para este pedido: añade tu explicación allí.",
+    "DISPUTE_CLOSED": "La disputa está cerrada.",
+    "NO_SHOW_TOO_EARLY": "Solo puedes informar de la ausencia tras esperar en la dirección.",
+    "CONSENT_REQUIRED": "Acepta las condiciones vigentes para continuar.",
+    "ACCOUNT_DELETE_BLOCKED": "Aún no se puede eliminar la cuenta: termina los pedidos y disputas activos y salda la deuda.",
+    "BONUS_RUN_LOCKED": "Este cálculo de bonos ya está aprobado o cancelado.",
+    "TEAMS_DISABLED": "Los equipos no están disponibles en tu país.",
+    "TEAM_MEMBER_NOT_ELIGIBLE": "Este miembro no puede tomar el pedido: revisa identidad, licencia, seguro y trabajo en curso.",
+    "TEAM_MEMBER_MODE": "Trabajas en un equipo: los pedidos los asigna tu responsable.",
+    "ALREADY_IN_TEAM": "Esta persona ya está en un equipo.",
+    "TEAM_HAS_ACTIVE_WORK": "Primero termina o reasigna el pedido activo.",
+    "TEAM_LIMIT_REACHED": "El equipo está completo ({{limit}} personas)."
+  },
+  "push": {
+    "offer_new": {
+      "title": "Nuevo pedido",
+      "body": "{{category}}, a {{distance}}. Acéptalo en {{seconds}} s."
+    },
+    "offer_closed": {
+      "title": "Pedido no disponible",
+      "body": "Este pedido ya no está disponible."
+    },
+    "order_accepted": {
+      "title": "Un profesional va en camino",
+      "body": "{{name}} ha aceptado tu pedido."
+    },
+    "worker_en_route": {
+      "title": "Tu profesional ha salido",
+      "body": "{{name}} va de camino."
+    },
+    "worker_nearby": {
+      "title": "Tu profesional está cerca",
+      "body": "{{name}} está a menos de {{distance}}."
+    },
+    "worker_arrived": {
+      "title": "Tu profesional ha llegado",
+      "body": "{{name}} está en tu dirección."
+    },
+    "order_cancelled": {
+      "title": "Pedido cancelado",
+      "body": "El pedido n.º {{number}} ha sido cancelado."
+    },
+    "no_workers": {
+      "title": "No hay profesionales disponibles ahora",
+      "body": "Puedes ampliar el radio de búsqueda, esperar o cancelar sin coste."
+    },
+    "estimate_new": {
+      "title": "Nuevo presupuesto",
+      "body": "Revisa el presupuesto: {{amount}}."
+    },
+    "payment_confirm_request": {
+      "title": "Confirma el pago",
+      "body": "El profesional indica que ha recibido {{amount}} en efectivo. Confírmalo."
+    },
+    "order_completed": {
+      "title": "Trabajo terminado",
+      "body": "Valora el trabajo del pedido n.º {{number}}."
+    },
+    "dispute_opened": {
+      "title": "Se ha abierto una disputa",
+      "body": "Se ha abierto una disputa sobre el pedido n.º {{number}}. Puedes añadir tu explicación."
+    },
+    "topup_succeeded": {
+      "title": "Saldo recargado",
+      "body": "Se han añadido {{amount}} a tu saldo."
+    },
+    "commission_charged": {
+      "title": "Comisión cobrada",
+      "body": "Comisión {{commission}}, descuento de bono {{discount}}, cobrado {{charged}}."
+    },
+    "grant_received": {
+      "title": "Bono de bienvenida",
+      "body": "El crédito de bienvenida de {{amount}} es válido hasta el {{date}}."
+    },
+    "document_approved": {
+      "title": "Documento aprobado",
+      "body": "Tu documento «{{document}}» ha sido verificado."
+    },
+    "document_rejected": {
+      "title": "Documento rechazado",
+      "body": "Tu documento «{{document}}» ha sido rechazado: {{reason}}. Vuelve a subirlo."
+    },
+    "dispute_update": {
+      "title": "Novedad en la disputa",
+      "body": "Hay una nueva explicación o solicitud en la disputa del pedido n.º {{number}}."
+    },
+    "dispute_proposal": {
+      "title": "Propuesta de acuerdo",
+      "body": "Soporte ha propuesto cómo resolver la disputa del pedido n.º {{number}}."
+    },
+    "dispute_settled": {
+      "title": "Disputa resuelta",
+      "body": "La disputa del pedido n.º {{number}} está resuelta. Consulta el resultado en el pedido."
+    },
+    "dispute_referred": {
+      "title": "Disputa sin resolver",
+      "body": "No hubo acuerdo en el pedido n.º {{number}}. Consulta a dónde puedes acudir."
+    },
+    "support_reply": {
+      "title": "Respuesta de soporte",
+      "body": "Abre la app para leer la respuesta."
+    },
+    "insurance_expiring": {
+      "title": "El seguro vence pronto",
+      "body": "Tu póliza vence en {{days}} días. Sube la nueva para no dejar de recibir pedidos."
+    },
+    "document_expired": {
+      "title": "Documento caducado",
+      "body": "Los pedidos que requieren este documento se pausan hasta que subas uno válido."
+    },
+    "bonus_credited": {
+      "title": "Bono abonado",
+      "body": "Tu bono de {{period}} está abonado y reducirá la comisión de nuevos pedidos."
+    },
+    "team_invite": {
+      "title": "Invitación a un equipo",
+      "body": "«{{team}}» te invita a trabajar juntos. Abre Masterio Pro para responder."
+    },
+    "team_member_joined": {
+      "title": "Nuevo miembro del equipo",
+      "body": "{{name}} aceptó la invitación. Asigna pedidos tras la verificación de identidad."
+    },
+    "team_removed": {
+      "title": "Ya no estás en el equipo",
+      "body": "«{{team}}» te quitó del equipo. Puedes trabajar por tu cuenta."
+    },
+    "team_assign_needed": {
+      "title": "Elige quién va",
+      "body": "Pedido n.º {{number}}: elige a un miembro en {{minutes}} min o irás tú."
+    },
+    "team_assigned": {
+      "title": "Tienes un pedido asignado",
+      "body": "Pedido n.º {{number}}. Ábrelo para ver la dirección y salir."
+    },
+    "team_unassigned": {
+      "title": "Pedido reasignado",
+      "body": "Ya no realizas el pedido n.º {{number}}."
+    },
+    "performer_assigned": {
+      "title": "Quién va",
+      "body": "{{name}} hará tu pedido. Mira las insignias en la app."
+    },
+    "performer_change_request": {
+      "title": "Cambio de profesional: tu consentimiento",
+      "body": "El profesional propone que {{name}} haga tu pedido. Acepta o mantén al actual."
+    },
+    "performer_changed": {
+      "title": "Profesional cambiado",
+      "body": "Ahora {{name}} hará tu pedido."
+    },
+    "performer_change_approved": {
+      "title": "El cliente aceptó",
+      "body": "El cambio del pedido n.º {{number}} está confirmado."
+    },
+    "performer_change_declined": {
+      "title": "El cliente rechazó",
+      "body": "El pedido n.º {{number}} sigue con el profesional actual."
+    },
+    "team_incident": {
+      "title": "Incidente en tu equipo",
+      "body": "Un miembro informó de un incidente en el pedido n.º {{number}}. Contáctalo ahora."
+    }
+  },
+  "order": {
+    "status": {
+      "DRAFT": "Borrador",
+      "SEARCHING": "Buscando profesional",
+      "NO_WORKERS": "No hay profesionales",
+      "ACCEPTED": "Aceptado",
+      "EN_ROUTE": "En camino",
+      "ARRIVED": "Ha llegado",
+      "IN_PROGRESS": "En curso",
+      "COMPLETED_BY_WORKER": "Terminado, pendiente de confirmación",
+      "CONFIRMED": "Confirmado",
+      "AUTO_CONFIRMED": "Confirmado automáticamente",
+      "CANCELLED_BY_CLIENT": "Cancelado por el cliente",
+      "CANCELLED_BY_WORKER": "Cancelado por el profesional",
+      "CANCELLED_BY_ADMIN": "Cancelado por soporte",
+      "DISPUTED": "En disputa",
+      "CLOSED": "Cerrado"
+    },
+    "client_unconfirmed": "No confirmado por el cliente"
+  },
+  "cancel": {
+    "client": {
+      "changed_mind": "He cambiado de opinión",
+      "found_other": "He encontrado otra solución",
+      "wrong_address": "Dirección incorrecta",
+      "too_long_wait": "La espera es demasiado larga",
+      "worker_unresponsive": "El profesional no responde",
+      "off_platform_payment": "El profesional pide pagar fuera de la app",
+      "worker_asked_to_cancel": "El profesional me pidió cancelar",
+      "other": "Otro"
+    },
+    "worker": {
+      "client_unreachable": "No puedo contactar con el cliente",
+      "cannot_arrive": "No puedo llegar",
+      "vehicle_problem": "Problema con el vehículo",
+      "wrong_category": "Categoría de servicio incorrecta",
+      "client_asked_off_platform": "El cliente quiere pagar fuera de la app",
+      "safety_concern": "Riesgo para la seguridad",
+      "other": "Otro"
+    }
+  },
+  "wallet": {
+    "pocket": {
+      "topup": "Recarga",
+      "earnings": "Ganancias",
+      "bonus": "Bono",
+      "promo": "Crédito de bienvenida",
+      "debt": "Deuda"
+    },
+    "not_withdrawable": "No se puede retirar. Solo sirve para pagar la comisión de la plataforma.",
+    "promo_valid_until": "Crédito de bienvenida: {{amount}}, válido hasta el {{date}}",
+    "bonus_expires": "El bono de {{amount}} caduca el {{date}}",
+    "commission_breakdown": "Comisión {{commission}}, descuento de bono −{{discount}}, cobrado {{charged}}"
+  },
+  "worker": {
+    "ineligible": {
+      "kyc": "Tu identidad aún no está verificada.",
+      "balance": "Tu saldo está por debajo del mínimo. Recarga para recibir pedidos.",
+      "debt": "Tienes una deuda pendiente. Recarga para recibir pedidos.",
+      "blocked": "Tu cuenta está restringida.",
+      "offline": "Estás desconectado.",
+      "active_order": "Tienes un pedido activo.",
+      "no_categories": "No has elegido categorías de servicio.",
+      "no_cities": "No has elegido ciudad.",
+      "team_member": "Estás en un equipo: los pedidos los asigna tu responsable."
+    }
+  },
+  "units": {
+    "m": "m",
+    "km": "km"
+  },
+  "chat": {
+    "off_platform_warning": "Los acuerdos fuera de la app no están protegidos. Comunícate y confirma los pagos solo en Masterio."
+  },
+  "pro": {
+    "common": {
+      "back": "Atrás",
+      "cancel": "Cancelar",
+      "confirm": "Confirmar",
+      "done": "Listo",
+      "save": "Guardar",
+      "amountInvalid": "Introduce un importe válido, por ejemplo 45,50."
+    },
+    "errors": {
+      "network": "Sin conexión con el servidor. Revisa internet e inténtalo de nuevo."
+    },
+    "tabs": {
+      "work": "Trabajo",
+      "history": "Historial",
+      "wallet": "Cartera",
+      "profile": "Perfil"
+    },
+    "auth": {
+      "title": "Iniciar sesión",
+      "codeTitle": "Código del SMS",
+      "subtitle": "Pedidos de clientes cercanos. Inicia sesión con tu número de teléfono.",
+      "phoneLabel": "Número de teléfono con prefijo del país",
+      "phoneInvalid": "Introduce el número en formato internacional, por ejemplo +34 612 345 678.",
+      "sendCode": "Recibir código",
+      "legalNote": "Al iniciar sesión aceptas las condiciones para profesionales independientes y la política de privacidad.",
+      "codeSent": "Hemos enviado un código a {{phone}}.",
+      "codeLabel": "Código",
+      "verify": "Entrar",
+      "resend": "Volver a enviar el código",
+      "resendIn": "Reenviar en {{seconds}} s"
+    },
+    "onboarding": {
+      "title": "Sobre ti",
+      "intro": "Cuenta quién eres y dónde trabajas. Podrás cambiarlo más tarde en el perfil.",
+      "firstName": "Tu nombre (lo verán los clientes)",
+      "typeTitle": "¿Cómo trabajas?",
+      "independent": "Profesional independiente",
+      "company": "Empresa",
+      "companyName": "Nombre de la empresa",
+      "citiesTitle": "Ciudades",
+      "categoriesTitle": "Servicios que ofreces",
+      "licenseNeeded": "licencia",
+      "continue": "Continuar"
+    },
+    "work": {
+      "hello": "Hola, {{name}}",
+      "online": "Estás en línea",
+      "offline": "Estás desconectado",
+      "onlineHint": "Los pedidos nuevos llegarán aquí. Toca para parar.",
+      "offlineHint": "Toca para empezar a recibir pedidos.",
+      "locationDenied": "Masterio Pro necesita tu ubicación para ofrecerte pedidos cercanos y mostrar a los clientes dónde estás.",
+      "openSettings": "Abrir ajustes",
+      "backgroundDenied": "Permite la ubicación «Siempre» para que los pedidos y el seguimiento funcionen con la app en segundo plano.",
+      "activeOrder": "Pedido activo",
+      "activeOrderHint": "Toca para abrir el pedido, la navegación y el chat.",
+      "whyNoOrders": "Por qué no llegan pedidos",
+      "topUp": "Recargar",
+      "uploadDocuments": "Subir documentos",
+      "editProfile": "Elegir servicios y ciudades",
+      "openOrder": "Abrir pedido",
+      "waiting": "Esperando pedidos",
+      "waitingHint": "Cuando un cliente cercano necesite ayuda, recibirás una oferta con temporizador. Ten el teléfono a mano.",
+      "accessBalance": "Saldo para recibir pedidos",
+      "threshold": "Mínimo: {{amount}}",
+      "debt": "Deuda con la plataforma: {{amount}}"
+    },
+    "offer": {
+      "title": "Nuevo pedido",
+      "urgentTitle": "Pedido urgente",
+      "distance": "A {{distance}} de ti",
+      "cash": "Pago en efectivo",
+      "card": "Pago con tarjeta en la app",
+      "accept": "Aceptar",
+      "decline": "Rechazar",
+      "unavailable": "El pedido ya no está disponible."
+    },
+    "order": {
+      "title": "Pedido",
+      "number": "Pedido n.º {{number}}",
+      "address": "Dirección",
+      "navigate": "Navegar",
+      "call": "Llamar",
+      "chat": "Chat",
+      "action": {
+        "EN_ROUTE": "Voy en camino",
+        "ARRIVED": "He llegado",
+        "IN_PROGRESS": "Empezar el trabajo"
+      },
+      "arriveHint": "«He llegado» solo funciona en la dirección.",
+      "estimate": "Presupuesto",
+      "estimateApproved": "Aprobado por el cliente",
+      "estimateWaiting": "Esperando al cliente",
+      "estimateNone": "Aún no hay presupuesto. Acuerda el precio con el cliente y envíalo aquí.",
+      "estimateCreate": "Crear presupuesto",
+      "estimateChange": "Cambiar presupuesto",
+      "estimateChangeHint": "Un nuevo presupuesto sustituye al anterior solo cuando el cliente lo aprueba.",
+      "completeTitle": "Terminar el pedido",
+      "cashReceived": "Efectivo recibido, {{currency}}",
+      "commissionNote": "La comisión de la plataforma se calcula sobre el presupuesto aprobado y se cobra de tu saldo.",
+      "complete": "Terminado, efectivo recibido",
+      "completeConfirmTitle": "¿Terminar el pedido?",
+      "completeConfirmBody": "Confirmas que has recibido {{amount}} en efectivo. Se pedirá al cliente que confirme el mismo importe.",
+      "commissionTitle": "Desglose del pago",
+      "amount": "Importe del pedido",
+      "commission": "Comisión de la plataforma",
+      "bonusDiscount": "Descuento de bono",
+      "charged": "Cobrado del saldo",
+      "debtNote": "Saldo insuficiente: {{amount}} pasó a deuda. Recarga para seguir recibiendo pedidos.",
+      "waitingClient": "Esperando a que el cliente confirme el pago.",
+      "cancel": "Cancelar el pedido",
+      "cancelTitle": "¿Por qué cancelas?",
+      "cancelWarning": "Cancelar tras aceptar baja tu valoración y tu posición en la cola. Las cancelaciones frecuentes llevan al bloqueo.",
+      "cancelConfirm": "Cancelar el pedido"
+    },
+    "estimate": {
+      "title": "Presupuesto",
+      "hint": "Enumera el trabajo y los materiales. El cliente aprueba el presupuesto en la app; solo entonces cuenta el importe.",
+      "type": {
+        "LABOR": "Trabajo",
+        "MATERIAL": "Materiales",
+        "TRAVEL": "Desplazamiento",
+        "OTHER": "Otro"
+      },
+      "itemTitle": "Descripción",
+      "quantity": "Cant.",
+      "price": "Precio, {{currency}}",
+      "remove": "Quitar línea",
+      "add": "Añadir línea",
+      "note": "Comentario para el cliente (opcional)",
+      "total": "Total",
+      "fillAll": "Rellena la descripción, la cantidad y el precio de cada línea.",
+      "send": "Enviar al cliente"
+    },
+    "chat": {
+      "title": "Chat",
+      "placeholder": "Mensaje",
+      "send": "Enviar"
+    },
+    "history": {
+      "orders": "Pedidos",
+      "gross": "Ganado (antes de comisión)",
+      "commission": "Comisión de la plataforma",
+      "bonusUsed": "Bono usado",
+      "net": "Ingreso neto",
+      "netOrder": "Neto",
+      "rating": "Valoración media",
+      "cancelRate": "Cancelaciones",
+      "vsPrevious": "Respecto al mes anterior: {{amount}}",
+      "bonusTitle": "Bono mensual",
+      "currentTier": "Nivel actual: {{tier}} ({{percent}} % de la comisión pagada)",
+      "noTier": "Aún no tienes nivel de bono este mes.",
+      "toNextTier": "Pedidos que faltan para {{tier}} ({{percent}} %): {{count}}",
+      "bonusConditions": "Condiciones: valoración desde {{rating}}, cancelaciones hasta {{cancel}} %, sin disputas perdidas.",
+      "bonusFormula": "El bono es una parte de la comisión que pagaste. No es dinero: reduce la comisión de la plataforma en pedidos nuevos el mes siguiente y luego caduca.",
+      "export": "Exportar informe (CSV)",
+      "empty": "No hay pedidos terminados este mes."
+    },
+    "bonus": {
+      "tier": {
+        "base": "Básico",
+        "silver": "Plata",
+        "gold": "Oro"
+      }
+    },
+    "wallet": {
+      "access": "Saldo para recibir pedidos",
+      "daysLeft": "días restantes: {{count}}",
+      "debtHint": "Tienes una deuda con la plataforma. Los pedidos nuevos llegarán cuando recargues.",
+      "topUp": "Recargar saldo",
+      "howItWorks": "Cómo se paga la comisión",
+      "order": "Los clientes te pagan en efectivo. Tras cada pedido, la comisión de la plataforma se cobra del saldo en este orden: bono (hasta la mitad de la comisión), crédito de bienvenida, recarga. Si el saldo no alcanza, el resto pasa a deuda.",
+      "history": "Movimientos",
+      "noTransactions": "Aún no hay movimientos.",
+      "kind": {
+        "TOPUP": "Recarga",
+        "COMMISSION": "Comisión de la plataforma",
+        "BONUS_ACCRUAL": "Bono mensual",
+        "BONUS_EXPIRY": "Bono caducado",
+        "PROMO_GRANT": "Crédito de bienvenida",
+        "PROMO_EXPIRY": "Crédito de bienvenida caducado",
+        "PENALTY": "Penalización",
+        "COMPENSATION": "Compensación por desplazamiento",
+        "REFUND": "Reembolso",
+        "CHARGEBACK": "Pago impugnado por el banco",
+        "TOPUP_REFUND": "Reembolso de recarga",
+        "REVERSAL": "Corrección"
+      }
+    },
+    "topup": {
+      "title": "Recargar",
+      "hint": "El saldo sirve para recibir pedidos y pagar la comisión de la plataforma.",
+      "amount": "Importe, {{currency}}",
+      "terms": "La recarga es un pago anticipado de los servicios de la plataforma. No se puede retirar; el resto se devuelve al cerrar la cuenta, menos las deudas.",
+      "pay": "Pagar {{amount}}",
+      "success": "Pago aceptado. El saldo se actualizará en un minuto."
+    },
+    "documents": {
+      "title": "Documentos",
+      "privacy": "Los documentos se guardan en un almacenamiento cerrado. Solo tú y el personal autorizado de Masterio pueden verlos; cada consulta queda registrada.",
+      "id": "Documento de identidad",
+      "idHint": "Pasaporte o DNI. La foto debe ser nítida y legible.",
+      "selfie": "Selfie",
+      "selfieHint": "Hazte una foto de la cara con buena luz, sin gafas ni gorra.",
+      "licenses": "Licencias",
+      "licensesHint": "Algunos servicios requieren licencia. Elige un servicio para subir su licencia.",
+      "license": "Licencia",
+      "licenseHint": "Foto o escaneo de la licencia vigente para el servicio elegido.",
+      "camera": "Hacer foto",
+      "gallery": "De la galería",
+      "notUploaded": "No subido",
+      "status": {
+        "NOT_VERIFIED": "En revisión",
+        "VERIFIED": "Verificado",
+        "EXPIRED": "Caducado",
+        "REJECTED": "Rechazado"
+      },
+      "permissionDenied": "Permite el acceso a la cámara o a las fotos en los ajustes del teléfono.",
+      "tooLarge": "El archivo supera los 10 MB.",
+      "continue": "Continuar"
+    },
+    "profile": {
+      "rating": "Valoración",
+      "type": "Estado",
+      "kyc": "Verificación de identidad",
+      "documents": "Documentos",
+      "editWork": "Servicios y ciudades",
+      "radius": "Radio de pedidos",
+      "radiusHint": "Puedes reducir la distancia a los pedidos, pero no por encima del límite de la plataforma.",
+      "radiusDefault": "Según la plataforma",
+      "autoEarnings": "Pagar la comisión con las ganancias",
+      "autoEarningsHint": "Para pedidos con tarjeta, cuando estén disponibles en tu ciudad.",
+      "language": "Idioma",
+      "signOut": "Cerrar sesión",
+      "platformNote": "Masterio conecta a clientes con profesionales independientes; el trabajo lo realiza el profesional, que responde por él."
+    },
+    "notifications": {
+      "offersChannel": "Ofertas de pedidos",
+      "defaultChannel": "Notificaciones"
+    },
+    "tracking": {
+      "onlineTitle": "Masterio Pro: estás en línea",
+      "onlineBody": "Tu ubicación se usa para ofrecerte pedidos cercanos.",
+      "activeTitle": "Masterio Pro: pedido activo",
+      "activeBody": "El cliente ve dónde estás hasta que se complete el pedido."
+    },
+    "permissions": {
+      "location": "Masterio Pro usa tu ubicación para ofrecerte pedidos cercanos y mostrar al cliente dónde estás durante un pedido activo.",
+      "locationAlways": "Permite «Siempre» para que los pedidos y el seguimiento en directo funcionen con Masterio Pro en segundo plano. El cliente solo ve la ubicación durante un pedido activo.",
+      "camera": "Masterio Pro usa la cámara para fotografiar tus documentos, tu selfie y el resultado del trabajo.",
+      "photos": "Masterio Pro necesita acceso a las fotos para subir tus documentos."
+    },
+    "team": {
+      "role": {
+        "LEADER": "Responsable del equipo",
+        "MASTER": "Profesional",
+        "HELPER": "Ayudante",
+        "EMPLOYEE": "Empleado de la empresa"
+      },
+      "title": "Mi equipo",
+      "legalNote": "Masterio no es empleador ni asegurador de los miembros del equipo. El responsable o la empresa responde por los ayudantes según la ley.",
+      "disabled": "Los equipos no están disponibles en tu país.",
+      "createTitle": "Trabajar con ayudantes",
+      "createText": "Crea un equipo, invita a ayudantes o empleados y envíalos a pedidos. Comisión, saldo y valoración siguen en tu cuenta.",
+      "name": "Nombre del equipo",
+      "create": "Crear equipo",
+      "capacity": "Puedes llevar {{count}} pedidos a la vez.",
+      "journal": "Registro del equipo",
+      "members": "Miembros: {{count}} de {{limit}}",
+      "noMembers": "Aún no hay miembros. Invita a alguien por número de teléfono.",
+      "removeTitle": "Quitar del equipo",
+      "removeConfirm": "¿Quitar a {{name}}? Podrá trabajar por su cuenta.",
+      "remove": "Quitar",
+      "pendingInvites": "Esperando respuesta",
+      "until": "hasta el {{date}}",
+      "revoke": "Retirar",
+      "blocked": "Cuenta bloqueada",
+      "kyc": "Identidad: {{status}}",
+      "licenses": "Licencias: {{count}}",
+      "insured": "Asegurado",
+      "noExtraDocs": "Sin licencias ni seguros",
+      "busy": "En el pedido n.º {{number}}",
+      "notAssignable": "No se puede asignar hasta confirmar la identidad.",
+      "inviteTitle": "Invitar al equipo",
+      "inviteText": "La persona instala Masterio Pro, entra con este número y acepta la invitación. Luego sube documentos para verificar su identidad.",
+      "consentNeeded": "Antes de añadir ayudantes, acepta las condiciones para equipos.",
+      "phone": "Número de teléfono",
+      "inviteSentExisting": "Invitación enviada. La persona la verá en Masterio Pro.",
+      "inviteSentNew": "Invitación guardada. Pide a la persona que instale Masterio Pro y entre con este número.",
+      "invite": "Invitar",
+      "leader": "Responsable",
+      "myRole": "Mi rol",
+      "since": "En el equipo desde",
+      "memberRules": "En un equipo solo recibes pedidos de tu responsable: sin conectarte ni monedero. Comisión, valoración y cancelaciones son del responsable.",
+      "leaveTitle": "Salir del equipo",
+      "leaveConfirm": "Después podrás trabajar por tu cuenta con tus servicios y ciudades.",
+      "leave": "Salir del equipo",
+      "invitesTitle": "Invitaciones a equipos",
+      "invitesText": "Acepta para trabajar como miembro del equipo o continúa por tu cuenta.",
+      "noInvites": "No hay invitaciones activas.",
+      "fromCompany": "Empresa: {{name}}",
+      "fromMaster": "Profesional: {{name}}",
+      "asRole": "Rol: {{role}}",
+      "accept": "Aceptar",
+      "decline": "Rechazar",
+      "workAlone": "Trabajar por mi cuenta",
+      "journalEmpty": "Aún no hay eventos.",
+      "more": "Mostrar más",
+      "memberOnboarding": "Estás en el equipo «{{team}}». Escribe tu nombre (lo ve el cliente) y sube documentos para verificar tu identidad.",
+      "memberHome": "«{{team}}» · {{role}}",
+      "memberKyc": "Tu responsable podrá asignarte pedidos tras verificar tu identidad.",
+      "memberActiveHint": "Ábrelo: dirección, ruta y botones de estado. Durante el pedido el cliente ve tu ubicación.",
+      "noAssignments": "No hay pedidos asignados",
+      "noAssignmentsHint": "Cuando tu responsable te asigne un pedido, recibirás una notificación.",
+      "pastAssignments": "Pedidos anteriores",
+      "teamOrders": "Los miembros llevan {{count}} pedidos (hasta {{capacity}} a la vez)",
+      "performerTitle": "Quién va",
+      "assignNeeded": "Elige a un miembro antes de las {{time}} o irás tú.",
+      "performer": "Profesional: {{name}} ({{role}})",
+      "performerYou": "Profesional: tú",
+      "autoAssigned": "Asignado automáticamente: se acabó el tiempo para elegir.",
+      "performerConfirms": "Los estados, el presupuesto y el cierre los confirma el profesional desde su teléfono.",
+      "pendingChange": "Esperando que el cliente acepte a {{name}}.",
+      "cancelChange": "Retirar el cambio",
+      "assign": "Elegir profesional",
+      "replace": "Cambiar de profesional",
+      "consentHint": "El cliente debe aceptar el cambio; hasta entonces sigue el profesional actual.",
+      "notifyHint": "El cliente recibirá un aviso del nuevo profesional.",
+      "reason": "Motivo para el cliente (opcional)",
+      "now": "ahora",
+      "choose": "Elegir",
+      "memberOrderNote": "La cancelación y las disputas de este pedido las gestiona tu responsable.",
+      "roleHint": {
+        "MASTER": "Un segundo profesional que realiza por su cuenta los pedidos que asignas.",
+        "HELPER": "Un ayudante que va a los pedidos y trabaja bajo tu responsabilidad.",
+        "EMPLOYEE": "Un empleado de tu empresa; la póliza de la empresa puede cubrirlo."
+      },
+      "blocker": {
+        "inactive": "fuera del equipo",
+        "kyc": "identidad sin confirmar",
+        "blocked": "cuenta bloqueada",
+        "license": "sin licencia válida para este servicio",
+        "insurance": "sin seguro válido adecuado",
+        "busy": "ocupado en otro pedido"
+      },
+      "actor": {
+        "you": "Tú",
+        "client": "Cliente",
+        "system": "Automáticamente"
+      },
+      "event": {
+        "created": "Equipo creado",
+        "renamed": "Equipo renombrado",
+        "invited": "Invitación enviada",
+        "invite_revoked": "Invitación retirada",
+        "joined": "Se unió al equipo",
+        "declined": "Rechazó la invitación",
+        "removed": "Quitado del equipo",
+        "left": "Salió del equipo",
+        "assigned": "Asignado al pedido",
+        "auto_assigned": "Asignado automáticamente",
+        "replaced": "Profesional cambiado",
+        "change_requested": "Cambio enviado al cliente",
+        "change_approved": "El cliente aceptó el cambio",
+        "change_declined": "El cliente rechazó el cambio",
+        "change_cancelled": "Cambio retirado",
+        "performer_mismatch": "Cliente: vino otra persona"
+      }
+    }
+  },
+  "client": {
+    "common": {
+      "back": "Atrás",
+      "cancel": "Cancelar",
+      "confirm": "Confirmar"
+    },
+    "tabs": {
+      "home": "Inicio",
+      "orders": "Mis pedidos",
+      "profile": "Perfil"
+    },
+    "auth": {
+      "title": "Iniciar sesión",
+      "codeTitle": "Código del SMS",
+      "subtitle": "Ayuda rápida en casa y en la carretera. Inicia sesión con tu número de teléfono.",
+      "phoneLabel": "Número de teléfono con prefijo del país",
+      "phoneInvalid": "Introduce el número en formato internacional, por ejemplo +34 612 345 678.",
+      "sendCode": "Recibir código",
+      "legalNote": "Al iniciar sesión aceptas las condiciones de uso y la política de privacidad.",
+      "codeSent": "Hemos enviado un código a {{phone}}.",
+      "codeLabel": "Código",
+      "verify": "Entrar",
+      "resend": "Volver a enviar el código",
+      "resendIn": "Reenviar en {{seconds}} s"
+    },
+    "onboarding": {
+      "title": "Bienvenido",
+      "intro": "¿Cómo debe llamarte el profesional?",
+      "firstName": "Tu nombre",
+      "continue": "Continuar",
+      "platformNote": "Masterio te conecta con profesionales independientes. El servicio lo presta el profesional."
+    },
+    "home": {
+      "hello": "Hola, {{name}}",
+      "subtitle": "¿Qué ha pasado? Elige un servicio y encontraremos un profesional cerca.",
+      "activeOrder": "Pedido activo",
+      "urgent": "Urgente"
+    },
+    "newOrder": {
+      "title": "Nuevo pedido",
+      "urgentHint": "Servicio urgente: ofrecemos el pedido primero a los profesionales libres más cercanos.",
+      "description": "¿Qué ha pasado?",
+      "descriptionPlaceholder": "Por ejemplo: el coche no arranca, la batería está descargada",
+      "photos": "Las fotos ayudan al profesional a entender el problema (opcional). Mantén pulsada una foto para quitarla.",
+      "removePhotoHint": "Mantén pulsado para quitar la foto",
+      "camera": "Hacer foto",
+      "gallery": "De la galería",
+      "permissionDenied": "Sin acceso a la cámara o las fotos. Permítelo en los ajustes del teléfono.",
+      "tooLarge": "La foto es demasiado grande (máx. 10 MB).",
+      "address": "Dirección",
+      "chooseAddress": "Elige la dirección",
+      "available": "Profesionales libres cerca: {{count}}. El más cercano: {{distance}}.",
+      "noneNearby": "Ahora no hay profesionales libres. Puedes hacer el pedido igualmente: seguiremos buscando.",
+      "noneNearbyFar": "No hay profesionales cerca, pero sí más lejos. Tras el pedido podrás ampliar el radio de búsqueda.",
+      "when": "¿Cuándo?",
+      "asap": "Lo antes posible",
+      "inHours": "En {{count}} h",
+      "payment": "Pago",
+      "cash": "En efectivo al profesional",
+      "card": "Con tarjeta en la app",
+      "cashWarning": "Paga solo el importe del presupuesto en la app. No aceptes pagar fuera de la app: esos pedidos no están protegidos.",
+      "legal": "El profesional acuerda el precio en el lugar y tú lo apruebas en la app antes de empezar.",
+      "submit": "Buscar profesional"
+    },
+    "address": {
+      "title": "Dirección",
+      "search": "Buscar dirección",
+      "searchPlaceholder": "Calle, número, ciudad",
+      "myLocation": "Mi ubicación",
+      "saved": "Direcciones guardadas",
+      "dragHint": "Mueve el mapa para que el marcador apunte exactamente al lugar.",
+      "selected": "Dirección elegida",
+      "resolving": "Buscando la dirección…",
+      "details": "Portal, piso, puerta, referencia",
+      "detailsPlaceholder": "Por ejemplo: portal 2, piso 5, puerta 18",
+      "save": "Guardar dirección",
+      "label": "Nombre",
+      "labelPlaceholder": "Casa, Trabajo…",
+      "permissionDenied": "Sin acceso a la ubicación. Permítelo en los ajustes o busca la dirección.",
+      "confirm": "Confirmar dirección"
+    },
+    "addresses": {
+      "title": "Mis direcciones",
+      "empty": "Aún no hay direcciones guardadas. Puedes guardar una al hacer un pedido.",
+      "delete": "Eliminar",
+      "deleteTitle": "¿Eliminar esta dirección?"
+    },
+    "orders": {
+      "count": "Pedidos",
+      "spent": "Gastado",
+      "empty": "No hay pedidos este mes.",
+      "worker": "Profesional",
+      "paid": "Pagado",
+      "repeat": "Repetir pedido"
+    },
+    "order": {
+      "title": "Pedido",
+      "number": "Pedido n.º {{number}}",
+      "searchingTitle": "Buscando profesional",
+      "searchingText": "Ofrecemos tu pedido a los profesionales uno por uno, empezando por los más cercanos, en un radio de {{distance}}.",
+      "noWorkersTitle": "Ningún profesional ha aceptado aún el pedido",
+      "noWorkersText": "Puedes ampliar el radio, buscar de nuevo o cancelar.",
+      "expandRadius": "Buscar en {{distance}}",
+      "searchAgain": "Buscar de nuevo",
+      "noWorkersCancelFree": "Cancelar ahora es gratis.",
+      "performer": "Profesional",
+      "newWorker": "Nuevo en Masterio",
+      "badgeVerified": "Identidad verificada",
+      "badgeLicense": "Licencia verificada",
+      "badgeInsured": "Seguro propio",
+      "call": "Llamar",
+      "chat": "Chat",
+      "arrived": "El profesional ha llegado. Acordad el trabajo y el precio: el presupuesto aparecerá aquí.",
+      "inProgress": "Trabajo en curso. Si cambia el precio, te pediremos aprobar un nuevo presupuesto.",
+      "disputed": "Los importes no coinciden, así que se ha abierto una disputa. Soporte te contactará. No pagues nada extra fuera de la app.",
+      "address": "Dirección",
+      "scheduled": "Programado para",
+      "payment": "Pago",
+      "emergency": "¿Peligro para la vida? Llama al {{number}}",
+      "platformNote": "Masterio es una plataforma: el servicio lo presta un profesional independiente. La plataforma no asegura los trabajos."
+    },
+    "track": {
+      "destination": "Tu dirección",
+      "worker": "Profesional",
+      "etaMinutes": "Llega en unos {{count}} min",
+      "etaHours": "Llega en unas {{hours}} h {{minutes}} min",
+      "distance": "A {{distance}}",
+      "waitingGps": "Esperando la ubicación del profesional…",
+      "connectionLost": "Se perdió la conexión con el profesional: mostramos la última posición conocida.",
+      "recenter": "Mostrar profesional y dirección"
+    },
+    "estimate": {
+      "proposed": "Nuevo presupuesto: apruébalo",
+      "approved": "Presupuesto aprobado",
+      "total": "Total",
+      "replaces": "Sustituye al presupuesto anterior de {{amount}}.",
+      "approve": "Aprobar",
+      "reject": "Rechazar",
+      "hint": "El profesional empieza solo después de tu aprobación."
+    },
+    "payment": {
+      "title": "Confirma el pago",
+      "reported": "El profesional indica que pagaste",
+      "paid": "¿Cuánto pagaste en efectivo? ({{currency}})",
+      "invalid": "Introduce un importe válido, por ejemplo 45,50.",
+      "confirm": "Confirmar pago",
+      "confirmTitle": "¿Confirmar el pago?",
+      "confirmBody": "Pagaste {{amount}} al profesional.",
+      "mismatchBody": "Indicaste {{amount}} y el profesional {{reported}}. Se abrirá una disputa que revisará soporte.",
+      "hint": "Si el profesional no terminó o pide más, indica lo que pagaste realmente: lo resolveremos."
+    },
+    "review": {
+      "title": "Valora al profesional",
+      "stars": "{{count}} de 5",
+      "text": "Comentario (opcional)",
+      "send": "Enviar valoración",
+      "thanks": "¡Gracias por tu valoración!"
+    },
+    "blacklist": {
+      "block": "No ofrecer mis pedidos a este profesional",
+      "unblock": "Volver a ofrecer mis pedidos a este profesional",
+      "blockedHint": "Este profesional no recibirá tus nuevos pedidos."
+    },
+    "cancel": {
+      "open": "Cancelar pedido",
+      "title": "¿Por qué cancelas?",
+      "comment": "Comentario",
+      "fee": "Tarifa de cancelación: {{amount}}, compensación por el desplazamiento del profesional.",
+      "free": "La cancelación es gratuita.",
+      "reportHint": "Gracias por avisarnos. Soporte revisará al profesional; no se te cobrará nada.",
+      "confirm": "Cancelar el pedido",
+      "keep": "No cancelar"
+    },
+    "chat": {
+      "title": "Chat",
+      "placeholder": "Mensaje",
+      "send": "Enviar"
+    },
+    "profile": {
+      "save": "Guardar",
+      "addresses": "Mis direcciones",
+      "language": "Idioma",
+      "safetyTitle": "Seguridad",
+      "safetyText": "Cada profesional pasa una verificación de identidad. Paga solo el importe aprobado en la app, comunícate por el chat de la app e informa de cualquier petición de pago fuera de ella.",
+      "signOut": "Cerrar sesión"
+    },
+    "notifications": {
+      "orderChannel": "Estado del pedido",
+      "defaultChannel": "Otras notificaciones"
+    },
+    "permissions": {
+      "location": "Masterio usa tu ubicación para rellenar la dirección donde necesitas ayuda y encontrar profesionales cerca.",
+      "camera": "Masterio usa la cámara para que puedas fotografiar el problema para el profesional.",
+      "photos": "Masterio necesita acceso a las fotos para adjuntar imágenes del problema al pedido."
+    }
+  },
+  "case": {
+    "common": {
+      "cancel": "Cancelar"
+    },
+    "legal": {
+      "screen": "Condiciones",
+      "document": "Documento",
+      "title": "Revisa las condiciones",
+      "intro": "Para continuar, lee y acepta los documentos vigentes. Guardamos qué versión aceptaste y cuándo.",
+      "version": "Versión {{version}}",
+      "versionFrom": "Versión {{version}} del {{date}}",
+      "read": "Leer",
+      "alsoRead": "También para tu información:",
+      "agree": "He leído y acepto estos documentos",
+      "accept": "Aceptar",
+      "continue": "Continuar",
+      "decline": "Rechazar y cerrar sesión",
+      "topupNeeded": "Antes de recargar, acepta las condiciones de recarga del saldo.",
+      "readAccept": "Leer y aceptar",
+      "audience": {
+        "CLIENT": "Condiciones para clientes",
+        "INDEPENDENT_WORKER": "Condiciones para profesionales independientes",
+        "COMPANY": "Condiciones para empresas",
+        "TEAM_MEMBER": "Condiciones para equipos",
+        "DISPUTE_POLICY": "Reglas de disputas",
+        "INCIDENT_POLICY": "Reglas para incidentes",
+        "INSURANCE_REQUIREMENTS": "Requisitos de seguro",
+        "PRIVACY_POLICY": "Política de privacidad",
+        "TOPUP_TERMS": "Condiciones de recarga del saldo"
+      }
+    },
+    "reason": {
+      "POOR_QUALITY": "Mala calidad del trabajo",
+      "UNFINISHED": "Trabajo sin terminar",
+      "PROPERTY_DAMAGE": "Daños a la propiedad",
+      "ACCIDENT_INJURY": "Accidente o lesión",
+      "PRICE_DISAGREEMENT": "Desacuerdo con el precio",
+      "WORKER_NO_SHOW": "El profesional no vino",
+      "REFUND_REFUSED": "Reembolso rechazado",
+      "FRAUD_SUSPECTED": "Sospecha de fraude",
+      "PERFORMER_MISMATCH": "Vino otra persona",
+      "INSURANCE_OR_LICENSE": "Problema con el seguro o la licencia",
+      "PAYMENT_REFUSED": "El cliente se negó a pagar",
+      "CLIENT_NO_SHOW": "El cliente no estaba en la dirección",
+      "CASH_AMOUNT_MISMATCH": "Los importes en efectivo no coinciden",
+      "OTHER": "Otro"
+    },
+    "status": {
+      "OPEN": "Disputa abierta",
+      "AWAITING_RESPONSE": "Esperando la respuesta de la otra parte",
+      "UNDER_REVIEW": "En revisión por soporte",
+      "ESCALATED": "Enviada a un especialista sénior",
+      "SETTLED": "Resuelta",
+      "UNRESOLVED_REFERRED": "No resuelta: consulta a dónde acudir",
+      "CLOSED": "Cerrada"
+    },
+    "event": {
+      "opened": "Disputa abierta",
+      "response": "Explicación",
+      "client_no_show": "Ausencia del cliente notificada",
+      "assigned": "Especialista asignado",
+      "request_response": "Soporte solicita una explicación",
+      "proposal": "Propuesta de acuerdo",
+      "escalated": "Enviada a un especialista sénior",
+      "note": "Nota de soporte",
+      "settled": "Decisión",
+      "referred": "No se alcanzó un acuerdo",
+      "automatic_signal": "Señal automática",
+      "response_overdue": "Plazo de respuesta vencido"
+    },
+    "resolution": {
+      "agreement": "Las partes llegaron a un acuerdo",
+      "in_favor_client": "Resuelta a favor del cliente",
+      "in_favor_worker": "Resuelta a favor del profesional",
+      "partial": "Parcialmente a favor de cada parte",
+      "no_fault": "Nadie tiene la culpa"
+    },
+    "dispute": {
+      "title": "Disputa",
+      "newTitle": "Abrir una disputa",
+      "open": "Abrir una disputa",
+      "view": "Disputa: {{status}}",
+      "order": "Pedido n.º {{number}}",
+      "newIntro": "Describe qué salió mal. Soporte verá el chat, el historial del pedido y las fotos, y pedirá una explicación a la otra parte.",
+      "reasonTitle": "¿Qué pasó?",
+      "injuryHint": "Si alguien está herido o hay peligro, llama primero a emergencias.",
+      "description": "Descripción",
+      "descriptionHint": "¿Qué está mal exactamente y qué solución esperas?",
+      "howItWorks": "La otra parte tiene un plazo para responder. Después soporte lo revisa todo y propone una solución. Abrir una disputa no os impide hablar entre vosotros.",
+      "submit": "Abrir disputa",
+      "answerBy": "Responde antes del {{time}}",
+      "you": "Tú",
+      "support": "Soporte",
+      "worker": "Profesional",
+      "client": "Cliente",
+      "outcome": "Resultado",
+      "nextStepsTitle": "Qué puedes hacer ahora",
+      "nextSteps": "No fue posible llegar a un acuerdo dentro de la plataforma. Puedes acudir a una organización de consumidores, a un servicio de mediación o a un tribunal de tu país. Todos los materiales de la disputa quedan guardados y se pueden exportar en Privacidad.",
+      "yourAnswer": "Tu explicación",
+      "send": "Enviar",
+      "notCourt": "Soporte ayuda a las partes a llegar a un acuerdo. No es un tribunal y su propuesta no sustituye una decisión judicial.",
+      "toOrder": "Ir al pedido"
+    },
+    "noShow": {
+      "title": "El cliente no está",
+      "button": "El cliente no aparece",
+      "intro": "Si esperaste en la dirección y el cliente no salió ni responde, infórmalo aquí. El pedido pasará a soporte.",
+      "rules": "Debes estar en la dirección, haber esperado el tiempo requerido y fotografiar la entrada o la puerta. Se comprueba tu ubicación.",
+      "photo": "Hacer una foto",
+      "retake": "Repetir foto",
+      "comment": "Comentario (opcional)",
+      "submit": "Informar",
+      "tooEarly": "Espera {{minutes}} min más en la dirección."
+    },
+    "photos": {
+      "camera": "Cámara",
+      "gallery": "Galería",
+      "hint": "Hasta {{max}} fotos. Mantén pulsada una foto para quitarla.",
+      "remove": "Mantén pulsado para quitar",
+      "permission": "Permite el acceso en los ajustes del teléfono para añadir una foto.",
+      "tooLarge": "El archivo es demasiado grande."
+    },
+    "incident": {
+      "title": "Incidente",
+      "report": "Informar de un incidente",
+      "emergencyTitle": "¿Alguien está en peligro?",
+      "emergencyText": "Si alguien está herido o hay fuego, gas, agua o peligro eléctrico, llama ahora mismo a emergencias. Masterio no es un servicio de emergencias.",
+      "call": "Llamar al {{number}}",
+      "notify": "Después, informa aquí del incidente para que soporte lo sepa.",
+      "continue": "Continuar con el informe",
+      "typeTitle": "¿Qué ha pasado?",
+      "types": {
+        "ACCIDENT": "Accidente",
+        "INJURY": "Lesión",
+        "PROPERTY_DAMAGE": "Daños materiales",
+        "OTHER": "Otro"
+      },
+      "description": "Qué pasó, dónde y cuándo",
+      "called": "Ya he llamado a emergencias",
+      "noPromise": "Masterio registra el incidente y ayuda con la comunicación. La plataforma no ofrece seguro ni promete indemnizaciones.",
+      "submit": "Enviar informe",
+      "saved": "Incidente registrado",
+      "savedText": "Soporte ha recibido el informe y responderá en la consulta.",
+      "openTicket": "Abrir consulta",
+      "back": "Volver al pedido"
+    },
+    "support": {
+      "title": "Soporte",
+      "new": "Nueva consulta",
+      "newTitle": "Nueva consulta",
+      "ticket": "Consulta",
+      "empty": "Aún no hay consultas.",
+      "newIntro": "Describe tu pregunta. Si el problema es con un pedido, es mejor abrir una disputa desde la pantalla del pedido.",
+      "subject": "Asunto",
+      "message": "Mensaje",
+      "send": "Enviar",
+      "openDispute": "Ver la disputa",
+      "status": {
+        "OPEN": "Esperando a soporte",
+        "PENDING_USER": "Soporte ha respondido",
+        "RESOLVED": "Resuelta",
+        "CLOSED": "Cerrada"
+      }
+    },
+    "privacy": {
+      "title": "Mis datos",
+      "exportTitle": "Descargar mis datos",
+      "exportText": "Prepararemos un archivo con tu perfil, pedidos, mensajes, pagos y consentimientos. El enlace es válido por tiempo limitado.",
+      "exportButton": "Preparar archivo",
+      "exportReady": "Archivo del {{time}}: abrir",
+      "deleteTitle": "Eliminar cuenta",
+      "deleteText": "Se eliminarán tus datos personales. Lo que debemos conservar por ley (pagos, contabilidad, disputas y sus pruebas) se guardará sin tu nombre ni contactos durante el plazo exigido.",
+      "reason": "Motivo (opcional)",
+      "deleteButton": "Eliminar cuenta",
+      "deleteConfirm": "No se puede deshacer. ¿Eliminar la cuenta?"
+    },
+    "insurance": {
+      "title": "Seguro",
+      "notRequired": "Para tus servicios y ciudades no se requiere seguro por ahora.",
+      "ok": "póliza válida",
+      "missing": "se necesita póliza: sin ella no habrá pedidos",
+      "risks": "Debe cubrir: {{risks}}",
+      "policy": "Póliza: {{status}}, válida hasta {{date}}",
+      "disclaimer": "Masterio comprueba que la póliza existe y está vigente, pero no te asegura ni garantiza que un caso concreto esté cubierto: eso lo decide tu aseguradora.",
+      "upload": "Subir póliza",
+      "photo": "Elegir foto de la póliza",
+      "otherPhoto": "Elegir otra foto",
+      "insurer": "Compañía aseguradora",
+      "number": "Número de póliza",
+      "from": "Válida desde (DD.MM.AAAA)",
+      "until": "Válida hasta (DD.MM.AAAA)",
+      "coveredRisks": "Riesgos cubiertos, separados por comas (como en la póliza)",
+      "badDate": "Revisa las fechas: formato DD.MM.AAAA y fin posterior al inicio.",
+      "send": "Enviar a revisión"
+    },
+    "bonus": {
+      "awards": "Bonos mensuales",
+      "awardLine": "{{orders}} pedidos, comisión pagada {{commission}}. Úsalo antes del {{date}}.",
+      "note": "Los bonos solo reducen comisiones futuras. No se pueden retirar como dinero."
+    },
+    "team": {
+      "role": {
+        "LEADER": "Responsable del equipo",
+        "MASTER": "Profesional del equipo",
+        "HELPER": "Ayudante",
+        "EMPLOYEE": "Empleado de la empresa"
+      },
+      "changeTitle": "Vendrá otra persona",
+      "changeText": "El profesional quiere enviar a {{name}} ({{role}}) en su lugar.",
+      "changeReason": "Motivo: {{reason}}",
+      "changeHint": "Esta persona pasó la verificación de identidad. Si lo rechazas, se queda el profesional actual; si no estás de acuerdo, escribe a soporte.",
+      "approve": "Acepto",
+      "decline": "Mantener al actual",
+      "mismatch": "Vino otra persona",
+      "mismatchTitle": "¿No es la persona de la app?",
+      "mismatchHint": "Según la app debía venir {{name}}. Si vino otra persona, no la dejes empezar: abriremos una disputa y soporte te contactará.",
+      "mismatchDescription": "Qué pasó (opcional)",
+      "mismatchConfirm": "El pedido se detendrá y se abrirá una disputa. ¿Continuar?",
+      "mismatchSend": "Informar"
+    }
+  }
+}

@@ -1,0 +1,1066 @@
+{
+  "app": {
+    "platform": "Masterio",
+    "client": "Masterio",
+    "worker": "Masterio Pro"
+  },
+  "errors": {
+    "VALIDATION_FAILED": "Please check the entered data.",
+    "UNAUTHORIZED": "Please sign in again.",
+    "FORBIDDEN": "You don't have access to this.",
+    "NOT_FOUND": "Not found.",
+    "RATE_LIMITED": "Too many attempts. Please try again later.",
+    "OTP_INVALID": "Wrong code. Please try again.",
+    "OTP_EXPIRED": "The code has expired. Request a new one.",
+    "OTP_TOO_MANY_ATTEMPTS": "Too many wrong codes. Request a new one later.",
+    "TOKEN_REUSED": "Your session has ended for security reasons. Please sign in again.",
+    "ACCOUNT_BLOCKED": "Your account is restricted. Please contact support.",
+    "ORDER_ALREADY_TAKEN": "This order has already been taken.",
+    "OFFER_EXPIRED": "Time to accept has run out.",
+    "OFFER_NOT_ACTIVE": "This order is no longer available.",
+    "ORDER_NOT_CANCELLABLE": "This order can no longer be cancelled.",
+    "INVALID_STATUS_TRANSITION": "This action isn't available at the current order stage.",
+    "OUTSIDE_GEOFENCE": "You need to be at the address to do this.",
+    "WORKER_HAS_ACTIVE_ORDER": "Finish your current order first.",
+    "WORKER_NOT_ELIGIBLE": "You can't receive orders right now.",
+    "NO_APPROVED_ESTIMATE": "The client needs to approve the estimate first.",
+    "ESTIMATE_LOCKED": "The estimate can no longer be changed.",
+    "FEATURE_DISABLED": "This feature isn't available yet.",
+    "CASH_LIMIT_EXCEEDED": "The amount exceeds the cash payment limit.",
+    "CARD_REQUIRED": "Link a card to pay in cash.",
+    "INSUFFICIENT_BALANCE": "Not enough balance. Please top up.",
+    "GRANT_LIMIT_EXCEEDED": "The amount exceeds the allowed limit.",
+    "GRANT_SELF_FORBIDDEN": "You can't credit your own or a related account.",
+    "GRANT_SECOND_APPROVER_REQUIRED": "A second administrator must approve this credit.",
+    "IDEMPOTENCY_CONFLICT": "This request was already processed with different data.",
+    "REVIEW_NOT_ALLOWED": "Reviews are only possible for completed orders.",
+    "CITY_OR_CATEGORY_UNAVAILABLE": "This service isn't available in your city yet.",
+    "INTERNAL": "Something went wrong. Please try again.",
+    "ALREADY_EXISTS": "This already exists. Use a different code or e-mail.",
+    "LAST_SUPERADMIN": "At least one active superadmin must remain.",
+    "DISPUTE_NOT_ALLOWED": "A dispute cannot be opened for this order now.",
+    "DISPUTE_ALREADY_OPEN": "A dispute for this order is already open — add your explanation there.",
+    "DISPUTE_CLOSED": "The dispute is closed.",
+    "NO_SHOW_TOO_EARLY": "You can report a no-show only after waiting at the address.",
+    "CONSENT_REQUIRED": "Please accept the current terms to continue.",
+    "ACCOUNT_DELETE_BLOCKED": "The account cannot be deleted yet: finish active orders and disputes and pay off the debt.",
+    "BONUS_RUN_LOCKED": "This bonus calculation is already approved or cancelled.",
+    "TEAMS_DISABLED": "Teams are not available in your country.",
+    "TEAM_MEMBER_NOT_ELIGIBLE": "This team member cannot take the order: check identity, licence, insurance and current work.",
+    "TEAM_MEMBER_MODE": "You work in a team: orders come from your team leader.",
+    "ALREADY_IN_TEAM": "This person is already in a team.",
+    "TEAM_HAS_ACTIVE_WORK": "Finish or reassign the active order first.",
+    "TEAM_LIMIT_REACHED": "The team is full ({{limit}} people)."
+  },
+  "push": {
+    "offer_new": {
+      "title": "New order",
+      "body": "{{category}}, {{distance}} away. Accept within {{seconds}} s."
+    },
+    "offer_closed": {
+      "title": "Order unavailable",
+      "body": "This order is no longer available."
+    },
+    "order_accepted": {
+      "title": "A pro is on the way",
+      "body": "{{name}} accepted your order."
+    },
+    "worker_en_route": {
+      "title": "Your pro has left",
+      "body": "{{name}} is on the way to you."
+    },
+    "worker_nearby": {
+      "title": "Your pro is nearby",
+      "body": "{{name}} is less than {{distance}} away."
+    },
+    "worker_arrived": {
+      "title": "Your pro has arrived",
+      "body": "{{name}} is at your address."
+    },
+    "order_cancelled": {
+      "title": "Order cancelled",
+      "body": "Order #{{number}} has been cancelled."
+    },
+    "no_workers": {
+      "title": "No pros available right now",
+      "body": "You can widen the search radius, wait or cancel for free."
+    },
+    "estimate_new": {
+      "title": "New estimate",
+      "body": "Please review the estimate: {{amount}}."
+    },
+    "payment_confirm_request": {
+      "title": "Confirm the payment",
+      "body": "The pro reports receiving {{amount}} in cash. Please confirm."
+    },
+    "order_completed": {
+      "title": "Work completed",
+      "body": "Please rate the work on order #{{number}}."
+    },
+    "dispute_opened": {
+      "title": "A dispute has been opened",
+      "body": "A dispute has been opened on order #{{number}}. You can add your explanation."
+    },
+    "topup_succeeded": {
+      "title": "Balance topped up",
+      "body": "{{amount}} added to your balance."
+    },
+    "commission_charged": {
+      "title": "Commission charged",
+      "body": "Commission {{commission}}, bonus discount {{discount}}, charged {{charged}}."
+    },
+    "grant_received": {
+      "title": "Welcome bonus",
+      "body": "{{amount}} welcome credit is valid until {{date}}."
+    },
+    "document_approved": {
+      "title": "Document approved",
+      "body": "Your {{document}} has been verified."
+    },
+    "document_rejected": {
+      "title": "Document rejected",
+      "body": "Your {{document}} was rejected: {{reason}}. Please upload it again."
+    },
+    "dispute_update": {
+      "title": "Dispute update",
+      "body": "There is a new explanation or request in the dispute for order #{{number}}."
+    },
+    "dispute_proposal": {
+      "title": "Settlement proposal",
+      "body": "Support suggested how to settle the dispute for order #{{number}}."
+    },
+    "dispute_settled": {
+      "title": "Dispute settled",
+      "body": "The dispute for order #{{number}} is settled. See the outcome in the order."
+    },
+    "dispute_referred": {
+      "title": "Dispute not resolved",
+      "body": "No agreement for order #{{number}}. See where you can turn next."
+    },
+    "support_reply": {
+      "title": "Support replied",
+      "body": "Open the app to read the reply."
+    },
+    "insurance_expiring": {
+      "title": "Insurance expires soon",
+      "body": "Your policy expires in {{days}} days. Upload the new one so orders do not stop."
+    },
+    "document_expired": {
+      "title": "Document expired",
+      "body": "Orders that require this document are paused until you upload a valid one."
+    },
+    "bonus_credited": {
+      "title": "Bonus credited",
+      "body": "Your bonus for {{period}} is credited and will reduce the commission on new orders."
+    },
+    "team_invite": {
+      "title": "Team invitation",
+      "body": "«{{team}}» invites you to work together. Open Masterio Pro to answer."
+    },
+    "team_member_joined": {
+      "title": "New team member",
+      "body": "{{name}} accepted your invitation. Assign orders after the identity check."
+    },
+    "team_removed": {
+      "title": "You left the team",
+      "body": "«{{team}}» removed you from the team. You can work on your own."
+    },
+    "team_assign_needed": {
+      "title": "Choose who goes",
+      "body": "Order #{{number}}: choose a team member within {{minutes}} min, otherwise you go yourself."
+    },
+    "team_assigned": {
+      "title": "New order for you",
+      "body": "Order #{{number}}. Open it to see the address and start."
+    },
+    "team_unassigned": {
+      "title": "Order passed to someone else",
+      "body": "You no longer perform order #{{number}}."
+    },
+    "performer_assigned": {
+      "title": "Who is coming",
+      "body": "{{name}} will do your order. See the badges in the app."
+    },
+    "performer_change_request": {
+      "title": "New performer — your consent",
+      "body": "The professional wants {{name}} to do your order. Agree or keep the current one."
+    },
+    "performer_changed": {
+      "title": "Performer changed",
+      "body": "{{name}} will do your order now."
+    },
+    "performer_change_approved": {
+      "title": "Client agreed",
+      "body": "The replacement for order #{{number}} is confirmed."
+    },
+    "performer_change_declined": {
+      "title": "Client declined",
+      "body": "Order #{{number}} stays with the current performer."
+    },
+    "team_incident": {
+      "title": "Incident in your team",
+      "body": "A team member reported an incident on order #{{number}}. Check on them now."
+    }
+  },
+  "order": {
+    "status": {
+      "DRAFT": "Draft",
+      "SEARCHING": "Looking for a pro",
+      "NO_WORKERS": "No pros available",
+      "ACCEPTED": "Accepted",
+      "EN_ROUTE": "On the way",
+      "ARRIVED": "Arrived",
+      "IN_PROGRESS": "Work in progress",
+      "COMPLETED_BY_WORKER": "Completed, waiting for confirmation",
+      "CONFIRMED": "Confirmed",
+      "AUTO_CONFIRMED": "Confirmed automatically",
+      "CANCELLED_BY_CLIENT": "Cancelled by client",
+      "CANCELLED_BY_WORKER": "Cancelled by pro",
+      "CANCELLED_BY_ADMIN": "Cancelled by support",
+      "DISPUTED": "Dispute",
+      "CLOSED": "Closed"
+    },
+    "client_unconfirmed": "Not confirmed by the client"
+  },
+  "cancel": {
+    "client": {
+      "changed_mind": "I changed my mind",
+      "found_other": "I found another solution",
+      "wrong_address": "Wrong address",
+      "too_long_wait": "Waiting too long",
+      "worker_unresponsive": "The pro doesn't respond",
+      "off_platform_payment": "The pro asks for payment outside the app",
+      "worker_asked_to_cancel": "The pro asked me to cancel",
+      "other": "Other"
+    },
+    "worker": {
+      "client_unreachable": "The client can't be reached",
+      "cannot_arrive": "I can't get there",
+      "vehicle_problem": "Vehicle problem",
+      "wrong_category": "Wrong service category",
+      "client_asked_off_platform": "The client wants to pay outside the app",
+      "safety_concern": "Safety concern",
+      "other": "Other"
+    }
+  },
+  "wallet": {
+    "pocket": {
+      "topup": "Top-up",
+      "earnings": "Earnings",
+      "bonus": "Bonus",
+      "promo": "Welcome credit",
+      "debt": "Debt"
+    },
+    "not_withdrawable": "Can't be withdrawn. Used only to pay the platform commission.",
+    "promo_valid_until": "Welcome credit: {{amount}}, valid until {{date}}",
+    "bonus_expires": "Bonus {{amount}} expires on {{date}}",
+    "commission_breakdown": "Commission {{commission}}, bonus discount −{{discount}}, charged {{charged}}"
+  },
+  "worker": {
+    "ineligible": {
+      "kyc": "Your identity hasn't been verified yet.",
+      "balance": "Your balance is below the minimum. Top up to receive orders.",
+      "debt": "You have an outstanding debt. Top up to receive orders.",
+      "blocked": "Your account is restricted.",
+      "offline": "You're offline.",
+      "active_order": "You have an active order.",
+      "no_categories": "You haven't chosen any service categories.",
+      "no_cities": "You haven't chosen a city.",
+      "team_member": "You work in a team: orders are assigned by your leader."
+    }
+  },
+  "units": {
+    "m": "m",
+    "km": "km"
+  },
+  "chat": {
+    "off_platform_warning": "Deals outside the app are not protected. Keep all communication and payment confirmation in Masterio."
+  },
+  "pro": {
+    "common": {
+      "back": "Back",
+      "cancel": "Cancel",
+      "confirm": "Confirm",
+      "done": "Done",
+      "save": "Save",
+      "amountInvalid": "Enter a valid amount, for example 45.50."
+    },
+    "errors": {
+      "network": "No connection to the server. Check the internet and try again."
+    },
+    "tabs": {
+      "work": "Work",
+      "history": "History",
+      "wallet": "Wallet",
+      "profile": "Profile"
+    },
+    "auth": {
+      "title": "Sign in",
+      "codeTitle": "Code from SMS",
+      "subtitle": "Orders from clients nearby. Sign in with your phone number.",
+      "phoneLabel": "Phone number with country code",
+      "phoneInvalid": "Enter the number in international format, for example +374 91 123456.",
+      "sendCode": "Get code",
+      "legalNote": "By signing in you agree to the terms for independent professionals and the privacy policy.",
+      "codeSent": "We sent a code to {{phone}}.",
+      "codeLabel": "Code",
+      "verify": "Sign in",
+      "resend": "Send the code again",
+      "resendIn": "Send again in {{seconds}} s"
+    },
+    "onboarding": {
+      "title": "About you",
+      "intro": "Tell clients who you are and where you work. You can change this later in the profile.",
+      "firstName": "Your name (clients will see it)",
+      "typeTitle": "How do you work?",
+      "independent": "Independent professional",
+      "company": "Company",
+      "companyName": "Company name",
+      "citiesTitle": "Cities",
+      "categoriesTitle": "Services you provide",
+      "licenseNeeded": "license",
+      "continue": "Continue"
+    },
+    "work": {
+      "hello": "Hello, {{name}}",
+      "online": "You are online",
+      "offline": "You are offline",
+      "onlineHint": "New orders will come here. Tap to stop.",
+      "offlineHint": "Tap to start receiving orders.",
+      "locationDenied": "Masterio Pro needs your location to offer you nearby orders and show clients where you are.",
+      "openSettings": "Open settings",
+      "backgroundDenied": "Allow location \"Always\" so orders and tracking work when the app is in the background.",
+      "activeOrder": "Active order",
+      "activeOrderHint": "Tap to open the order, navigation and chat.",
+      "whyNoOrders": "Why orders are not coming",
+      "topUp": "Top up",
+      "uploadDocuments": "Upload documents",
+      "editProfile": "Choose services and cities",
+      "openOrder": "Open order",
+      "waiting": "Waiting for orders",
+      "waitingHint": "When a client nearby needs help, you will get an offer with a timer. Keep your phone at hand.",
+      "accessBalance": "Balance for receiving orders",
+      "threshold": "Minimum: {{amount}}",
+      "debt": "Debt to the platform: {{amount}}"
+    },
+    "offer": {
+      "title": "New order",
+      "urgentTitle": "Urgent order",
+      "distance": "{{distance}} from you",
+      "cash": "Cash payment",
+      "card": "Card payment in the app",
+      "accept": "Accept",
+      "decline": "Decline",
+      "unavailable": "The order is no longer available."
+    },
+    "order": {
+      "title": "Order",
+      "number": "Order #{{number}}",
+      "address": "Address",
+      "navigate": "Navigate",
+      "call": "Call",
+      "chat": "Chat",
+      "action": {
+        "EN_ROUTE": "I'm on my way",
+        "ARRIVED": "I've arrived",
+        "IN_PROGRESS": "Start work"
+      },
+      "arriveHint": "\"I've arrived\" works only when you are at the address.",
+      "estimate": "Estimate",
+      "estimateApproved": "Approved by the client",
+      "estimateWaiting": "Waiting for the client",
+      "estimateNone": "No estimate yet. Agree on the price with the client and send it here.",
+      "estimateCreate": "Create estimate",
+      "estimateChange": "Change estimate",
+      "estimateChangeHint": "A new estimate replaces the old one only after the client approves it.",
+      "completeTitle": "Finish the order",
+      "cashReceived": "Cash received, {{currency}}",
+      "commissionNote": "The platform commission is calculated from the approved estimate and charged from your balance.",
+      "complete": "Done, cash received",
+      "completeConfirmTitle": "Finish the order?",
+      "completeConfirmBody": "You confirm that you received {{amount}} in cash. The client will be asked to confirm the same amount.",
+      "commissionTitle": "Payment breakdown",
+      "amount": "Order amount",
+      "commission": "Platform commission",
+      "bonusDiscount": "Bonus discount",
+      "charged": "Charged from balance",
+      "debtNote": "Not enough balance: {{amount}} became debt. Top up to keep receiving orders.",
+      "waitingClient": "Waiting for the client to confirm the payment.",
+      "cancel": "Cancel the order",
+      "cancelTitle": "Why are you cancelling?",
+      "cancelWarning": "Cancelling after accepting lowers your rating and position in the queue. Frequent cancellations lead to a block.",
+      "cancelConfirm": "Cancel the order"
+    },
+    "estimate": {
+      "title": "Estimate",
+      "hint": "List the work and materials. The client approves the estimate in the app; only then the amount counts.",
+      "type": {
+        "LABOR": "Work",
+        "MATERIAL": "Materials",
+        "TRAVEL": "Travel",
+        "OTHER": "Other"
+      },
+      "itemTitle": "Description",
+      "quantity": "Qty",
+      "price": "Price, {{currency}}",
+      "remove": "Remove line",
+      "add": "Add line",
+      "note": "Comment for the client (optional)",
+      "total": "Total",
+      "fillAll": "Fill in the description, quantity and price for every line.",
+      "send": "Send to the client"
+    },
+    "chat": {
+      "title": "Chat",
+      "placeholder": "Message",
+      "send": "Send"
+    },
+    "history": {
+      "orders": "Orders",
+      "gross": "Earned (before commission)",
+      "commission": "Platform commission",
+      "bonusUsed": "Bonus used",
+      "net": "Net income",
+      "netOrder": "Net",
+      "rating": "Average rating",
+      "cancelRate": "Cancellations",
+      "vsPrevious": "Compared with last month: {{amount}}",
+      "bonusTitle": "Monthly bonus",
+      "currentTier": "Current tier: {{tier}} ({{percent}}% of commission paid)",
+      "noTier": "No bonus tier yet this month.",
+      "toNextTier": "Orders left to {{tier}} ({{percent}}%): {{count}}",
+      "bonusConditions": "Conditions: rating from {{rating}}, cancellations up to {{cancel}}%, no lost disputes.",
+      "bonusFormula": "The bonus is a share of the commission you paid. It is not money: it reduces the platform commission on new orders next month and then expires.",
+      "export": "Export report (CSV)",
+      "empty": "No completed orders this month."
+    },
+    "bonus": {
+      "tier": {
+        "base": "Base",
+        "silver": "Silver",
+        "gold": "Gold"
+      }
+    },
+    "wallet": {
+      "access": "Balance for receiving orders",
+      "daysLeft": "days left: {{count}}",
+      "debtHint": "You have a debt to the platform. New orders will come after you top up.",
+      "topUp": "Top up the balance",
+      "howItWorks": "How the commission is paid",
+      "order": "Clients pay you in cash. After each order the platform commission is charged from your balance in this order: bonus (up to half of the commission), welcome credit, top-up. If the balance is not enough, the rest becomes debt.",
+      "history": "Operations",
+      "noTransactions": "No operations yet.",
+      "kind": {
+        "TOPUP": "Top-up",
+        "COMMISSION": "Platform commission",
+        "BONUS_ACCRUAL": "Monthly bonus",
+        "BONUS_EXPIRY": "Bonus expired",
+        "PROMO_GRANT": "Welcome credit",
+        "PROMO_EXPIRY": "Welcome credit expired",
+        "PENALTY": "Penalty",
+        "COMPENSATION": "Travel compensation",
+        "REFUND": "Refund",
+        "CHARGEBACK": "Payment disputed by the bank",
+        "TOPUP_REFUND": "Top-up refund",
+        "REVERSAL": "Correction"
+      }
+    },
+    "topup": {
+      "title": "Top up",
+      "hint": "The balance is used to receive orders and to pay the platform commission.",
+      "amount": "Amount, {{currency}}",
+      "terms": "A top-up is a prepayment for platform services. It cannot be withdrawn; the remainder is returned when you close the account, minus debts.",
+      "pay": "Pay {{amount}}",
+      "success": "Payment accepted. The balance will update within a minute."
+    },
+    "documents": {
+      "title": "Documents",
+      "privacy": "Documents are stored in a closed storage. Only you and authorised Masterio staff can see them; every view is logged.",
+      "id": "ID document",
+      "idHint": "Passport or ID card. The photo must be sharp, all text readable.",
+      "selfie": "Selfie",
+      "selfieHint": "Take a photo of your face in good light, without glasses or a hat.",
+      "licenses": "Licenses",
+      "licensesHint": "Some services require a license. Choose a service to upload its license.",
+      "license": "License",
+      "licenseHint": "Photo or scan of the valid license for the chosen service.",
+      "camera": "Take a photo",
+      "gallery": "From gallery",
+      "notUploaded": "Not uploaded",
+      "status": {
+        "NOT_VERIFIED": "Under review",
+        "VERIFIED": "Verified",
+        "EXPIRED": "Expired",
+        "REJECTED": "Rejected"
+      },
+      "permissionDenied": "Allow access to the camera or photos in the phone settings.",
+      "tooLarge": "The file is larger than 10 MB.",
+      "continue": "Continue"
+    },
+    "profile": {
+      "rating": "Rating",
+      "type": "Status",
+      "kyc": "Identity check",
+      "documents": "Documents",
+      "editWork": "Services and cities",
+      "radius": "Order radius",
+      "radiusHint": "You can reduce the distance to orders, but not above the platform limit.",
+      "radiusDefault": "As set by the platform",
+      "autoEarnings": "Pay commission from earnings",
+      "autoEarningsHint": "Used for card orders, when they are available in your city.",
+      "language": "Language",
+      "signOut": "Sign out",
+      "platformNote": "Masterio connects clients and independent professionals; the work is performed and guaranteed by the professional."
+    },
+    "notifications": {
+      "offersChannel": "Order offers",
+      "defaultChannel": "Notifications"
+    },
+    "tracking": {
+      "onlineTitle": "Masterio Pro: you are online",
+      "onlineBody": "Your location is used to offer you nearby orders.",
+      "activeTitle": "Masterio Pro: active order",
+      "activeBody": "The client sees where you are until the order is completed."
+    },
+    "permissions": {
+      "location": "Masterio Pro uses your location to offer you nearby orders and to show the client where you are during an active order.",
+      "locationAlways": "Allow \"Always\" so orders and live tracking keep working when Masterio Pro is in the background. Location is shared with the client only during an active order.",
+      "camera": "Masterio Pro uses the camera to photograph your documents, selfie and work results.",
+      "photos": "Masterio Pro needs access to photos to upload your documents."
+    },
+    "team": {
+      "role": {
+        "LEADER": "Team leader",
+        "MASTER": "Master",
+        "HELPER": "Helper",
+        "EMPLOYEE": "Company employee"
+      },
+      "title": "My team",
+      "legalNote": "Masterio is not the employer or insurer of team members. The leader or company is responsible for helpers as required by law.",
+      "disabled": "Teams are not available in your country.",
+      "createTitle": "Work with helpers",
+      "createText": "Create a team, invite helpers or employees and send them to orders. Commission, balance and rating stay on your account.",
+      "name": "Team name",
+      "create": "Create team",
+      "capacity": "You can take {{count}} orders at the same time.",
+      "journal": "Team journal",
+      "members": "Members: {{count}} of {{limit}}",
+      "noMembers": "No members yet. Invite someone by phone number.",
+      "removeTitle": "Remove from team",
+      "removeConfirm": "Remove {{name}}? They will be able to work on their own.",
+      "remove": "Remove",
+      "pendingInvites": "Waiting for an answer",
+      "until": "until {{date}}",
+      "revoke": "Revoke",
+      "blocked": "Account blocked",
+      "kyc": "Identity: {{status}}",
+      "licenses": "Licences: {{count}}",
+      "insured": "Insured",
+      "noExtraDocs": "No licences or insurance uploaded",
+      "busy": "On order #{{number}}",
+      "notAssignable": "Cannot be assigned until the identity is confirmed.",
+      "inviteTitle": "Invite to the team",
+      "inviteText": "The person installs Masterio Pro, signs in with this number and accepts the invitation. Then they upload documents for the identity check.",
+      "consentNeeded": "Before adding helpers, accept the terms for teams.",
+      "phone": "Phone number",
+      "inviteSentExisting": "Invitation sent. The person will see it in Masterio Pro.",
+      "inviteSentNew": "Invitation saved. Ask the person to install Masterio Pro and sign in with this number.",
+      "invite": "Invite",
+      "leader": "Leader",
+      "myRole": "My role",
+      "since": "In the team since",
+      "memberRules": "In a team you get orders only from your leader: no going online, no wallet. Commission, rating and cancellations belong to the leader.",
+      "leaveTitle": "Leave the team",
+      "leaveConfirm": "After leaving you can work on your own with your categories and cities.",
+      "leave": "Leave the team",
+      "invitesTitle": "Team invitations",
+      "invitesText": "Accept to work as a team member, or continue on your own.",
+      "noInvites": "No active invitations.",
+      "fromCompany": "Company: {{name}}",
+      "fromMaster": "Master: {{name}}",
+      "asRole": "Role: {{role}}",
+      "accept": "Accept",
+      "decline": "Decline",
+      "workAlone": "Work on my own",
+      "journalEmpty": "No events yet.",
+      "more": "Show more",
+      "memberOnboarding": "You joined «{{team}}». Enter your name — the client sees it — and upload documents for the identity check.",
+      "memberHome": "«{{team}}» · {{role}}",
+      "memberKyc": "Your leader can send you to orders after the identity check.",
+      "memberActiveHint": "Open it: address, route and status buttons. Your location is shared with the client while you work.",
+      "noAssignments": "No orders assigned",
+      "noAssignmentsHint": "When your leader sends you to an order, you will get a notification.",
+      "pastAssignments": "Earlier orders",
+      "teamOrders": "Team members are on {{count}} orders (up to {{capacity}} at once)",
+      "performerTitle": "Who goes",
+      "assignNeeded": "Choose a team member before {{time}}, otherwise you go yourself.",
+      "performer": "Performer: {{name}} ({{role}})",
+      "performerYou": "Performer: you",
+      "autoAssigned": "Assigned automatically: the time to choose ran out.",
+      "performerConfirms": "Statuses, the estimate and completion are confirmed from the performer's phone.",
+      "pendingChange": "Waiting for the client to agree to {{name}}.",
+      "cancelChange": "Withdraw the replacement",
+      "assign": "Choose a performer",
+      "replace": "Replace the performer",
+      "consentHint": "The client must agree to the replacement; until then the current performer stays.",
+      "notifyHint": "The client will be notified about the new performer.",
+      "reason": "Reason for the client (optional)",
+      "now": "now",
+      "choose": "Choose",
+      "memberOrderNote": "Cancellation and disputes on this order are handled by your leader.",
+      "roleHint": {
+        "MASTER": "A second master who works independently on orders you assign.",
+        "HELPER": "A helper who goes to orders and works under your responsibility.",
+        "EMPLOYEE": "An employee of your company; the company policy can cover them."
+      },
+      "blocker": {
+        "inactive": "not in the team",
+        "kyc": "identity not confirmed",
+        "blocked": "account blocked",
+        "license": "no valid licence for this service",
+        "insurance": "no suitable valid insurance",
+        "busy": "busy on another order"
+      },
+      "actor": {
+        "you": "You",
+        "client": "Client",
+        "system": "Automatically"
+      },
+      "event": {
+        "created": "Team created",
+        "renamed": "Team renamed",
+        "invited": "Invitation sent",
+        "invite_revoked": "Invitation revoked",
+        "joined": "Joined the team",
+        "declined": "Declined the invitation",
+        "removed": "Removed from the team",
+        "left": "Left the team",
+        "assigned": "Assigned to the order",
+        "auto_assigned": "Assigned automatically",
+        "replaced": "Performer replaced",
+        "change_requested": "Replacement sent to the client",
+        "change_approved": "Client agreed to the replacement",
+        "change_declined": "Client declined the replacement",
+        "change_cancelled": "Replacement withdrawn",
+        "performer_mismatch": "Client: a different person came"
+      }
+    }
+  },
+  "client": {
+    "common": {
+      "back": "Back",
+      "cancel": "Cancel",
+      "confirm": "Confirm"
+    },
+    "tabs": {
+      "home": "Home",
+      "orders": "My orders",
+      "profile": "Profile"
+    },
+    "auth": {
+      "title": "Sign in",
+      "codeTitle": "Code from SMS",
+      "subtitle": "Help at home and on the road, fast. Sign in with your phone number.",
+      "phoneLabel": "Phone number with country code",
+      "phoneInvalid": "Enter the number in international format, for example +374 91 123456.",
+      "sendCode": "Get code",
+      "legalNote": "By signing in you agree to the terms of use and the privacy policy.",
+      "codeSent": "We sent a code to {{phone}}.",
+      "codeLabel": "Code",
+      "verify": "Sign in",
+      "resend": "Send the code again",
+      "resendIn": "Send again in {{seconds}} s"
+    },
+    "onboarding": {
+      "title": "Welcome",
+      "intro": "What should the professional call you?",
+      "firstName": "Your name",
+      "continue": "Continue",
+      "platformNote": "Masterio connects you with independent professionals. The service is provided by the professional."
+    },
+    "home": {
+      "hello": "Hello, {{name}}",
+      "subtitle": "What happened? Choose a service — we will find a professional nearby.",
+      "activeOrder": "Active order",
+      "urgent": "Urgent"
+    },
+    "newOrder": {
+      "title": "New order",
+      "urgentHint": "Urgent service: we offer the order to the nearest available professionals first.",
+      "description": "What happened?",
+      "descriptionPlaceholder": "For example: the car will not start, the battery is dead",
+      "photos": "Photos help the professional understand the problem (optional). Long-press a photo to remove it.",
+      "removePhotoHint": "Long-press to remove the photo",
+      "camera": "Take photo",
+      "gallery": "From gallery",
+      "permissionDenied": "No access to the camera or photos. Allow it in the phone settings.",
+      "tooLarge": "The photo is too large (max 10 MB).",
+      "address": "Address",
+      "chooseAddress": "Choose the address",
+      "available": "Professionals available nearby: {{count}}. Nearest: {{distance}}.",
+      "noneNearby": "No free professionals right now. You can still place the order — we will keep searching.",
+      "noneNearbyFar": "No professionals nearby, but there are some further away. After ordering you can expand the search radius.",
+      "when": "When?",
+      "asap": "As soon as possible",
+      "inHours": "In {{count}} h",
+      "payment": "Payment",
+      "cash": "Cash to the professional",
+      "card": "Card in the app",
+      "cashWarning": "Pay only the amount from the estimate in the app. Do not agree to pay outside the app — such orders are not protected.",
+      "legal": "The price is agreed with the professional on site and approved by you in the app before work starts.",
+      "submit": "Find a professional"
+    },
+    "address": {
+      "title": "Address",
+      "search": "Search for an address",
+      "searchPlaceholder": "Street, house number, city",
+      "myLocation": "Use my location",
+      "saved": "Saved addresses",
+      "dragHint": "Move the map so the pin points exactly at the place.",
+      "selected": "Selected address",
+      "resolving": "Finding the address…",
+      "details": "Entrance, floor, apartment, landmark",
+      "detailsPlaceholder": "For example: entrance 2, floor 5, apt 18",
+      "save": "Save this address",
+      "label": "Name",
+      "labelPlaceholder": "Home, Work…",
+      "permissionDenied": "No access to location. Allow it in the phone settings or find the address by search.",
+      "confirm": "Confirm address"
+    },
+    "addresses": {
+      "title": "My addresses",
+      "empty": "No saved addresses yet. You can save one when placing an order.",
+      "delete": "Delete",
+      "deleteTitle": "Delete this address?"
+    },
+    "orders": {
+      "count": "Orders",
+      "spent": "Spent",
+      "empty": "No orders in this month.",
+      "worker": "Professional",
+      "paid": "Paid",
+      "repeat": "Order again"
+    },
+    "order": {
+      "title": "Order",
+      "number": "Order #{{number}}",
+      "searchingTitle": "Looking for a professional",
+      "searchingText": "We offer your order to professionals one by one, nearest first, within {{distance}}.",
+      "noWorkersTitle": "No professional accepted the order yet",
+      "noWorkersText": "You can expand the search radius, search again or cancel.",
+      "expandRadius": "Search within {{distance}}",
+      "searchAgain": "Search again",
+      "noWorkersCancelFree": "Cancelling now is free.",
+      "performer": "Professional",
+      "newWorker": "New on Masterio",
+      "badgeVerified": "ID verified",
+      "badgeLicense": "Licence verified",
+      "badgeInsured": "Own insurance",
+      "call": "Call",
+      "chat": "Chat",
+      "arrived": "The professional has arrived. Agree on the work and the price — the estimate will appear here.",
+      "inProgress": "Work in progress. If the price changes, you will be asked to approve a new estimate.",
+      "disputed": "The amounts did not match, so a dispute was opened. Support will contact you. Do not pay anything extra outside the app.",
+      "address": "Address",
+      "scheduled": "Scheduled for",
+      "payment": "Payment",
+      "emergency": "Danger to life? Call {{number}}",
+      "platformNote": "Masterio is a platform: the service is provided by an independent professional. The platform does not insure the work."
+    },
+    "track": {
+      "destination": "Your address",
+      "worker": "Professional",
+      "etaMinutes": "Arrives in about {{count}} min",
+      "etaHours": "Arrives in about {{hours}} h {{minutes}} min",
+      "distance": "{{distance}} away",
+      "waitingGps": "Waiting for the professional’s location…",
+      "connectionLost": "Connection with the professional is lost — showing the last known position.",
+      "recenter": "Show the professional and the address"
+    },
+    "estimate": {
+      "proposed": "New estimate — approve it",
+      "approved": "Approved estimate",
+      "total": "Total",
+      "replaces": "Replaces the previous estimate of {{amount}}.",
+      "approve": "Approve",
+      "reject": "Reject",
+      "hint": "The professional starts work only after your approval."
+    },
+    "payment": {
+      "title": "Confirm the payment",
+      "reported": "The professional says you paid",
+      "paid": "How much did you pay in cash? ({{currency}})",
+      "invalid": "Enter a valid amount, for example 45.50.",
+      "confirm": "Confirm payment",
+      "confirmTitle": "Confirm payment?",
+      "confirmBody": "You paid {{amount}} to the professional.",
+      "mismatchBody": "You entered {{amount}}, the professional entered {{reported}}. A dispute will be opened and support will review it.",
+      "hint": "If the professional did not finish the work or asks for more money, enter what you actually paid — we will sort it out."
+    },
+    "review": {
+      "title": "Rate the professional",
+      "stars": "{{count}} of 5",
+      "text": "Comment (optional)",
+      "send": "Send review",
+      "thanks": "Thank you for your review!"
+    },
+    "blacklist": {
+      "block": "Do not offer my orders to this professional",
+      "unblock": "Offer my orders to this professional again",
+      "blockedHint": "This professional will not receive your new orders."
+    },
+    "cancel": {
+      "open": "Cancel order",
+      "title": "Why are you cancelling?",
+      "comment": "Comment",
+      "fee": "Cancellation fee: {{amount}} — compensation for the professional’s travel.",
+      "free": "Cancellation is free.",
+      "reportHint": "Thank you for telling us. Support will check this professional; you are not charged.",
+      "confirm": "Cancel the order",
+      "keep": "Keep the order"
+    },
+    "chat": {
+      "title": "Chat",
+      "placeholder": "Message",
+      "send": "Send"
+    },
+    "profile": {
+      "save": "Save",
+      "addresses": "My addresses",
+      "language": "Language",
+      "safetyTitle": "Safety",
+      "safetyText": "Every professional passes ID verification. Pay only the amount approved in the app, keep all communication in the in-app chat, and report any request to pay outside the app.",
+      "signOut": "Sign out"
+    },
+    "notifications": {
+      "orderChannel": "Order updates",
+      "defaultChannel": "Other notifications"
+    },
+    "permissions": {
+      "location": "Masterio uses your location to fill in the address where help is needed and to find professionals nearby.",
+      "camera": "Masterio uses the camera so you can photograph the problem for the professional.",
+      "photos": "Masterio needs access to photos so you can attach pictures of the problem to the order."
+    }
+  },
+  "case": {
+    "common": {
+      "cancel": "Cancel"
+    },
+    "legal": {
+      "screen": "Terms",
+      "document": "Document",
+      "title": "Please review the terms",
+      "intro": "To continue, read and accept the current documents. We store which version you accepted and when.",
+      "version": "Version {{version}}",
+      "versionFrom": "Version {{version}} of {{date}}",
+      "read": "Read",
+      "alsoRead": "Also for your information:",
+      "agree": "I have read and accept these documents",
+      "accept": "Accept",
+      "continue": "Continue",
+      "decline": "Decline and sign out",
+      "topupNeeded": "Before topping up, accept the balance top-up terms.",
+      "readAccept": "Read and accept",
+      "audience": {
+        "CLIENT": "Terms for clients",
+        "INDEPENDENT_WORKER": "Terms for independent workers",
+        "COMPANY": "Terms for companies",
+        "TEAM_MEMBER": "Terms for teams",
+        "DISPUTE_POLICY": "Dispute rules",
+        "INCIDENT_POLICY": "Incident rules",
+        "INSURANCE_REQUIREMENTS": "Insurance requirements",
+        "PRIVACY_POLICY": "Privacy policy",
+        "TOPUP_TERMS": "Balance top-up terms"
+      }
+    },
+    "reason": {
+      "POOR_QUALITY": "Poor quality of work",
+      "UNFINISHED": "Work not finished",
+      "PROPERTY_DAMAGE": "Property damage",
+      "ACCIDENT_INJURY": "Accident or injury",
+      "PRICE_DISAGREEMENT": "Disagreement about the price",
+      "WORKER_NO_SHOW": "Worker did not come",
+      "REFUND_REFUSED": "Refund refused",
+      "FRAUD_SUSPECTED": "Suspected fraud",
+      "PERFORMER_MISMATCH": "A different person came",
+      "INSURANCE_OR_LICENSE": "Insurance or licence problem",
+      "PAYMENT_REFUSED": "Client refused to pay",
+      "CLIENT_NO_SHOW": "Client was not at the address",
+      "CASH_AMOUNT_MISMATCH": "Cash amounts do not match",
+      "OTHER": "Other"
+    },
+    "status": {
+      "OPEN": "Dispute opened",
+      "AWAITING_RESPONSE": "Waiting for the other side to respond",
+      "UNDER_REVIEW": "Under review by support",
+      "ESCALATED": "Passed to a senior specialist",
+      "SETTLED": "Settled",
+      "UNRESOLVED_REFERRED": "Not resolved — see where to turn next",
+      "CLOSED": "Closed"
+    },
+    "event": {
+      "opened": "Dispute opened",
+      "response": "Explanation",
+      "client_no_show": "Client no-show reported",
+      "assigned": "Specialist assigned",
+      "request_response": "Support asks for an explanation",
+      "proposal": "Settlement proposal",
+      "escalated": "Passed to a senior specialist",
+      "note": "Note from support",
+      "settled": "Decision",
+      "referred": "No agreement reached",
+      "automatic_signal": "Automatic signal",
+      "response_overdue": "Response deadline passed"
+    },
+    "resolution": {
+      "agreement": "The parties reached an agreement",
+      "in_favor_client": "Decided in favour of the client",
+      "in_favor_worker": "Decided in favour of the worker",
+      "partial": "Partly in favour of each side",
+      "no_fault": "No one is at fault"
+    },
+    "dispute": {
+      "title": "Dispute",
+      "newTitle": "Open a dispute",
+      "open": "Open a dispute",
+      "view": "Dispute: {{status}}",
+      "order": "Order #{{number}}",
+      "newIntro": "Describe what went wrong. Support will see the chat, the order history and the photos, and will ask the other side for an explanation.",
+      "reasonTitle": "What happened?",
+      "injuryHint": "If someone is hurt or in danger, call the emergency number first.",
+      "description": "Description",
+      "descriptionHint": "What exactly is wrong, and what outcome do you expect?",
+      "howItWorks": "The other side gets a set time to answer. Support then reviews everything and proposes a solution. Opening a dispute does not stop you from contacting each other.",
+      "submit": "Open dispute",
+      "answerBy": "Please answer by {{time}}",
+      "you": "You",
+      "support": "Support",
+      "worker": "Worker",
+      "client": "Client",
+      "outcome": "Outcome",
+      "nextStepsTitle": "What you can do next",
+      "nextSteps": "We could not reach an agreement inside the platform. You can contact a consumer protection organisation, a mediation service or a court in your country. All materials of this dispute stay saved and can be exported in Privacy.",
+      "yourAnswer": "Your explanation",
+      "send": "Send",
+      "notCourt": "Support helps the parties reach an agreement. It is not a court, and its proposal does not replace a court decision.",
+      "toOrder": "Go to order"
+    },
+    "noShow": {
+      "title": "Client not here",
+      "button": "Client is not here",
+      "intro": "If you waited at the address and the client did not come out or answer, report it here. The order will go to support.",
+      "rules": "You must be at the address, have waited the required time and take a photo of the entrance or door. Your location is checked.",
+      "photo": "Take a photo",
+      "retake": "Retake photo",
+      "comment": "Comment (optional)",
+      "submit": "Report no-show",
+      "tooEarly": "Please wait {{minutes}} more min at the address."
+    },
+    "photos": {
+      "camera": "Camera",
+      "gallery": "Gallery",
+      "hint": "Up to {{max}} photos. Long-press a photo to remove it.",
+      "remove": "Long-press to remove",
+      "permission": "Allow access in the phone settings to add a photo.",
+      "tooLarge": "The file is too large."
+    },
+    "incident": {
+      "title": "Incident",
+      "report": "Report an incident",
+      "emergencyTitle": "Is anyone in danger?",
+      "emergencyText": "If someone is hurt, there is a fire, gas, water or electrical danger — call the emergency service right now. Masterio is not an emergency service.",
+      "call": "Call {{number}}",
+      "notify": "After that, report the incident here so support knows about it.",
+      "continue": "Continue to the report",
+      "typeTitle": "What happened?",
+      "types": {
+        "ACCIDENT": "Accident",
+        "INJURY": "Injury",
+        "PROPERTY_DAMAGE": "Property damage",
+        "OTHER": "Other"
+      },
+      "description": "What happened, where and when",
+      "called": "I have already called the emergency service",
+      "noPromise": "Masterio records the incident and helps with communication. The platform does not provide insurance and does not promise compensation.",
+      "submit": "Send report",
+      "saved": "Incident recorded",
+      "savedText": "Support has received the report and will reply in the ticket.",
+      "openTicket": "Open ticket",
+      "back": "Back to order"
+    },
+    "support": {
+      "title": "Support",
+      "new": "New request",
+      "newTitle": "New request",
+      "ticket": "Request",
+      "empty": "No requests yet.",
+      "newIntro": "Describe the question. For a problem with an order, it is better to open a dispute from the order screen.",
+      "subject": "Subject",
+      "message": "Message",
+      "send": "Send",
+      "openDispute": "Open the dispute",
+      "status": {
+        "OPEN": "Waiting for support",
+        "PENDING_USER": "Support replied",
+        "RESOLVED": "Resolved",
+        "CLOSED": "Closed"
+      }
+    },
+    "privacy": {
+      "title": "My data",
+      "exportTitle": "Download my data",
+      "exportText": "We will prepare a file with your profile, orders, messages, payments and consents. The link is valid for a limited time.",
+      "exportButton": "Prepare file",
+      "exportReady": "File from {{time}} — open",
+      "deleteTitle": "Delete account",
+      "deleteText": "Your personal data will be removed. Records we must keep by law (payments, ledger, disputes and their evidence) stay stored without your name and contacts for the required period.",
+      "reason": "Reason (optional)",
+      "deleteButton": "Delete account",
+      "deleteConfirm": "This cannot be undone. Delete the account?"
+    },
+    "insurance": {
+      "title": "Insurance",
+      "notRequired": "Your services and cities do not require insurance right now.",
+      "ok": "valid policy",
+      "missing": "policy needed — no orders until it is checked",
+      "risks": "Must cover: {{risks}}",
+      "policy": "Policy: {{status}}, valid until {{date}}",
+      "disclaimer": "Masterio checks that the policy exists and is valid but does not insure you and does not guarantee that a particular case is covered — that is decided by your insurer.",
+      "upload": "Upload policy",
+      "photo": "Choose policy photo",
+      "otherPhoto": "Choose another photo",
+      "insurer": "Insurance company",
+      "number": "Policy number",
+      "from": "Valid from (DD.MM.YYYY)",
+      "until": "Valid until (DD.MM.YYYY)",
+      "coveredRisks": "Covered risks, comma-separated (as in the policy)",
+      "badDate": "Check the dates: use DD.MM.YYYY, end after start.",
+      "send": "Send for review"
+    },
+    "bonus": {
+      "awards": "Monthly bonuses",
+      "awardLine": "{{orders}} orders, commission paid {{commission}}. Use by {{date}}.",
+      "note": "Bonuses only reduce future commission. They cannot be withdrawn as money."
+    },
+    "team": {
+      "role": {
+        "LEADER": "Team leader",
+        "MASTER": "Master in the team",
+        "HELPER": "Helper",
+        "EMPLOYEE": "Company employee"
+      },
+      "changeTitle": "Another person will come",
+      "changeText": "The professional asks to send {{name}} ({{role}}) instead.",
+      "changeReason": "Reason: {{reason}}",
+      "changeHint": "This person passed the identity check. If you decline, the current performer stays; if you disagree, contact support.",
+      "approve": "Agree",
+      "decline": "Keep the current one",
+      "mismatch": "A different person came",
+      "mismatchTitle": "Not the person from the app?",
+      "mismatchHint": "The app says {{name}} should come. If someone else came, do not let them start — we will open a dispute and support will contact you.",
+      "mismatchDescription": "What happened (optional)",
+      "mismatchConfirm": "The order will be stopped and a dispute opened. Continue?",
+      "mismatchSend": "Report"
+    }
+  }
+}
