@@ -39,13 +39,19 @@ openssl rand -base64 32   # PII_ENCRYPTION_KEY — сохраните в мен�
 ## 3. Railway: база, Redis, API
 
 1. New Project → Deploy from GitHub repo → ваш репозиторий. Railway найдёт `railway.json` в корне: сборка по `apps/api/Dockerfile`, проверка `/api/v1/health`, пересборка только при изменениях API или общего пакета.
-2. Add Service → **PostGIS** (шаблон Railway). Add Service → **Redis**; у сервиса Redis должен быть том (Volume), чтобы таймеры переживали перезапуск.
+2. База с PostGIS. Обычный PostgreSQL из меню Database не подходит: в нём нет PostGIS, и первая миграция упадёт (ошибка P3009). Нужно:
+   - **+ Add → Docker Image** → `postgis/postgis:16-3.6`;
+   - Variables: `POSTGRES_USER=postgres`, `POSTGRES_PASSWORD=<случайный>`, `POSTGRES_DB=railway`, `PGDATA=/var/lib/postgresql/data/pgdata`;
+   - том (Volume) на `/var/lib/postgresql/data`, имя сервиса `postgis`.
+
+   Затем **+ Add → Database → Redis** (том подключается сам). Проверьте `CONFIG GET maxmemory-policy` → `noeviction`. Лучше, чтобы был ещё `appendonly yes`: тогда таймеры переживут перезапуск Redis.
+   Railway при подключении репозитория создаёт сервис на каждый пакет: удалите `@masterio/client`, `@masterio/worker`, `@masterio/shared` (приложения собирает Expo). У `@masterio/api` и `@masterio/admin` поле Root Directory должно быть пустым.
 3. Переменные сервиса API:
 
 | Переменная | Значение |
 |---|---|
 | `NODE_ENV` | `production` |
-| `DATABASE_URL` | ссылка на PostGIS: `${{PostGIS.DATABASE_URL}}` |
+| `DATABASE_URL` | `postgresql://postgres:${{postgis.POSTGRES_PASSWORD}}@${{postgis.RAILWAY_PRIVATE_DOMAIN}}:5432/railway` |
 | `REDIS_URL` | `${{Redis.REDIS_URL}}` |
 | `PUBLIC_URL` | `https://<домен API>` (после шага 4) |
 | `CORS_ORIGINS` | `https://<домен CRM>` (после шага 5) |
